@@ -4,9 +4,7 @@ import Image from 'next/image'
 import LogoHeader from '../../../public/LogoPokedexTeste.png'
 import LogoHeader1 from '../../../public/pokedexLogo.png'
 
-// import { SeachPoke } from '../SeachPoke'
-
-// import { Headers } from './styles'
+import { Headers } from './styles'
 
 const Header = (): JSX.Element => {
   return (
