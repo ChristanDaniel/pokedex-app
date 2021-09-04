@@ -1,8 +1,8 @@
 import React from 'react'
 
 import Image from 'next/image'
-import LogoHeader from '../../../public/LogoPokedexTeste.png'
-import LogoHeader1 from '../../../public/pokedexLogo.png'
+import LogoHeader from '../../../public/PokedexLogo.png'
+import LogoHeader1 from '../../../public/Logodex.png'
 
 import { Headers } from './styles'
 
