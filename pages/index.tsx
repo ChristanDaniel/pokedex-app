@@ -7,6 +7,10 @@ const Header = dynamic(() => import('../src/components/Header'), {
   ssr: false
 })
 
+const SeachPoke = dynamic(() => import('../src/components/SearchPoke'), {
+  ssr: false
+})
+
 const Home: NextPage = () => {
   return (
     <>
@@ -14,6 +18,7 @@ const Home: NextPage = () => {
         <title>Pokedex-app</title>
       </Head>
       <Header />
+      <SeachPoke />
       <h1>Hello World</h1>
     </>
   )
