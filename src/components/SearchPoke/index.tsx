@@ -1,5 +1,5 @@
 import React from 'react'
-// import { NavSection } from './styles'
+import { NavSection } from './styles'
 // import LogoHeader1 from '../../../public/pokedexLogo.png'
 // import Image from 'next/image'
 
