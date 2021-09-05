@@ -11,6 +11,10 @@ const SeachPoke = dynamic(() => import('../src/components/SearchPoke'), {
   ssr: false
 })
 
+const HomeContainer = dynamic(() => import('../src/features/Home/HomeContainer'), {
+  ssr: false
+})
+
 const Home: NextPage = () => {
   return (
     <>
@@ -19,7 +23,7 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <SeachPoke />
-      <h1>Hello World</h1>
+      <HomeContainer />
     </>
   )
 }

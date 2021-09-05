@@ -17,6 +17,7 @@ const NavSection = styled.nav`
     width: 960px;
     border-radius: 100px;
   }
+
   button {
     align-self: center;
     font-size: 14px;
@@ -27,6 +28,7 @@ const NavSection = styled.nav`
     justify-content: center;
     align-items: center;
     padding: 0 5px;
+    border-radius: 100px;
 
     margin-left: 5px;
     text-decoration: none;
