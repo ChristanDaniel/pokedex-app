@@ -11,7 +11,7 @@ const SeachPoke = dynamic(() => import('../../src/components/SearchPoke'), {
   ssr: false
 })
 
-const PokemonContainer = dynamic(() => import('../../src/features/Home/Pokemon/PokemonContainer'), {
+const PokemonContainer = dynamic(() => import('../../src/features/Home/PokemonPage/PokemonContainer'), {
   ssr: false
 })
 
