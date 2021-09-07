@@ -2,27 +2,21 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
-
-const Header = dynamic(() => import('../../src/components/Header'), {
-  ssr: false
-})
-
-const SeachPoke = dynamic(() => import('../../src/components/SearchPoke'), {
-  ssr: false
-})
+import { useRouter } from 'next/dist/client/router'
 
 const PokemonContainer = dynamic(() => import('../../src/features/Home/PokemonPage/PokemonContainer'), {
   ssr: false
 })
 
 const Home: NextPage = () => {
+  const router = useRouter()
+
   return (
     <>
       <Head>
-        <title>Pokedex-app</title>
+        <title>Pokedex | {router.query.id}</title>
       </Head>
-      <Header />
-      <SeachPoke />
+
       <PokemonContainer />
     </>
   )
