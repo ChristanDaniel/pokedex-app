@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
 import { api } from '../../../services/api'
 
-import { PokeContainer } from './styles'
+import { PokeContainer, PokeHeadContainer } from './styles'
 
 type PokemonType = {
   type: {
     name: string
+    url: typeof Image
   }
 }
 type PokeProps = {
@@ -29,7 +30,6 @@ const PokemonContainer = (): JSX.Element => {
       )
 
       setPokeInfo([
-        ...pokeInfo,
         {
           id: response.data.id,
           name: response.data.name,
@@ -47,16 +47,16 @@ const PokemonContainer = (): JSX.Element => {
         {pokeInfo.map((pokemon, index) => {
           return (
             <>
-              <div key={index}>
-                <span>#{pokemon.id} </span>
-                <span>{pokemon.name}</span>
+              <PokeHeadContainer key={index}>
                 <div>
+                  <span>#{pokemon.id} </span>
+                  <span>{pokemon.name}</span>
                   {pokemon.types.map((natural, index) => {
                     return <div key={index}>{natural.type.name}</div>
                   })}
                 </div>
-              </div>
-              <img src={pokemon.img} alt={pokemon.name} />
+                <img src={pokemon.img} alt={pokemon.name} />
+              </PokeHeadContainer>
             </>
           )
         })}

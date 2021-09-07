@@ -39,7 +39,6 @@ const HomeContainer = (): JSX.Element => {
         const response = await api.get(`/pokemon/${pokemon.name}`)
         console.log('BORA V ER AQUI', response.data)
         setPokeList([
-          ...pokeList,
           {
             id: response.data.id,
             name: response.data.name,

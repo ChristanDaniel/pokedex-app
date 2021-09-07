@@ -4,6 +4,10 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/dist/client/router'
 
+const Header = dynamic(() => import('../../src/components/Header'), {
+  ssr: false
+})
+
 const PokemonContainer = dynamic(() => import('../../src/features/Home/PokemonPage/PokemonContainer'), {
   ssr: false
 })
@@ -16,7 +20,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Pokedex | {router.query.id}</title>
       </Head>
-
+      <Header />
       <PokemonContainer />
     </>
   )
