@@ -1,52 +1,77 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import { useRouter } from 'next/dist/client/router'
 
-import Image from 'next/image'
-import pokedex from '../../../public/pokedex.png'
+// import Image from 'next/image'
+// import pokedex from '../../../public/pokedex.png'
 
 import { MainContainer } from './styles'
 import { api } from '../../services/api'
 
-type PokeProps = {
-  name: string
-  img: {
-    url: string
+type PokemonType = {
+  type: {
+    name: string
   }
-  types: []
 }
 
-interface HomeContainerProps {
-  results: PokeProps
+type PokeProps = {
+  id: number
+  name: string
+  img: string
+  types: PokemonType[]
 }
 
-const HomeContainer = () => {
-  const [pokeList, setPokeList] = useState<PokeProps>([])
+// interface HomeContainerProps {
+//   results: PokeProps[]
+// }
+
+const HomeContainer = (): JSX.Element => {
+  const [pokeList, setPokeList] = useState<PokeProps[]>([])
   const [relaod, setReload] = useState(true)
   const router = useRouter()
 
   useEffect(() => {
     async function getList() {
       const response = await api.get('/pokemon?limit=9')
+
       response.data.results.map(async (pokemon) => {
-        const response = await api.get(`${pokemon.url}`)
-        const pokeType = []
-        response.data.types.map((type) => {
-          pokeType.push({ name: type.type.name })
-          console.log('type.type.name', type.type.name)
-        })
-        const newPoke = { id: response.data.id, name: pokemon.name, img: response.data.sprites.front_default, types: pokeType }
-        pokeList.push(newPoke)
-        setPokeList(pokeList)
-        console.log('O QUE TEM AQUIII?', pokeList)
+        const response = await api.get(`/pokemon/${pokemon.name}`)
+
+        console.log('BORA V ER AQUI', response.data)
+        setPokeList([
+          ...pokeList,
+          {
+            id: response.data.id,
+            name: response.data.name,
+            img: response.data.sprites.other.dream_world.front_default,
+            types: response.data.types
+          }
+        ])
       })
+      // const pokeType = []
+
+      // response.data.types.map((type) => {
+      //   pokeType.push({ name: type.type.name })
+      //   // console.log('type.type.name', type.type.name)
+      // })
+
+      // const newPoke = {
+      //   id: response.data.id,
+      //   name: pokemon.name,
+      //   img: response.data.sprites.front_default,
+      //   types: pokeType
+      // }
+
+      // pokeList.push(newPoke)
+      console.log('só pra confrimar', response.data)
+      console.log('ANTES DE SETAR', pokeList)
+
+      console.log('DEPOIS DE SETAR', pokeList)
     }
     getList()
   }, [])
 
-  useEffect(() => {
-
-  }, [])
+  // useEffect(() => {}, [])
 
   // setTimeout(() => setReload(!relaod), 3000)
 
@@ -60,7 +85,7 @@ const HomeContainer = () => {
               <span>{pokemon.name}</span>
               <div>
                 {pokemon.types.map((natural, index) => {
-                  return <div key={index}>{natural.name}</div>
+                  return <div key={index}>{natural.type.name}</div>
                 })}
               </div>
             </div>
