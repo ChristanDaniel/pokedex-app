@@ -29,19 +29,23 @@ const HomeContainer = () => {
     async function getList() {
       const response = await api.get('/pokemon?limit=9')
       response.data.results.map(async (pokemon) => {
-        const response = await api.get(`/pokemon/${pokemon.name}`)
+        const response = await api.get(`${pokemon.url}`)
         const pokeType = []
         response.data.types.map((type) => {
           pokeType.push({ name: type.type.name })
           console.log('type.type.name', type.type.name)
         })
-        const newPoke = { name: pokemon.name, img: response.data.sprites.front_default, types: pokeType }
+        const newPoke = { id: response.data.id, name: pokemon.name, img: response.data.sprites.front_default, types: pokeType }
         pokeList.push(newPoke)
         setPokeList(pokeList)
-        console.log(pokeList)
+        console.log('O QUE TEM AQUIII?', pokeList)
       })
     }
     getList()
+  }, [])
+
+  useEffect(() => {
+
   }, [])
 
   // setTimeout(() => setReload(!relaod), 3000)
