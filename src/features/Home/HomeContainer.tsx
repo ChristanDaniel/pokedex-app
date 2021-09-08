@@ -36,7 +36,9 @@ const HomeContainer = (): JSX.Element => {
       console.log('AHushauhsuahsuahsu', response.data)
 
       response.data.results.map(async (pokemon) => {
-        const response = await api.get(`/pokemon/${pokemon.name}`)
+        const response = await api.get(`/pokemon/${pokemon.name}`, {
+          ...pokemon
+        })
         console.log('BORA V ER AQUI', response.data)
         setPokeList([
           {

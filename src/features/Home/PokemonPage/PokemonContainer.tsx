@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
 import { api } from '../../../services/api'
 
-import { PokeContainer, PokeHeadContainer } from './styles'
+import { PokeContainer, PokeHeadContainer, EvolutionContainer } from './styles'
 
 type PokemonType = {
   type: {
@@ -57,6 +57,11 @@ const PokemonContainer = (): JSX.Element => {
                 </div>
                 <img src={pokemon.img} alt={pokemon.name} />
               </PokeHeadContainer>
+              <EvolutionContainer>
+                <h1>Evolution</h1>
+                <img />
+                <div></div>
+              </EvolutionContainer>
             </>
           )
         })}
