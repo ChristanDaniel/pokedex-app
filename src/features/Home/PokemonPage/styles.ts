@@ -3,15 +3,15 @@ import styled from 'styled-components'
 const PokeContainer = styled.main`
   width: 100%;
   height: 100vh;
-  background-color: #4a90da;
+  background-color: #e2e2e2;
   /* background-color: rgb(88, 171, 246); */
   /* color: rgb(139, 190, 138); */
 `
 const PokeHeadContainer = styled.div`
   display: flex;
+  justify-content: center;
   align-content: center;
   align-items: center;
-  justify-content: center;
   padding-top: 40px;
   margin-bottom: 50px;
   border-bottom: 1px solid #ffffff;
@@ -22,8 +22,9 @@ const PokeHeadContainer = styled.div`
   }
 
   span {
+    display: flex;
+    justify-content: center;
     padding-right: 30px;
-
     font-weight: bold;
     font-size: 60px;
     line-height: 65px;
@@ -45,14 +46,17 @@ const EvolutionContainer = styled.div`
   margin-left: 23%;
   background-color: #ffffff;
   border-radius: 30px;
-  justify-content: space-evenly;
+  flex-direction: column;
 
   h1 {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
     font-weight: bold;
     font-size: 60px;
     line-height: 65px;
-    text-transform: capitalize;
-    border-bottom: 1px solid #4a90da;
+    /* text-transform: capitalize; */
     color: #4a90da;
   }
 `
