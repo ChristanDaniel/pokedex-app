@@ -64,10 +64,23 @@ const EvolutionContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-content: center;
+  /* flex-direction: column; */
+  margin: 32px;
 
-  img {
-    height: 150px;
-    width: 150px;
+  p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-transform: capitalize;
+    line-height: 26px;
+    font-weight: bold;
+    border-top: 1px solid #4a90da;
+
+    img {
+      height: 150px;
+      border-top: 1px solid #4a90da;
+      width: 150px;
+    }
   }
 `
 

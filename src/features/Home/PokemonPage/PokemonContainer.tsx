@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
 import { api } from '../../../services/api'
 import Image from 'next/image'
-// import fotoPokebola from '../../../../public/beckPokedex.png'
+import SetaPokemon from '../../../../public/seta.png'
 
 import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent } from './styles'
 import axios from 'axios'
@@ -82,14 +82,24 @@ const PokemonContainer = (): JSX.Element => {
                   return (
                     <>
                       <EvolutionContent key={index}>
-                        <p>{pokemonEvolution.nameOne}</p>
-                        <img src={pokemonEvolution.img} />
+                        <p>
+                          {pokemonEvolution.nameOne}
+                          <img src={pokemonEvolution.img} />
+                        </p>
 
-                        <p>{pokemonEvolution.nameTwo}</p>
-                        <img src={pokemonEvolution.img} />
+                        <Image src={SetaPokemon} alt="logo" width={90} />
 
-                        <p>{pokemonEvolution.nameThree}</p>
-                        <img src={pokemonEvolution.img} />
+                        <p>
+                          {pokemonEvolution.nameTwo}
+                          <img src={pokemonEvolution.img} />
+                        </p>
+
+                        <Image src={SetaPokemon} alt="logo" width={90} />
+
+                        <p>
+                          {pokemonEvolution.nameThree}
+                          <img src={pokemonEvolution.img} />
+                        </p>
                       </EvolutionContent>
                     </>
                   )
