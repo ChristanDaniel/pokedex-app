@@ -4,7 +4,7 @@ import { api } from '../../../services/api'
 import Image from 'next/image'
 // import fotoPokebola from '../../../../public/beckPokedex.png'
 
-import { PokeContainer, PokeHeadContainer, EvolutionContainer } from './styles'
+import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent } from './styles'
 import axios from 'axios'
 
 type PokemonType = {
@@ -25,6 +25,7 @@ const PokemonContainer = (): JSX.Element => {
 
   const [pokeInfo, setPokeInfo] = useState<PokeProps[]>([])
   const [evolution, setEvolution] = useState([])
+  const [evolutionImg, setEvolutionImg] = useState([])
 
   useEffect(() => {
     async function getPokemon() {
@@ -35,15 +36,16 @@ const PokemonContainer = (): JSX.Element => {
       const responseSpecie = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${response.data.name}/`)
       const responseEvolution = await axios.get(`${responseSpecie.data.evolution_chain.url}`)
 
+      console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', responseEvolution)
+
       setEvolution([
         {
+          img: responseImg.config.url,
           nameOne: responseEvolution.data.chain.species.name,
           nameTwo: responseEvolution.data.chain.evolves_to[0].species.name,
           nameThree: responseEvolution.data.chain.evolves_to[0].evolves_to[0].species.name
         }
       ])
-      console.log('NAMEEEES', evolution)
-
       console.log('OLHA EU DE NOVO', responseEvolution)
 
       setPokeInfo([
@@ -76,15 +78,19 @@ const PokemonContainer = (): JSX.Element => {
               </PokeHeadContainer>
               <EvolutionContainer>
                 <h1>Evolution</h1>
-                {evolution.map((pokemon, index) => {
+                {evolution.map((pokemonEvolution, index) => {
                   return (
                     <>
-                      <div key={index}>
-                        <img />
-                        <p>{pokemon.nameOne}</p>
-                        <p>{pokemon.nameTwo}</p>
-                        <p>{pokemon.nameThree}</p>
-                      </div>
+                      <EvolutionContent key={index}>
+                        <p>{pokemonEvolution.nameOne}</p>
+                        <img src={pokemonEvolution.img} />
+
+                        <p>{pokemonEvolution.nameTwo}</p>
+                        <img src={pokemonEvolution.img} />
+
+                        <p>{pokemonEvolution.nameThree}</p>
+                        <img src={pokemonEvolution.img} />
+                      </EvolutionContent>
                     </>
                   )
                 })}

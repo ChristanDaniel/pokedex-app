@@ -36,11 +36,10 @@ const HomeContainer = (): JSX.Element => {
       console.log('AHushauhsuahsuahsu', response.data)
 
       response.data.results.map(async (pokemon) => {
-        const response = await api.get(`/pokemon/${pokemon.name}`, {
-          ...pokemon
-        })
+        const response = await api.get(`/pokemon/${pokemon.name}`)
         console.log('BORA V ER AQUI', response.data)
-        setPokeList([
+        return setPokeList([
+          ...pokeList,
           {
             id: response.data.id,
             name: response.data.name,

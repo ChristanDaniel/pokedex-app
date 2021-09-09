@@ -60,5 +60,15 @@ const EvolutionContainer = styled.div`
     color: #4a90da;
   }
 `
+const EvolutionContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
 
-export { PokeContainer, PokeHeadContainer, EvolutionContainer }
+  img {
+    height: 150px;
+    width: 150px;
+  }
+`
+
+export { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent }
