@@ -40,7 +40,7 @@ const PokemonContainer = (): JSX.Element => {
 
       setEvolution([
         {
-          img: response.data.sprites.other['official-artwork'].front_default,
+          // img: response.data.sprites.other['official-artwork'].front_default,
           nameOne: responseEvolution.data.chain.species.name,
           nameTwo: responseEvolution.data.chain.evolves_to[0].species.name,
           nameThree: responseEvolution.data.chain.evolves_to[0].evolves_to[0].species.name
@@ -51,7 +51,15 @@ const PokemonContainer = (): JSX.Element => {
         const responseOne = await api.get(`/pokemon/${pokemonImg.nameOne}`)
         const responseTwo = await api.get(`/pokemon/${pokemonImg.nameTwo}`)
         const responseThree = await api.get(`/pokemon/${pokemonImg.nameThree}`)
-        return console.log(responseOne), console.log(responseTwo), console.log(responseThree)
+
+        return setEvolution([
+          // ...evolution,
+          {
+            imageOne: responseOne.data.sprites.other['official-artwork'].front_default,
+            imageTwo: responseTwo.data.sprites.other['official-artwork'].front_default,
+            imageThree: responseThree.data.sprites.other['official-artwork'].front_default
+          }
+        ])
       })
 
       setPokeInfo([
@@ -90,21 +98,21 @@ const PokemonContainer = (): JSX.Element => {
                       <EvolutionContent key={index}>
                         <p>
                           {pokemonEvolution.nameOne}
-                          <img src={pokemonEvolution.img} />
+                          <img src={pokemonEvolution.imageOne} />
                         </p>
 
                         <Image src={SetaPokemon} alt="logo" width={90} />
 
                         <p>
                           {pokemonEvolution.nameTwo}
-                          <img src={pokemonEvolution.img} />
+                          <img src={pokemonEvolution.imageTwo} />
                         </p>
 
                         <Image src={SetaPokemon} alt="logo" width={90} />
 
                         <p>
                           {pokemonEvolution.nameThree}
-                          <img src={pokemonEvolution.img} />
+                          <img src={pokemonEvolution.imageThree} />
                         </p>
                       </EvolutionContent>
                     </>
