@@ -30,8 +30,8 @@ const PokemonContainer = (): JSX.Element => {
   useEffect(() => {
     async function getPokemon() {
       const response = await api.get(`/pokemon/${router.query.id}`)
-      const responseImg = await api.get(
-        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.data.id}.png`
+      const responsePokemon = await api.get(
+        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.data.sprites.other['official-artwork'].front_default}.png`
       )
       const responseSpecie = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${response.data.name}/`)
       const responseEvolution = await axios.get(`${responseSpecie.data.evolution_chain.url}`)
@@ -40,7 +40,7 @@ const PokemonContainer = (): JSX.Element => {
 
       setEvolution([
         {
-          img: responseImg.config.url,
+          img: response.data.sprites.other['official-artwork'].front_default,
           nameOne: responseEvolution.data.chain.species.name,
           nameTwo: responseEvolution.data.chain.evolves_to[0].species.name,
           nameThree: responseEvolution.data.chain.evolves_to[0].evolves_to[0].species.name

@@ -30,20 +30,23 @@ const HomeContainer = (): JSX.Element => {
   const [relaod, setReload] = useState(true)
   const router = useRouter()
 
-  useEffect(() => {
+  useEffect(async () => {
     async function getList() {
       const response = await api.get('/pokemon?limit=9')
-      console.log('AHushauhsuahsuahsu', response.data)
+      // const responsePokemon = await api.get(`/pokemon/${response.data.results}`)
+      console.log('AHushauhsuahsuahsu', response.data.results)
+      // setPokeList(response.data)
 
       response.data.results.map(async (pokemon) => {
         const response = await api.get(`/pokemon/${pokemon.name}`)
-        console.log('BORA V ER AQUI', response.data)
+        // console.log(pokemon.name)
+        // console.log('BORA V ER AQUI', response.data)
         return setPokeList([
           ...pokeList,
           {
             id: response.data.id,
             name: response.data.name,
-            img: response.data.sprites.other.dream_world.front_default,
+            img: response.data.sprites.other['official-artwork'].front_default,
             types: response.data.types
           }
         ])
@@ -75,23 +78,29 @@ const HomeContainer = (): JSX.Element => {
 
   return (
     <MainContainer>
-      {pokeList.map((pokemon, index) => {
-        // console.log(pokeList)
-        return (
-          <a key={index} onClick={() => router.push(`/pokemon/${pokemon.name}`)}>
-            <div>
-              <span>#{pokemon.id} </span>
-              <span>{pokemon.name}</span>
-              <div>
-                {pokemon.types.map((natural, index) => {
-                  return <div key={index}>{natural.type.name}</div>
-                })}
-              </div>
-            </div>
-            <img src={pokemon.img} />
-          </a>
-        )
-      })}
+      <ul>
+        {pokeList.map((pokemon, index) => {
+          console.log('AGORA VAIIII', pokeList)
+          return (
+            <>
+              <li key={index}>
+                <a onClick={() => router.push(`/pokemon/${pokemon.name}`)}>
+                  <div>
+                    <span>#{pokemon.id} </span>
+                    <span>{pokemon.name}</span>
+                    <div>
+                      {pokemon.types.map((natural, index) => {
+                        return <div key={index}>{natural.type.name}</div>
+                      })}
+                    </div>
+                  </div>
+                  <img src={pokemon.img} />
+                </a>
+              </li>
+            </>
+          )
+        })}
+      </ul>
     </MainContainer>
   )
 }
