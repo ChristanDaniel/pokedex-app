@@ -30,13 +30,13 @@ const PokemonContainer = (): JSX.Element => {
   useEffect(() => {
     async function getPokemon() {
       const response = await api.get(`/pokemon/${router.query.id}`)
-      const responsePokemon = await api.get(
-        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.data.sprites.other['official-artwork'].front_default}.png`
-      )
+      // const responsePokemon = await api.get(
+      //   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.data.sprites.other['official-artwork'].front_default}.png`
+      // )
       const responseSpecie = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${response.data.name}/`)
       const responseEvolution = await axios.get(`${responseSpecie.data.evolution_chain.url}`)
 
-      console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', responseEvolution)
+      console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', responseSpecie)
 
       setEvolution([
         {
@@ -46,13 +46,19 @@ const PokemonContainer = (): JSX.Element => {
           nameThree: responseEvolution.data.chain.evolves_to[0].evolves_to[0].species.name
         }
       ])
-      console.log('OLHA EU DE NOVO', responseEvolution)
+
+      evolution.map(async (pokemonImg) => {
+        const responseOne = await api.get(`/pokemon/${pokemonImg.nameOne}`)
+        const responseTwo = await api.get(`/pokemon/${pokemonImg.nameTwo}`)
+        const responseThree = await api.get(`/pokemon/${pokemonImg.nameThree}`)
+        return console.log(responseOne), console.log(responseTwo), console.log(responseThree)
+      })
 
       setPokeInfo([
         {
           id: response.data.id,
           name: response.data.name,
-          img: responseImg.config.url,
+          img: response.data.sprites.other['official-artwork'].front_default,
           types: response.data.types
         }
       ])

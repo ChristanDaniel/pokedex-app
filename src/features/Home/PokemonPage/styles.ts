@@ -3,8 +3,8 @@ import styled from 'styled-components'
 const PokeContainer = styled.main`
   width: 100%;
   height: 100vh;
-  background-color: #e2e2e2;
-  /* background-color: rgb(88, 171, 246); */
+  /* background-color: #e2e2e2; */
+  background-color: rgb(88, 171, 246);
   /* color: rgb(139, 190, 138); */
 `
 const PokeHeadContainer = styled.div`
