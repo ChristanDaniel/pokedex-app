@@ -30,22 +30,30 @@ const HomeContainer = (): JSX.Element => {
   const [loadMore, setLoadMore] = useState('/pokemon?limit=9')
   const router = useRouter()
 
+  // async function getAllPokemon() {
+  // }
+
   async function getListPokemon() {
     const response = await api.get(loadMore)
     setLoadMore(response.data.next)
 
     response.data.results.forEach(async (pokemon: PokeProps) => {
       const response = await api.get(`/pokemon/${pokemon.name}`)
+      console.log(response)
 
-      return setPokeList((list) => [
-        ...list,
-        {
-          id: response.data.id,
-          name: response.data.name,
-          img: response.data.sprites.other['official-artwork'].front_default,
-          types: response.data.types
-        }
-      ])
+      return (
+        setPokeList((pokemon) => [
+          ...pokemon,
+          {
+            id: response.data.id,
+            name: response.data.name,
+            img: response.data.sprites.other['official-artwork'].front_default,
+            types: response.data.types
+          }
+        ]),
+        pokeList.sort((a, b) => a.id - b.id)
+      )
+      // pokeList.sort((a, b) => a.id - b.id)
     })
   }
 
@@ -55,28 +63,26 @@ const HomeContainer = (): JSX.Element => {
 
   return (
     <MainContainer>
-      <ul>
-        {pokeList.map((pokemon, index) => {
-          return (
-            <>
-              <li key={index}>
-                <a onClick={() => router.push(`/pokemon/${pokemon.name}`)}>
+      {pokeList.map((pokemon, index) => {
+        return (
+          <>
+            <li key={index}>
+              <a onClick={() => router.push(`/pokemon/${pokemon.name}`)}>
+                <div>
+                  <span>#{pokemon.id} </span>
+                  <span>{pokemon.name}</span>
                   <div>
-                    <span>#{pokemon.id} </span>
-                    <span>{pokemon.name}</span>
-                    <div>
-                      {pokemon.types.map((natural, index) => {
-                        return <div key={index}>{natural.type.name}</div>
-                      })}
-                    </div>
+                    {pokemon.types.map((natural, index) => {
+                      return <div key={index}>{natural.type.name}</div>
+                    })}
                   </div>
-                  <img src={pokemon.img} />
-                </a>
-              </li>
-            </>
-          )
-        })}
-      </ul>
+                </div>
+                <img src={pokemon.img} />
+              </a>
+            </li>
+          </>
+        )
+      })}
       <button onClick={() => getListPokemon()}>Load More</button>
     </MainContainer>
   )
