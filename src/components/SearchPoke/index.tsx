@@ -1,13 +1,28 @@
-import React from 'react'
+import React, { FormEvent, useState } from 'react'
+import { api } from '../../services/api'
 import { NavSection } from './styles'
 // import LogoHeader1 from '../../../public/pokedexLogo.png'
 // import Image from 'next/image'
 
 const SeachPoke = (): JSX.Element => {
+  const [searchPokemon, setSearchPokemon] = useState('')
+  // const []
+
+  const handleSeachPokemon = async (event: FormEvent) => {
+    event.preventDefault()
+    const response = await api.get(`pokemon?limit=1118`)
+    response.results.forEach(async (pokemon) => {
+      const response = await api.get(`/pokemon/${pokemon.name}`)
+      console.log(response)
+    })
+  }
+
   return (
     <>
       <NavSection>
-        <input placeholder="Search Pokémon"></input>
+        <form onSubmit={handleSeachPokemon}>
+          <input placeholder="Search Pokémon" onChange={(event) => setSearchPokemon(event.target.value)} value={searchPokemon} />
+        </form>
         <div>
           <button>all</button>
           <button>Normal</button>

@@ -21,44 +21,44 @@ type PokeProps = {
   types: PokemonType[]
 }
 
-// interface HomeContainerProps {
-//   results: PokeProps[]
-// }
+interface HomeContainerProps {
+  results: PokeProps[]
+}
 
 const HomeContainer = (): JSX.Element => {
   const [pokeList, setPokeList] = useState<PokeProps[]>([])
   const [loadMore, setLoadMore] = useState('/pokemon?limit=9')
   const router = useRouter()
 
-  // async function getAllPokemon() {
-  // }
-
-  async function getListPokemon() {
+  const getAllPokemon = async () => {
     const response = await api.get(loadMore)
     setLoadMore(response.data.next)
 
-    response.data.results.forEach(async (pokemon: PokeProps) => {
-      const response = await api.get(`/pokemon/${pokemon.name}`)
-      console.log(response)
+    async function getListPokemon({ results }: HomeContainerProps) {
+      results.forEach(async (pokemon) => {
+        const response = await api.get(`/pokemon/${pokemon.name}`)
+        console.log(response)
 
-      return (
-        setPokeList((pokemon) => [
-          ...pokemon,
-          {
-            id: response.data.id,
-            name: response.data.name,
-            img: response.data.sprites.other['official-artwork'].front_default,
-            types: response.data.types
-          }
-        ]),
-        pokeList.sort((a, b) => a.id - b.id)
-      )
-      // pokeList.sort((a, b) => a.id - b.id)
-    })
+        return (
+          setPokeList((pokemon) => [
+            ...pokemon,
+            {
+              id: response.data.id,
+              name: response.data.name,
+              img: response.data.sprites.other['official-artwork'].front_default,
+              types: response.data.types
+            }
+          ]),
+          pokeList.sort((a, b) => a.id - b.id)
+        )
+      })
+    }
+
+    getListPokemon(response.data)
   }
 
   useEffect(() => {
-    getListPokemon()
+    getAllPokemon()
   }, [])
 
   return (
@@ -83,7 +83,7 @@ const HomeContainer = (): JSX.Element => {
           </>
         )
       })}
-      <button onClick={() => getListPokemon()}>Load More</button>
+      <button onClick={() => getAllPokemon()}>Load More</button>
     </MainContainer>
   )
 }
