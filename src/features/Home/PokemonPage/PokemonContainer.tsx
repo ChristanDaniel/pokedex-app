@@ -15,7 +15,7 @@ type PokemonType = {
 }
 type PokeProps = {
   id?: number
-  name?: string | undefined
+  name?: string
   img?: string
   types: PokemonType[]
 }

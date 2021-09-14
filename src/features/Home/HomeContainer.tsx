@@ -21,66 +21,42 @@ type PokeProps = {
   types: PokemonType[]
 }
 
-interface HomeContainerProps {
-  results: PokeProps[]
-}
+// interface HomeContainerProps {
+//   results: PokeProps[]
+// }
 
 const HomeContainer = (): JSX.Element => {
   const [pokeList, setPokeList] = useState<PokeProps[]>([])
-  const [relaod, setReload] = useState(true)
+  const [loadMore, setLoadMore] = useState('/pokemon?limit=9')
   const router = useRouter()
 
-  useEffect(async () => {
-    async function getList() {
-      const response = await api.get('/pokemon?limit=9')
-      // const responsePokemon = await api.get(`/pokemon/${response.data.results}`)
-      console.log('AHushauhsuahsuahsu', response.data.results)
-      // setPokeList(response.data)
+  async function getListPokemon() {
+    const response = await api.get(loadMore)
+    setLoadMore(response.data.next)
 
-      response.data.results.map(async (pokemon) => {
-        const response = await api.get(`/pokemon/${pokemon.name}`)
-        // console.log(pokemon.name)
-        // console.log('BORA V ER AQUI', response.data)
-        return setPokeList([
-          ...pokeList,
-          {
-            id: response.data.id,
-            name: response.data.name,
-            img: response.data.sprites.other['official-artwork'].front_default,
-            types: response.data.types
-          }
-        ])
-        // })
-        // const pokeType = []
+    response.data.results.forEach(async (pokemon: PokeProps) => {
+      const response = await api.get(`/pokemon/${pokemon.name}`)
 
-        // response.data.types.map((type) => {
-        //   pokeType.push({ name: type.type.name })
-        //   // console.log('type.type.name', type.type.name)
-        // })
+      return setPokeList((list) => [
+        ...list,
+        {
+          id: response.data.id,
+          name: response.data.name,
+          img: response.data.sprites.other['official-artwork'].front_default,
+          types: response.data.types
+        }
+      ])
+    })
+  }
 
-        // const newPoke = {
-        //   id: response.data.id,
-        //   name: pokemon.name,
-        //   img: response.data.sprites.front_default,
-        //   types: pokeType
-      })
-      // pokeList.push(newPoke)
-      // console.log('só pra confrimar', response.data)
-
-      // console.log('DEPOIS DE SETAR', pokeList)
-    }
-
-    getList()
-    console.log('ANTES DE SETAR', pokeList)
+  useEffect(() => {
+    getListPokemon()
   }, [])
-
-  // setTimeout(() => setReload(!relaod), 3000)
 
   return (
     <MainContainer>
       <ul>
         {pokeList.map((pokemon, index) => {
-          console.log('AGORA VAIIII', pokeList)
           return (
             <>
               <li key={index}>
@@ -101,6 +77,7 @@ const HomeContainer = (): JSX.Element => {
           )
         })}
       </ul>
+      <button onClick={() => getListPokemon()}>Load More</button>
     </MainContainer>
   )
 }
