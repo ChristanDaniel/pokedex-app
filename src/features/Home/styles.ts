@@ -25,8 +25,18 @@ const LiContent = styled.li`
 
     img {
       padding-left: 20px;
-      height: 165px;
+      height: 105px;
     }
+  }
+`
+
+const DivContent = styled.div`
+  margin-top: 25px;
+  margin-left: 26px;
+
+  span {
+    font-size: 22px;
+    color: #ffffff;
   }
 
   h2 {
@@ -36,10 +46,6 @@ const LiContent = styled.li`
     text-transform: capitalize;
     color: #ffffff;
   }
-`
-
-const DivContent = styled.div`
-  margin-top: 25px;
 
   div {
     display: flex;
@@ -51,11 +57,6 @@ const DivContent = styled.div`
       margin-top: 8px;
       padding-right: 15px;
     }
-  }
-
-  span {
-    font-size: 22px;
-    color: #ffffff;
   }
 `
 

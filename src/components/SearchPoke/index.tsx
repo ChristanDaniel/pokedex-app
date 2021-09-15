@@ -1,8 +1,8 @@
 import React, { FormEvent, useState } from 'react'
 import { api } from '../../services/api'
 import { NavSection } from './styles'
-// import LogoHeader1 from '../../../public/pokedexLogo.png'
-// import Image from 'next/image'
+import pikachu from '../../../public/pikachu.png'
+import Image from 'next/image'
 
 const SeachPoke = (): JSX.Element => {
   const [searchPokemon, setSearchPokemon] = useState('')
@@ -42,6 +42,7 @@ const SeachPoke = (): JSX.Element => {
   return (
     <>
       <NavSection>
+        <Image src={pikachu} />
         <form onSubmit={handleSeachPokemon}>
           <input placeholder="Search Pokémon" onChange={(event) => setSearchPokemon(event.target.value)} value={searchPokemon} />
         </form>

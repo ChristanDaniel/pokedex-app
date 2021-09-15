@@ -8,8 +8,13 @@ const NavSection = styled.nav`
   padding-left: 240px;
 
   div {
-    padding-top: 14px;
+    display: flex;
+    /* padding-top: 14px; */
   }
+
+  /* img {
+    display: flex;
+  } */
 
   input {
     padding-left: 20px;

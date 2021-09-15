@@ -17,8 +17,11 @@ const PokeHeadContainer = styled.div`
   border-bottom: 1px solid #ffffff;
 
   div {
-    display: flex;
     flex-direction: column;
+    display: flex;
+    p {
+      display: flex;
+    }
   }
 
   span {

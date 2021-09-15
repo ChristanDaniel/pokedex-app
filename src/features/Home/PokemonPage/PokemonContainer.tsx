@@ -85,7 +85,7 @@ const PokemonContainer = (): JSX.Element => {
                   <span>#{pokemon.id} </span>
                   <span>{pokemon.name}</span>
                   {pokemon.types.map((natural, index) => {
-                    return <div key={index}>{natural.type.name}</div>
+                    return <p key={index}>{natural.type.name}</p>
                   })}
                 </div>
                 <img src={pokemon.img} alt={pokemon.name} />
