@@ -36,11 +36,11 @@ const PokemonContainer = (): JSX.Element => {
       const responseSpecie = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${response.data.name}/`)
       const responseEvolution = await axios.get(`${responseSpecie.data.evolution_chain.url}`)
 
-      console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', responseSpecie)
+      // console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', responseSpecie)
 
       setEvolution([
         {
-          // img: response.data.sprites.other['official-artwork'].front_default,
+          img: response.data.sprites.other['official-artwork'].front_default,
           nameOne: responseEvolution.data.chain.species.name,
           nameTwo: responseEvolution.data.chain.evolves_to[0].species.name,
           nameThree: responseEvolution.data.chain.evolves_to[0].evolves_to[0].species.name

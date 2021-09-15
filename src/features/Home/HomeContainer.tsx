@@ -5,7 +5,7 @@ import { useRouter } from 'next/dist/client/router'
 // import Image from 'next/image'
 // import pokedex from '../../../public/pokedex.png'
 
-import { MainContainer } from './styles'
+import { MainContainer, LiContent, DivContent } from './styles'
 import { api } from '../../services/api'
 
 type PokemonType = {
@@ -66,20 +66,20 @@ const HomeContainer = (): JSX.Element => {
       {pokeList.map((pokemon, index) => {
         return (
           <>
-            <li key={index}>
+            <LiContent key={index}>
               <a onClick={() => router.push(`/pokemon/${pokemon.name}`)}>
-                <div>
+                <img src={pokemon.img} />
+                <DivContent>
                   <span>#{pokemon.id} </span>
-                  <span>{pokemon.name}</span>
+                  <h2>{pokemon.name}</h2>
                   <div>
                     {pokemon.types.map((natural, index) => {
-                      return <div key={index}>{natural.type.name}</div>
+                      return <p key={index}>{natural.type.name}</p>
                     })}
                   </div>
-                </div>
-                <img src={pokemon.img} />
+                </DivContent>
               </a>
-            </li>
+            </LiContent>
           </>
         )
       })}
