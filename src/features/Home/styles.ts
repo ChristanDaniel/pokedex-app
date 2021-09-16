@@ -9,7 +9,7 @@ const MainContainer = styled.main`
 `
 const LiContent = styled.li`
   border-radius: 10px;
-  background: rgb(139, 190, 138);
+  background: ${({ theme }) => theme.colors.backgroundType};
   box-shadow: rgb(0 0 0 / 30%);
   max-height: 180px;
   max-width: 400px;

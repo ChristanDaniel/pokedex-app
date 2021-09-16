@@ -7,10 +7,13 @@ import { useRouter } from 'next/dist/client/router'
 
 import { MainContainer, LiContent, DivContent } from './styles'
 import { api } from '../../services/api'
+import { ThemeProvider } from 'styled-components'
+import defaultTheme from '../../../styles/theme'
 
 type PokemonType = {
   type: {
     name: string
+    color: string
   }
 }
 
@@ -19,6 +22,7 @@ type PokeProps = {
   name: string
   img: string
   types: PokemonType[]
+  backgroundColor: string
 }
 
 interface HomeContainerProps {
@@ -62,29 +66,31 @@ const HomeContainer = (): JSX.Element => {
   }, [])
 
   return (
-    <MainContainer>
-      {pokeList.map((pokemon, index) => {
-        return (
-          <>
-            <LiContent key={index}>
-              <a onClick={() => router.push(`/pokemon/${pokemon.name}`)}>
-                <img src={pokemon.img} />
-                <DivContent>
-                  <span>#{pokemon.id} </span>
-                  <h2>{pokemon.name}</h2>
-                  <div>
-                    {pokemon.types.map((natural, index) => {
-                      return <p key={index}>{natural.type.name}</p>
-                    })}
-                  </div>
-                </DivContent>
-              </a>
-            </LiContent>
-          </>
-        )
-      })}
-      <button onClick={() => getAllPokemon()}>Load More</button>
-    </MainContainer>
+    <ThemeProvider theme={defaultTheme}>
+      <MainContainer>
+        {pokeList.map((pokemon, index) => {
+          return (
+            <>
+              <LiContent key={index}>
+                <a onClick={() => router.push(`/pokemon/${pokemon.name}`)}>
+                  <img src={pokemon.img} />
+                  <DivContent>
+                    <span>#{pokemon.id} </span>
+                    <h2>{pokemon.name}</h2>
+                    <div>
+                      {pokemon.types.map((natural, index) => {
+                        return <p key={index}>{natural.type.name}</p>
+                      })}
+                    </div>
+                  </DivContent>
+                </a>
+              </LiContent>
+            </>
+          )
+        })}
+        <button onClick={() => getAllPokemon()}>Load More</button>
+      </MainContainer>
+    </ThemeProvider>
   )
 }
 export default HomeContainer
