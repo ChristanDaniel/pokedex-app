@@ -42,10 +42,7 @@ const SeachPoke = (): JSX.Element => {
   return (
     <>
       <NavSection>
-        <Image src={pikachu} />
-        <form onSubmit={handleSeachPokemon}>
-          <input placeholder="Search Pokémon" onChange={(event) => setSearchPokemon(event.target.value)} value={searchPokemon} />
-        </form>
+        {/* <Image src={pikachu} /> */}
         <div>
           <button>all</button>
           <button>Normal</button>
@@ -67,6 +64,9 @@ const SeachPoke = (): JSX.Element => {
           <button>Dark </button>
           <button>Fairy</button>
         </div>
+        <form onSubmit={handleSeachPokemon}>
+          <input placeholder="Search Pokémon" onChange={(event) => setSearchPokemon(event.target.value)} value={searchPokemon} />
+        </form>
       </NavSection>
 
       {/* {pokemonPesquisado &&

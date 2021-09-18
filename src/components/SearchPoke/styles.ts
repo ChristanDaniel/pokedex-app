@@ -2,13 +2,15 @@ import styled from 'styled-components'
 
 const NavSection = styled.nav`
   background-color: #e2e2e2;
-  padding-top: 40px;
+  padding-top: 10px;
   width: auto;
-  flex-direction: column;
-  padding-left: 240px;
+  /* flex-direction: column; */
+  padding-left: 50px;
+  display: flex;
+  align-items: center;
 
   div {
-    display: flex;
+    margin-right: 25px;
     /* padding-top: 14px; */
   }
 
@@ -18,12 +20,14 @@ const NavSection = styled.nav`
 
   input {
     padding-left: 20px;
-    height: 45px;
-    width: 960px;
-    border-radius: 100px;
+    height: 35px;
+    width: 250px;
+    border-radius: 15px;
+    border: none;
   }
 
   button {
+    /* display: flex; */
     align-self: center;
     font-size: 14px;
     height: 30px;

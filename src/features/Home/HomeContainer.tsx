@@ -5,15 +5,15 @@ import { useRouter } from 'next/dist/client/router'
 // import Image from 'next/image'
 // import pokedex from '../../../public/pokedex.png'
 
-import { MainContainer, LiContent, DivContent } from './styles'
+import { MainContainer, LiContent, DivContent, Content } from './styles'
 import { api } from '../../services/api'
-import { ThemeProvider } from 'styled-components'
-import defaultTheme from '../../../styles/theme'
+// import { useTheme } from 'styled-components'
+// import defaultTheme from '../../../styles/theme'
 
 type PokemonType = {
   type: {
     name: string
-    color: string
+    // color?: string
   }
 }
 
@@ -21,8 +21,8 @@ type PokeProps = {
   id: number
   name: string
   img: string
-  types: PokemonType[]
-  backgroundColor: string
+  types?: PokemonType[]
+  // backgroundColor?: string
 }
 
 interface HomeContainerProps {
@@ -30,6 +30,7 @@ interface HomeContainerProps {
 }
 
 const HomeContainer = (): JSX.Element => {
+  // const { colors } = useTheme()
   const [pokeList, setPokeList] = useState<PokeProps[]>([])
   const [loadMore, setLoadMore] = useState('/pokemon?limit=9')
   const router = useRouter()
@@ -41,7 +42,6 @@ const HomeContainer = (): JSX.Element => {
     async function getListPokemon({ results }: HomeContainerProps) {
       results.forEach(async (pokemon) => {
         const response = await api.get(`/pokemon/${pokemon.name}`)
-        console.log(response)
 
         return (
           setPokeList((pokemon) => [
@@ -66,8 +66,8 @@ const HomeContainer = (): JSX.Element => {
   }, [])
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <MainContainer>
+    <MainContainer>
+      <Content>
         {pokeList.map((pokemon, index) => {
           return (
             <>
@@ -88,9 +88,11 @@ const HomeContainer = (): JSX.Element => {
             </>
           )
         })}
-        <button onClick={() => getAllPokemon()}>Load More</button>
-      </MainContainer>
-    </ThemeProvider>
+      </Content>
+      <div>
+        <button onClick={() => getAllPokemon()}>Carregar mais</button>
+      </div>
+    </MainContainer>
   )
 }
 export default HomeContainer
