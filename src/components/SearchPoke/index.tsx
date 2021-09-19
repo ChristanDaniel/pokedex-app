@@ -79,6 +79,15 @@ const SeachPoke = (): JSX.Element => {
     getListPokemon(response.data.results)
   }
 
+  const handleChangeSearchPokemon = async (value: string) => {
+    inputSearch.length == 1 && getAllPokemon()
+    inputSearch.length >= 2 && (await handleFiltredList(value))
+    setInputSearch(value)
+  }
+
+  useEffect(async () => {
+    await handleListAllPokemon()
+  }, [])
 
   return (
     <>
