@@ -1,43 +1,30 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useContext, useEffect, useState } from 'react'
 import { api } from '../../services/api'
 import { NavSection } from './styles'
 import pikachu from '../../../public/pikachu.png'
 import Image from 'next/image'
+import { PokemonContainerContext } from '../../features/Home/PokemonContainerContextProvider'
+
+type PokemonType = {
+  type: {
+    name: string
+    // color?: string
+  }
+}
+
+type PokeProps = {
+  id: number
+  name: string
+  img: string
+  types?: PokemonType[]
+  // backgroundColor?: string
+}
 
 const SeachPoke = (): JSX.Element => {
-  const [searchPokemon, setSearchPokemon] = useState('')
-  const [pokemonPesquisado, setPokemonPesquisado] = useState([])
-  // const []
-
-  const handleSeachPokemon = async (event: FormEvent) => {
-    event.preventDefault()
-    const response = await api.get(`/pokemon?limit=750`)
-
-    async function handleFilterPoke() {
-      if (searchPokemon === response.data.results.name) {
-        const responsePoke = await api.get(`/pokemon/${pokemon.name}`)
-
-        setPokemonPesquisado(responsePoke.data)
-        return
-      }
-    }
-    console.log('AQUIIIIIIIIIIII ', response.data)
-    const resultado = response.data.results.filter(handleFilterPoke)
-
-    // const responsePoke = await api.get(`/pokemon/${pokemon.name}`)
-
-    console.log(pokemonPesquisado)
-
-    // console.log(resultado)
-
-    // setPokemonPesquisado(resultado)
-    // response.data.results.forEach(async (pokemon) => {
-    //   const responsePoke = await api.get(`/pokemon/${pokemon.name}`)
-    //   console.log(response)
-    // })
-
-    // console.log(response.data.results.length)
-  }
+  const [inputSearch, setInputSearch] = useState('')
+  const [allPokemonList, setAllPokemonList] = useState([])
+  // const [pokeList, setPokeList] = useState<PokeProps[]>([])
+  
 
   return (
     <>
@@ -64,19 +51,9 @@ const SeachPoke = (): JSX.Element => {
           <button>Dark </button>
           <button>Fairy</button>
         </div>
-        <form onSubmit={handleSeachPokemon}>
-          <input placeholder="Search Pokémon" onChange={(event) => setSearchPokemon(event.target.value)} value={searchPokemon} />
-        </form>
+        <input placeholder="Search Pokemon" onChange={(event) => handleChangeSearchPokemon(event.target.value)} value={inputSearch} />
       </NavSection>
-
-      {/* {pokemonPesquisado &&
-        pokemonPesquisado.map((pokemons) => {
-          ;<>
-            <h1>{pokemons.name}</h1>
-          </>
-        })} */}
     </>
   )
 }
-
 export default SeachPoke

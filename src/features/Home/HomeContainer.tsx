@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 // import axios from 'axios'
 import { useRouter } from 'next/dist/client/router'
 
@@ -7,6 +7,7 @@ import { useRouter } from 'next/dist/client/router'
 
 import { MainContainer, LiContent, DivContent, Content } from './styles'
 import { api } from '../../services/api'
+import { PokemonContainerContext } from './PokemonContainerContextProvider'
 // import { useTheme } from 'styled-components'
 // import defaultTheme from '../../../styles/theme'
 
@@ -21,7 +22,7 @@ type PokeProps = {
   id: number
   name: string
   img: string
-  types?: PokemonType[]
+  types: PokemonType[]
   // backgroundColor?: string
 }
 
@@ -31,7 +32,9 @@ interface HomeContainerProps {
 
 const HomeContainer = (): JSX.Element => {
   // const { colors } = useTheme()
-  const [pokeList, setPokeList] = useState<PokeProps[]>([])
+
+  const { pokeList, setPokeList } = useContext(PokemonContainerContext)
+  // const [pokeList, setPokeList] = useState<PokeProps[]>([])
   const [loadMore, setLoadMore] = useState('/pokemon?limit=9')
   const router = useRouter()
 
@@ -43,22 +46,24 @@ const HomeContainer = (): JSX.Element => {
       results.forEach(async (pokemon) => {
         const response = await api.get(`/pokemon/${pokemon.name}`)
 
-        return (
-          setPokeList((pokemon) => [
-            ...pokemon,
-            {
-              id: response.data.id,
-              name: response.data.name,
-              img: response.data.sprites.other['official-artwork'].front_default,
-              types: response.data.types
-            }
-          ]),
-          pokeList.sort((a, b) => a.id - b.id)
-        )
+        return setPokeList((pokemon) => [
+          ...pokemon,
+          {
+            id: response.data.id,
+            name: response.data.name,
+            img: response.data.sprites.other['official-artwork'].front_default,
+            types: response.data.types
+          }
+        ])
+        // console.log(pokeList)
+        // setPokeList(pokeList.sort((a, b) => a.id - b.id))
       })
     }
 
     getListPokemon(response.data)
+  }
+  const listOrdenada = (pokeList: PokeProps[]) => {
+    return pokeList.sort((a, b) => a.id - b.id)
   }
 
   useEffect(() => {
@@ -68,7 +73,7 @@ const HomeContainer = (): JSX.Element => {
   return (
     <MainContainer>
       <Content>
-        {pokeList.map((pokemon, index) => {
+        {listOrdenada(pokeList).map((pokemon, index) => {
           return (
             <>
               <LiContent key={index}>
