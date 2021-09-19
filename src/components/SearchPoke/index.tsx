@@ -24,7 +24,61 @@ const SeachPoke = (): JSX.Element => {
   const [inputSearch, setInputSearch] = useState('')
   const [allPokemonList, setAllPokemonList] = useState([])
   // const [pokeList, setPokeList] = useState<PokeProps[]>([])
-  
+  const { setPokeList, pokeList } = useContext(PokemonContainerContext)
+
+  const handleListAllPokemon = async () => {
+    if (allPokemonList.length === 0) {
+      const response = await api.get(`/pokemon?limit=750`)
+      const AllPokemons = response.data.results
+      setAllPokemonList(AllPokemons)
+    }
+  }
+
+  const handleFiltredList = async (value: string) => {
+    if (value.length > 2) {
+      const filtredList = allPokemonList.filter((pokemon) => pokemon.name.includes(value))
+      setPokeList([])
+      filtredList.forEach(async (pokemon) => {
+        const response = await api.get(`/pokemon/${pokemon.name}`)
+        if (pokeList.length > 9) {
+          return
+        }
+        return setPokeList((pokemon) => [
+          ...pokemon,
+          {
+            id: response.data.id,
+            name: response.data.name,
+            img: response.data.sprites.other['official-artwork'].front_default,
+            types: response.data.types
+          }
+        ])
+      })
+    }
+  }
+
+  const getAllPokemon = async () => {
+    const response = await api.get('/pokemon?limit=9')
+    console.log('aquiii', response)
+    setPokeList([])
+    async function getListPokemon(results) {
+      results.forEach(async (pokemon) => {
+        const response = await api.get(`/pokemon/${pokemon.name}`)
+
+        return setPokeList((pokemon) => [
+          ...pokemon,
+          {
+            id: response.data.id,
+            name: response.data.name,
+            img: response.data.sprites.other['official-artwork'].front_default,
+            types: response.data.types
+          }
+        ])
+      })
+    }
+
+    getListPokemon(response.data.results)
+  }
+
 
   return (
     <>
