@@ -1,8 +1,8 @@
-import React, { FormEvent, useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { api } from '../../services/api'
 import { NavSection } from './styles'
-import pikachu from '../../../public/pikachu.png'
-import Image from 'next/image'
+// import pikachu from '../../../public/pikachu.png'
+// import Image from 'next/image'
 import { PokemonContainerContext } from '../../features/Home/PokemonContainerContextProvider'
 
 type PokemonType = {
@@ -16,10 +16,11 @@ type PokeProps = {
   id: number
   name: string
   img: string
-  types?: PokemonType[]
+  types: PokemonType[]
   // backgroundColor?: string
 }
-interface HomeContainerProps {
+
+interface SeachPokeProps {
   results: PokeProps[]
 }
 
@@ -63,7 +64,7 @@ const SeachPoke = (): JSX.Element => {
     const response = await api.get('/pokemon?limit=9')
     console.log('aquiii', response)
     setPokeList([])
-    async function getListPokemon(results) {
+    async function getListPokemon({ results }: SeachPokeProps) {
       results.forEach(async (pokemon) => {
         const response = await api.get(`/pokemon/${pokemon.name}`)
 
@@ -88,8 +89,12 @@ const SeachPoke = (): JSX.Element => {
     setInputSearch(value)
   }
 
-  useEffect(async () => {
-    await handleListAllPokemon()
+  useEffect(() => {
+    const foo = async () => {
+      await handleListAllPokemon()
+    }
+
+    foo()
   }, [])
 
   return (
