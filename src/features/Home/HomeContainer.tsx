@@ -55,8 +55,6 @@ const HomeContainer = (): JSX.Element => {
             types: response.data.types
           }
         ])
-        // console.log(pokeList)
-        // setPokeList(pokeList.sort((a, b) => a.id - b.id))
       })
     }
 

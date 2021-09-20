@@ -10,7 +10,8 @@ const NavSection = styled.nav`
   align-items: center;
 
   div {
-    margin-right: 25px;
+    display: flex;
+    /* margin-right: 25px; */
     /* padding-top: 14px; */
   }
 

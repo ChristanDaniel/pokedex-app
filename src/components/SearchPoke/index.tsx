@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import axios from 'axios'
 import { api } from '../../services/api'
 import { NavSection } from './styles'
 // import pikachu from '../../../public/pikachu.png'
@@ -20,8 +21,9 @@ type PokeProps = {
   // backgroundColor?: string
 }
 
-interface SeachPokeProps {
-  results: PokeProps[]
+type ListPokeTypeProps = {
+  name: string
+  url: string
 }
 
 const SeachPoke = (): JSX.Element => {
@@ -29,6 +31,43 @@ const SeachPoke = (): JSX.Element => {
   const [allPokemonList, setAllPokemonList] = useState([])
   // const [pokeList, setPokeList] = useState<PokeProps[]>([])
   const { setPokeList, pokeList } = useContext(PokemonContainerContext)
+
+  const [listPokeType, setListPokeType] = useState<ListPokeTypeProps[]>()
+
+  const handleListPokeType = async () => {
+    const ResponseType = await api.get(`/type`)
+    const data = ResponseType.data.results
+
+    console.log(ResponseType)
+
+    setListPokeType(data)
+  }
+
+  const handleClickPokeType = async (value: ListPokeTypeProps) => {
+    const response = await axios.get(`${value}`)
+    const data = response.data.pokemon
+
+    console.log('TESTEEEEEEEEEEEE', data)
+
+    setPokeList([])
+    async function getListPokemon(results: PokeProps[]) {
+      results.forEach(async (pokemon) => {
+        const response = await api.get(`/pokemon/${pokemon.name}`)
+
+        return setPokeList((pokemon) => [
+          ...pokemon,
+          {
+            id: response.data.id,
+            name: response.data.name,
+            img: response.data.sprites.other['official-artwork'].front_default,
+            types: response.data.types
+          }
+        ])
+      })
+    }
+
+    getListPokemon(data)
+  }
 
   const handleListAllPokemon = async () => {
     if (allPokemonList.length === 0) {
@@ -64,7 +103,7 @@ const SeachPoke = (): JSX.Element => {
     const response = await api.get('/pokemon?limit=9')
     console.log('aquiii', response)
     setPokeList([])
-    async function getListPokemon({ results }: SeachPokeProps) {
+    async function getListPokemon(results: PokeProps[]) {
       results.forEach(async (pokemon) => {
         const response = await api.get(`/pokemon/${pokemon.name}`)
 
@@ -92,6 +131,8 @@ const SeachPoke = (): JSX.Element => {
   useEffect(() => {
     const foo = async () => {
       await handleListAllPokemon()
+
+      await handleListPokeType()
     }
 
     foo()
@@ -102,7 +143,15 @@ const SeachPoke = (): JSX.Element => {
       <NavSection>
         {/* <Image src={pikachu} /> */}
         <div>
-          <button>all</button>
+          {listPokeType?.map((types, index) => {
+            // console.log(types.url)
+            return (
+              <div key={index}>
+                <button onClick={() => handleClickPokeType(types.url)}>{types.name}</button>
+              </div>
+            )
+          })}
+          {/* <button>all</button>
           <button>Normal</button>
           <button>Fire</button>
           <button>Water</button>
@@ -120,7 +169,7 @@ const SeachPoke = (): JSX.Element => {
           <button>Steel</button>
           <button>Dragon</button>
           <button>Dark </button>
-          <button>Fairy</button>
+          <button>Fairy</button> */}
         </div>
         <input placeholder="Search Pokemon" onChange={(event) => handleChangeSearchPokemon(event.target.value)} value={inputSearch} />
       </NavSection>
