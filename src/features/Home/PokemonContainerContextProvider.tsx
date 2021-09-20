@@ -10,7 +10,7 @@ type PokeProps = {
   id: number
   name: string
   img: string
-  types?: PokemonType[]
+  types: PokemonType[]
 }
 
 interface IPokemonContainerProps {
@@ -18,7 +18,7 @@ interface IPokemonContainerProps {
   setPokeList: React.Dispatch<React.SetStateAction<PokeProps[]>>
 }
 
-const PokemonContainerContext = createContext<Partial<IPokemonContainerProps>>({})
+const PokemonContainerContext = createContext({} as IPokemonContainerProps)
 
 const PokemonContainerProvider: React.FC = ({ children }) => {
   const [pokeList, setPokeList] = useState<PokeProps[]>([])

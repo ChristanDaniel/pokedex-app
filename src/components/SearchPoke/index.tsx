@@ -19,6 +19,9 @@ type PokeProps = {
   types?: PokemonType[]
   // backgroundColor?: string
 }
+interface HomeContainerProps {
+  results: PokeProps[]
+}
 
 const SeachPoke = (): JSX.Element => {
   const [inputSearch, setInputSearch] = useState('')
@@ -36,9 +39,9 @@ const SeachPoke = (): JSX.Element => {
 
   const handleFiltredList = async (value: string) => {
     if (value.length > 2) {
-      const filtredList = allPokemonList.filter((pokemon) => pokemon.name.includes(value))
+      const filtredList = allPokemonList.filter((pokemon: PokeProps) => pokemon.name.includes(value))
       setPokeList([])
-      filtredList.forEach(async (pokemon) => {
+      filtredList.forEach(async (pokemon: PokeProps) => {
         const response = await api.get(`/pokemon/${pokemon.name}`)
         if (pokeList.length > 9) {
           return
