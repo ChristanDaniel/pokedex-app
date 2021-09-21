@@ -14,6 +14,9 @@ type PokemonType = {
 }
 
 type PokeProps = {
+  pokemon?: {
+    name: string
+  }
   id: number
   name: string
   img: string
@@ -22,8 +25,10 @@ type PokeProps = {
 }
 
 type ListPokeTypeProps = {
-  name: string
-  url: string
+  pokemon: {
+    name: string
+    url: string
+  }
 }
 
 const SeachPoke = (): JSX.Element => {
@@ -38,19 +43,18 @@ const SeachPoke = (): JSX.Element => {
     const ResponseType = await api.get(`/type`)
     const data = ResponseType.data.results
 
-    console.log(ResponseType)
+    console.log('BORAAAAAAAAAAAAAAAA', ResponseType.data)
 
-    setListPokeType(data)
+    setListPokeType(data.slice(0, 18))
   }
 
-  const handleClickPokeType = async (value: ListPokeTypeProps) => {
-    const response = await axios.get(`${value}`)
+  const handleClickPokeType = async (url: string) => {
+    const response = await axios.get(`${url}`)
     const data = response.data.pokemon
+    // console.log('DEPOOOOOIS', response.data)
 
     setPokeList([])
-    async function getListPokemon(data: PokeProps[]) {
-      console.log('DEPOOOOOIS', data)
-
+    async function getListPokemon(data: ListPokeTypeProps[]) {
       data.forEach(async (listTypesPokemon) => {
         const response = await api.get(`/pokemon/${listTypesPokemon.pokemon.name}`)
 
@@ -147,7 +151,7 @@ const SeachPoke = (): JSX.Element => {
             // console.log(types.url)
             return (
               <div key={index}>
-                <button onClick={() => handleClickPokeType(types.url)}>{types.name}</button>
+                <button onClick={() => handleClickPokeType(types.pokemon.url)}>{types.pokemon.name}</button>
               </div>
             )
           })}
