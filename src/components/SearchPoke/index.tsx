@@ -47,12 +47,12 @@ const SeachPoke = (): JSX.Element => {
     const response = await axios.get(`${value}`)
     const data = response.data.pokemon
 
-    console.log('TESTEEEEEEEEEEEE', data)
-
     setPokeList([])
-    async function getListPokemon(results: PokeProps[]) {
-      results.forEach(async (pokemon) => {
-        const response = await api.get(`/pokemon/${pokemon.name}`)
+    async function getListPokemon(data: PokeProps[]) {
+      console.log('DEPOOOOOIS', data)
+
+      data.forEach(async (listTypesPokemon) => {
+        const response = await api.get(`/pokemon/${listTypesPokemon.pokemon.name}`)
 
         return setPokeList((pokemon) => [
           ...pokemon,
@@ -151,25 +151,6 @@ const SeachPoke = (): JSX.Element => {
               </div>
             )
           })}
-          {/* <button>all</button>
-          <button>Normal</button>
-          <button>Fire</button>
-          <button>Water</button>
-          <button>Grass</button>
-          <button>Flying</button>
-          <button>Fighting</button>
-          <button>Poison</button>
-          <button>Electric</button>
-          <button>Ground</button>
-          <button>Rock</button>
-          <button>Psychic</button>
-          <button>Ice</button>
-          <button>Bug</button>
-          <button>Ghost</button>
-          <button>Steel</button>
-          <button>Dragon</button>
-          <button>Dark </button>
-          <button>Fairy</button> */}
         </div>
         <input placeholder="Search Pokemon" onChange={(event) => handleChangeSearchPokemon(event.target.value)} value={inputSearch} />
       </NavSection>
