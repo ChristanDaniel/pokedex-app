@@ -31,10 +31,8 @@ interface HomeContainerProps {
 }
 
 const HomeContainer = (): JSX.Element => {
-  // const { colors } = useTheme()
 
   const { pokeList, setPokeList } = useContext(PokemonContainerContext)
-  // const [pokeList, setPokeList] = useState<PokeProps[]>([])
   const [loadMore, setLoadMore] = useState('/pokemon?limit=9')
   const router = useRouter()
 

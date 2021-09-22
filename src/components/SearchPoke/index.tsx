@@ -34,16 +34,14 @@ type ListPokeTypeProps = {
 const SeachPoke = (): JSX.Element => {
   const [inputSearch, setInputSearch] = useState('')
   const [allPokemonList, setAllPokemonList] = useState([])
-  // const [pokeList, setPokeList] = useState<PokeProps[]>([])
   const { setPokeList, pokeList } = useContext(PokemonContainerContext)
 
-  const [listPokeType, setListPokeType] = useState<ListPokeTypeProps[]>()
+  const [listPokeType, setListPokeType] = useState<ListPokeTypeProps[]>([])
 
   const handleListPokeType = async () => {
     const ResponseType = await api.get(`/type`)
     const data = ResponseType.data.results
 
-    console.log('BORAAAAAAAAAAAAAAAA', ResponseType.data)
 
     setListPokeType(data.slice(0, 18))
   }
@@ -51,11 +49,11 @@ const SeachPoke = (): JSX.Element => {
   const handleClickPokeType = async (url: string) => {
     const response = await axios.get(`${url}`)
     const data = response.data.pokemon
-    // console.log('DEPOOOOOIS', response.data)
 
     setPokeList([])
     async function getListPokemon(data: ListPokeTypeProps[]) {
       data.forEach(async (listTypesPokemon) => {
+        // console.log('ACHO QUE TA ERRADO', data)
         const response = await api.get(`/pokemon/${listTypesPokemon.pokemon.name}`)
 
         return setPokeList((pokemon) => [
@@ -151,7 +149,7 @@ const SeachPoke = (): JSX.Element => {
             // console.log(types.url)
             return (
               <div key={index}>
-                <button onClick={() => handleClickPokeType(types.pokemon.url)}>{types.pokemon.name}</button>
+                <button onClick={() => handleClickPokeType(types.url)}>{types.name}</button>
               </div>
             )
           })}
