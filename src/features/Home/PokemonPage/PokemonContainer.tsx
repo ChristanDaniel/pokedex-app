@@ -38,38 +38,38 @@ const PokemonContainer = (): JSX.Element => {
 
       // console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', responseSpecie)
 
-      setEvolution([
-        {
-          img: response.data.sprites.other['official-artwork'].front_default,
-          nameOne: responseEvolution.data.chain.species.name,
-          nameTwo: responseEvolution.data.chain.evolves_to[0].species.name,
-          nameThree: responseEvolution.data.chain.evolves_to[0].evolves_to[0].species.name
-        }
-      ])
+      //   setEvolution([
+      //     {
+      //       img: response.data.sprites.other['official-artwork'].front_default,
+      //       nameOne: responseEvolution.data.chain.species.name,
+      //       nameTwo: responseEvolution.data.chain.evolves_to[0].species.name,
+      //       nameThree: responseEvolution.data.chain.evolves_to[0].evolves_to[0].species.name
+      //     }
+      //   ])
 
-      evolution.map(async (pokemonImg) => {
-        const responseOne = await api.get(`/pokemon/${pokemonImg.nameOne}`)
-        const responseTwo = await api.get(`/pokemon/${pokemonImg.nameTwo}`)
-        const responseThree = await api.get(`/pokemon/${pokemonImg.nameThree}`)
+      //   evolution.map(async (pokemonImg) => {
+      //     const responseOne = await api.get(`/pokemon/${pokemonImg.nameOne}`)
+      //     const responseTwo = await api.get(`/pokemon/${pokemonImg.nameTwo}`)
+      //     const responseThree = await api.get(`/pokemon/${pokemonImg.nameThree}`)
 
-        return setEvolution([
-          // ...evolution,
-          {
-            imageOne: responseOne.data.sprites.other['official-artwork'].front_default,
-            imageTwo: responseTwo.data.sprites.other['official-artwork'].front_default,
-            imageThree: responseThree.data.sprites.other['official-artwork'].front_default
-          }
-        ])
-      })
+      //     return setEvolution([
+      //       // ...evolution,
+      //       {
+      //         imageOne: responseOne.data.sprites.other['official-artwork'].front_default,
+      //         imageTwo: responseTwo.data.sprites.other['official-artwork'].front_default,
+      //         imageThree: responseThree.data.sprites.other['official-artwork'].front_default
+      //       }
+      //     ])
+      //   })
 
-      setPokeInfo([
-        {
-          id: response.data.id,
-          name: response.data.name,
-          img: response.data.sprites.other['official-artwork'].front_default,
-          types: response.data.types
-        }
-      ])
+      //   setPokeInfo([
+      //     {
+      //       id: response.data.id,
+      //       name: response.data.name,
+      //       img: response.data.sprites.other['official-artwork'].front_default,
+      //       types: response.data.types
+      //     }
+      //   ])
     }
     getPokemon()
   }, [])
@@ -95,26 +95,7 @@ const PokemonContainer = (): JSX.Element => {
                 {evolution.map((pokemonEvolution, index) => {
                   return (
                     <>
-                      <EvolutionContent key={index}>
-                        <p>
-                          {pokemonEvolution.nameOne}
-                          <img src={pokemonEvolution.imageOne} />
-                        </p>
-
-                        <Image src={SetaPokemon} alt="logo" width={90} />
-
-                        <p>
-                          {pokemonEvolution.nameTwo}
-                          <img src={pokemonEvolution.imageTwo} />
-                        </p>
-
-                        <Image src={SetaPokemon} alt="logo" width={90} />
-
-                        <p>
-                          {pokemonEvolution.nameThree}
-                          <img src={pokemonEvolution.imageThree} />
-                        </p>
-                      </EvolutionContent>
+                      <EvolutionContent key={index}></EvolutionContent>
                     </>
                   )
                 })}
