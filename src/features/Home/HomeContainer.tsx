@@ -26,12 +26,12 @@ type PokeProps = {
   // backgroundColor?: string
 }
 
-interface HomeContainerProps {
-  results: PokeProps[]
-}
+// interface HomeContainerProps {
+//   results: PokeProps[]
+// }
 
 const HomeContainer = (): JSX.Element => {
-  const { pokeList, setPokeList } = useContext(PokemonContainerContext)
+  const { pokeList, getListPokemon } = useContext(PokemonContainerContext)
   const [loadMore, setLoadMore] = useState('/pokemon?limit=9')
   const router = useRouter()
 
@@ -39,24 +39,9 @@ const HomeContainer = (): JSX.Element => {
     const response = await api.get(loadMore)
     setLoadMore(response.data.next)
 
-    async function getListPokemon({ results }: HomeContainerProps) {
-      results.forEach(async (pokemon) => {
-        const response = await api.get(`/pokemon/${pokemon.name}`)
-
-        return setPokeList((pokemon) => [
-          ...pokemon,
-          {
-            id: response.data.id,
-            name: response.data.name,
-            img: response.data.sprites.other['official-artwork'].front_default,
-            types: response.data.types
-          }
-        ])
-      })
-    }
-
-    getListPokemon(response.data)
+    getListPokemon(response.data.results)
   }
+
   const listOrdenada = (pokeList: PokeProps[]) => {
     return pokeList.sort((a, b) => a.id - b.id)
   }

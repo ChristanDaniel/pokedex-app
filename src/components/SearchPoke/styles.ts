@@ -14,7 +14,7 @@ const NavSection = styled.nav`
   } */
 
   input {
-    margin-left: 40px;
+    margin-left: 12px;
     padding-left: 20px;
     height: 35px;
     width: 280px;

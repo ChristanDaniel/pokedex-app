@@ -15,7 +15,7 @@ type ListPokeTypeProps = {
 }
 
 const ButtonType = (): JSX.Element => {
-  const { setPokeList } = useContext(PokemonContainerContext)
+  const { setPokeList, getAllPokemon } = useContext(PokemonContainerContext)
 
   const [listPokeType, setListPokeType] = useState<PokeTypeProps[]>([])
 
@@ -60,7 +60,7 @@ const ButtonType = (): JSX.Element => {
   return (
     <>
       <ButtonsTypes>
-        <button>All</button>
+        <button onClick={() => getAllPokemon()}>All</button>
         {listPokeType?.map((types, index) => {
           // console.log(types.url)
           return (

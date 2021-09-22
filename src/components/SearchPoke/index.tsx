@@ -28,7 +28,7 @@ type PokeProps = {
 const SeachPoke = (): JSX.Element => {
   const [inputSearch, setInputSearch] = useState('')
   const [allPokemonList, setAllPokemonList] = useState([])
-  const { pokeList, setPokeList } = useContext(PokemonContainerContext)
+  const { pokeList, setPokeList, getAllPokemon } = useContext(PokemonContainerContext)
 
   // const [listPokeType, setListPokeType] = useState<ListPokeTypeProps[]>([])
 
@@ -62,29 +62,6 @@ const SeachPoke = (): JSX.Element => {
     }
   }
 
-  const getAllPokemon = async () => {
-    const response = await api.get('/pokemon?limit=9')
-    console.log('aquiii', response)
-    setPokeList([])
-    async function getListPokemon(results: PokeProps[]) {
-      results.forEach(async (pokemon) => {
-        const response = await api.get(`/pokemon/${pokemon.name}`)
-
-        return setPokeList((pokemon) => [
-          ...pokemon,
-          {
-            id: response.data.id,
-            name: response.data.name,
-            img: response.data.sprites.other['official-artwork'].front_default,
-            types: response.data.types
-          }
-        ])
-      })
-    }
-
-    getListPokemon(response.data.results)
-  }
-
   const handleChangeSearchPokemon = async (value: string) => {
     inputSearch.length == 1 && getAllPokemon()
     inputSearch.length >= 2 && (await handleFiltredList(value))
@@ -103,7 +80,6 @@ const SeachPoke = (): JSX.Element => {
   return (
     <>
       <NavSection>
-        <button onClick={() => getAllPokemon()}>All</button>
         <ButtonType />
         <input placeholder="Search Pokemon" onChange={(event) => handleChangeSearchPokemon(event.target.value)} value={inputSearch} />
       </NavSection>
