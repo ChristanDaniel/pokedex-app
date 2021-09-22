@@ -9,6 +9,10 @@ const Header = dynamic(() => import('../src/components/Header'), {
   ssr: false
 })
 
+// const ButtonType = dynamic(() => import('../src/components/ButtonType'), {
+//   ssr: false
+// })
+
 const SearchPoke = dynamic(() => import('../src/components/SearchPoke'), {
   ssr: false
 })
