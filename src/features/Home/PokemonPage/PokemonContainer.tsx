@@ -4,8 +4,13 @@ import { api } from '../../../services/api'
 import Image from 'next/image'
 import SetaPokemon from '../../../../public/seta.png'
 
-import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste } from './styles'
+import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste, UlContent } from './styles'
 import axios from 'axios'
+import dynamic from 'next/dynamic'
+
+const Header = dynamic(() => import('../../../components/Header'), {
+  ssr: false
+})
 
 type PokemonType = {
   type: {
@@ -77,6 +82,7 @@ const PokemonContainer = (): JSX.Element => {
   return (
     <>
       <PokeContainer>
+        <Header />
         {pokeInfo.map((pokemon, index) => {
           return (
             <>
@@ -84,45 +90,46 @@ const PokemonContainer = (): JSX.Element => {
                 <Teste>
                   <img src={pokemon.img} alt={pokemon.name} />
                   <div>
-                    <span>#{pokemon.id} </span>
-                    <span>{pokemon.name}</span>
+                    <p>#{pokemon.id} </p>
+                    <p>{pokemon.name}</p>
                     {pokemon.types.map((natural, index) => {
-                      return <p key={index}>{natural.type.name}</p>
+                      return <span key={index}>{natural.type.name}</span>
                     })}
                   </div>
                 </Teste>
 
-                <div>
+                <UlContent>
+                  <h2>Sobre: </h2>
                   <ul>
                     <li>
-                      <strong>Species</strong>
+                      <strong>Species: </strong>
                       <span>1</span>
                     </li>
                     <li>
-                      <strong>Height</strong>
+                      <strong>Height: </strong>
                       <span>1</span>
                     </li>
                     <li>
-                      <strong>Weight</strong>
+                      <strong>Weight: </strong>
                       <span>1</span>
                     </li>
                     <li>
-                      <strong>Weaknesses</strong>
+                      <strong>Weaknesses: </strong>
                       <span>1</span>
                     </li>
                     <li>
-                      <strong>Growth Rate</strong>
+                      <strong>Growth Rate: </strong>
                       <span>1</span>
                     </li>
                     <li>
-                      <strong>Base Friendship</strong>
+                      <strong>Base Friendship: </strong>
                       <span>1</span>
                     </li>
                   </ul>
-                </div>
+                </UlContent>
               </PokeHeadContainer>
               <EvolutionContainer>
-                <h1>Evolution</h1>
+                <h2>Evolution</h2>
                 {evolution.map((pokemonEvolution, index) => {
                   return (
                     <>

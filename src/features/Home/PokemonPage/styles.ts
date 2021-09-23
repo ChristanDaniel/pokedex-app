@@ -10,10 +10,10 @@ const PokeContainer = styled.main`
 
 const PokeHeadContainer = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   /* align-content: center; */
   align-items: center;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   border-bottom: 1px solid #ffffff;
   justify-content: space-between;
 
@@ -22,25 +22,22 @@ const PokeHeadContainer = styled.div`
     width: 180px;
     margin: 50px;
   }
-
-  > div {
-    margin-right: 150px;
-    padding: 56px;
-    border: 1px solid #ffffff;
-  }
 `
-
 const Teste = styled.div`
   display: flex;
   align-items: center;
 
-  div {
+  > div {
     display: flex;
     flex-direction: column;
-    p {
+    /* justify-content: space-around; */
+
+    span {
       display: flex;
+      justify-content: space-around;
     }
-    > span {
+
+    > p {
       display: flex;
       justify-content: center;
       padding-right: 30px;
@@ -53,23 +50,47 @@ const Teste = styled.div`
     }
   }
 `
+
+const UlContent = styled.div`
+  background-color: #ffffff;
+
+  margin-right: 150px;
+  padding: 38px;
+  border: 1px solid #ffff;
+  border-radius: 12px;
+
+  h2 {
+    margin-bottom: 24px;
+  }
+
+  li {
+    gap: 50px;
+    display: flex;
+    justify-content: space-between;
+
+    strong {
+      margin-right: 30px;
+    }
+  }
+`
+
 const EvolutionContainer = styled.div`
   display: flex;
   padding-top: 20px;
-  height: 350px;
-  width: 800px;
-  margin-left: 23%;
+  /* height: 350px; */
+  /* width: 800px; */
+  /* margin-left: 23%; */
   background-color: #ffffff;
   border-radius: 30px;
   flex-direction: column;
 
-  h1 {
+  h2 {
     display: flex;
     justify-content: center;
     align-content: center;
 
     font-weight: bold;
-    font-size: 60px;
+    font-size: 40px;
     line-height: 65px;
     /* text-transform: capitalize; */
     color: #4a90da;
@@ -99,4 +120,4 @@ const EvolutionContent = styled.div`
   }
 `
 
-export { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste }
+export { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste, UlContent }
