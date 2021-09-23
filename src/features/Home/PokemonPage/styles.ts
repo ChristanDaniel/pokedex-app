@@ -9,6 +9,7 @@ const PokeContainer = styled.main`
 `
 
 const PokeHeadContainer = styled.div`
+  margin: 20px;
   display: flex;
   justify-content: space-around;
   /* align-content: center; */
@@ -74,6 +75,12 @@ const UlContent = styled.div`
   }
 `
 
+const PokeBodyContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+`
+
 const EvolutionContainer = styled.div`
   display: flex;
   padding-top: 20px;
@@ -120,4 +127,18 @@ const EvolutionContent = styled.div`
   }
 `
 
-export { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste, UlContent }
+const StatusContainer = styled.div`
+  /* display: flex; */
+
+  li {
+    gap: 50px;
+    display: flex;
+    justify-content: space-between;
+
+    strong {
+      margin-right: 30px;
+    }
+  }
+`
+
+export { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste, UlContent, PokeBodyContainer, StatusContainer }

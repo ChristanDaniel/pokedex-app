@@ -4,7 +4,7 @@ import { api } from '../../../services/api'
 import Image from 'next/image'
 import SetaPokemon from '../../../../public/seta.png'
 
-import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste, UlContent } from './styles'
+import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste, UlContent, PokeBodyContainer, StatusContainer } from './styles'
 import axios from 'axios'
 import dynamic from 'next/dynamic'
 
@@ -52,20 +52,20 @@ const PokemonContainer = (): JSX.Element => {
         }
       ])
 
-      //   evolution.map(async (pokemonImg) => {
-      //     const responseOne = await api.get(`/pokemon/${pokemonImg.nameOne}`)
-      //     const responseTwo = await api.get(`/pokemon/${pokemonImg.nameTwo}`)
-      //     const responseThree = await api.get(`/pokemon/${pokemonImg.nameThree}`)
+      evolution.map(async (pokemonImg) => {
+        const responseOne = await api.get(`/pokemon/${pokemonImg.nameOne}`)
+        const responseTwo = await api.get(`/pokemon/${pokemonImg.nameTwo}`)
+        const responseThree = await api.get(`/pokemon/${pokemonImg.nameThree}`)
 
-      //     return setEvolution([
-      //       // ...evolution,
-      //       {
-      //         imageOne: responseOne.data.sprites.other['official-artwork'].front_default,
-      //         imageTwo: responseTwo.data.sprites.other['official-artwork'].front_default,
-      //         imageThree: responseThree.data.sprites.other['official-artwork'].front_default
-      //       }
-      //     ])
-      //   }
+        return setEvolution([
+          ...evolution,
+          {
+            imageOne: responseOne.data.sprites.other['official-artwork'].front_default,
+            imageTwo: responseTwo.data.sprites.other['official-artwork'].front_default,
+            imageThree: responseThree.data.sprites.other['official-artwork'].front_default
+          }
+        ])
+      })
 
       setPokeInfo([
         {
@@ -128,16 +128,47 @@ const PokemonContainer = (): JSX.Element => {
                   </ul>
                 </UlContent>
               </PokeHeadContainer>
-              <EvolutionContainer>
-                <h2>Evolution</h2>
-                {evolution.map((pokemonEvolution, index) => {
-                  return (
-                    <>
-                      <EvolutionContent key={index}></EvolutionContent>
-                    </>
-                  )
-                })}
-              </EvolutionContainer>
+              <PokeBodyContainer>
+                <EvolutionContainer>
+                  <h2>Evolution</h2>
+                  {evolution.map((pokemonEvolution, index) => {
+                    return (
+                      <>
+                        <EvolutionContent key={index}></EvolutionContent>
+                      </>
+                    )
+                  })}
+                </EvolutionContainer>
+                <StatusContainer>
+                  <h1>Status</h1>
+                  <ul>
+                    <li>
+                      <strong>HP: </strong>
+                      <span>38</span>
+                    </li>
+                    <li>
+                      <strong>Attack: </strong>
+                      <span>52</span>
+                    </li>
+                    <li>
+                      <strong>Defense: </strong>
+                      <span>43</span>
+                    </li>
+                    <li>
+                      <strong>Special Attack: </strong>
+                      <span>43</span>
+                    </li>
+                    <li>
+                      <strong>Special Defense: </strong>
+                      <span>38</span>
+                    </li>
+                    <li>
+                      <strong>Speed: </strong>
+                      <span>38</span>
+                    </li>
+                  </ul>
+                </StatusContainer>
+              </PokeBodyContainer>
             </>
           )
         })}
