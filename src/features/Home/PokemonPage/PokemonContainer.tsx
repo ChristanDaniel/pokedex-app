@@ -25,15 +25,29 @@ type PokeProps = {
   types: PokemonType[]
 }
 
+type PokeStatusProps = {
+  base_stat: string
+  stat: {
+    name: string
+  }
+}
+
 const PokemonContainer = (): JSX.Element => {
   const router = useRouter()
 
   const [pokeInfo, setPokeInfo] = useState<PokeProps[]>([])
   const [evolution, setEvolution] = useState([])
   const [evolutionImg, setEvolutionImg] = useState([])
+  const [pokeStatus, setPokeStatus] = useState<PokeStatusProps[]>([])
+
+  const getPokemonStatus = async () => {
+    const response = await api.get(`/pokemon/${router.query.id}`)
+    setPokeStatus(response.data.stats)
+  }
 
   useEffect(() => {
     async function getPokemon() {
+      await getPokemonStatus()
       const response = await api.get(`/pokemon/${router.query.id}`)
       // const responsePokemon = await api.get(
       //   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.data.sprites.other['official-artwork'].front_default}.png`
@@ -42,6 +56,15 @@ const PokemonContainer = (): JSX.Element => {
       const responseEvolution = await axios.get(`${responseSpecie.data.evolution_chain.url}`)
 
       // console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', responseSpecie)
+
+      // setPokeStatus({
+      //   hp: response.data.stats[0].base_stat;
+      //   Attack:
+      //   Defense:
+      //   special_Attack:
+      //   special_Defense:
+      //   speed:
+      // })
 
       setEvolution([
         {
@@ -142,30 +165,16 @@ const PokemonContainer = (): JSX.Element => {
                 <StatusContainer>
                   <h1>Status</h1>
                   <ul>
-                    <li>
-                      <strong>HP: </strong>
-                      <span>38</span>
-                    </li>
-                    <li>
-                      <strong>Attack: </strong>
-                      <span>52</span>
-                    </li>
-                    <li>
-                      <strong>Defense: </strong>
-                      <span>43</span>
-                    </li>
-                    <li>
-                      <strong>Special Attack: </strong>
-                      <span>43</span>
-                    </li>
-                    <li>
-                      <strong>Special Defense: </strong>
-                      <span>38</span>
-                    </li>
-                    <li>
-                      <strong>Speed: </strong>
-                      <span>38</span>
-                    </li>
+                    {pokeStatus.map((pokemonStatus) => {
+                      return (
+                        <>
+                          <li>
+                            <strong>{pokemonStatus.stat.name}:</strong>
+                            <span>{pokemonStatus.base_stat}</span>
+                          </li>
+                        </>
+                      )
+                    })}
                   </ul>
                 </StatusContainer>
               </PokeBodyContainer>

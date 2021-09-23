@@ -36,6 +36,7 @@ const Teste = styled.div`
     span {
       display: flex;
       justify-content: space-around;
+      text-transform: capitalize;
     }
 
     > p {
@@ -137,6 +138,7 @@ const StatusContainer = styled.div`
 
     strong {
       margin-right: 30px;
+      text-transform: capitalize;
     }
   }
 `
