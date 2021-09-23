@@ -25,6 +25,7 @@ const PokemonContainerContext = createContext({} as IPokemonContainerProps)
 
 const PokemonContainerProvider: React.FC = ({ children }) => {
   const [pokeList, setPokeList] = useState<PokeProps[]>([])
+  // const [isLoading, setIsLoading] = useState(true)
 
   async function getListPokemon(results: PokeProps[]) {
     results.forEach(async (pokemon) => {

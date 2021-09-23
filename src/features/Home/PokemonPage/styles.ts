@@ -7,38 +7,50 @@ const PokeContainer = styled.main`
   background-color: rgb(88, 171, 246);
   /* color: rgb(139, 190, 138); */
 `
+
 const PokeHeadContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-content: center;
+  justify-content: space-evenly;
+  /* align-content: center; */
   align-items: center;
-  padding-top: 40px;
   margin-bottom: 50px;
   border-bottom: 1px solid #ffffff;
+  justify-content: space-between;
+
+  img {
+    height: 180px;
+    width: 180px;
+    margin: 50px;
+  }
+
+  > div {
+    margin-right: 150px;
+    padding: 56px;
+    border: 1px solid #ffffff;
+  }
+`
+
+const Teste = styled.div`
+  display: flex;
+  align-items: center;
 
   div {
-    flex-direction: column;
     display: flex;
+    flex-direction: column;
     p {
       display: flex;
     }
-  }
-
-  span {
-    display: flex;
-    justify-content: center;
-    padding-right: 30px;
-    font-weight: bold;
-    font-size: 60px;
-    line-height: 65px;
-    text-transform: capitalize;
-    color: #ffffff;
-    border-bottom: 1px solid #ffffff;
-  }
-
-  img {
-    height: 240px;
-    width: 240px;
+    > span {
+      display: flex;
+      justify-content: center;
+      padding-right: 30px;
+      font-weight: bold;
+      font-size: 48px;
+      line-height: 65px;
+      text-transform: capitalize;
+      color: #ffffff;
+      border-bottom: 1px solid #ffffff;
+    }
   }
 `
 const EvolutionContainer = styled.div`
@@ -67,7 +79,7 @@ const EvolutionContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-content: center;
-  /* flex-direction: column; */
+  flex-direction: column;
   margin: 32px;
 
   p {
@@ -87,4 +99,4 @@ const EvolutionContent = styled.div`
   }
 `
 
-export { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent }
+export { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste }

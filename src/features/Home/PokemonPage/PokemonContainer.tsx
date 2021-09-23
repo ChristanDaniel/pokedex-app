@@ -4,7 +4,7 @@ import { api } from '../../../services/api'
 import Image from 'next/image'
 import SetaPokemon from '../../../../public/seta.png'
 
-import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent } from './styles'
+import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste } from './styles'
 import axios from 'axios'
 
 type PokemonType = {
@@ -38,14 +38,14 @@ const PokemonContainer = (): JSX.Element => {
 
       // console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', responseSpecie)
 
-      //   setEvolution([
-      //     {
-      //       img: response.data.sprites.other['official-artwork'].front_default,
-      //       nameOne: responseEvolution.data.chain.species.name,
-      //       nameTwo: responseEvolution.data.chain.evolves_to[0].species.name,
-      //       nameThree: responseEvolution.data.chain.evolves_to[0].evolves_to[0].species.name
-      //     }
-      //   ])
+      setEvolution([
+        {
+          img: response.data.sprites.other['official-artwork'].front_default,
+          nameOne: responseEvolution.data.chain.species.name,
+          nameTwo: responseEvolution.data.chain.evolves_to[0].species.name,
+          nameThree: responseEvolution.data.chain.evolves_to[0].evolves_to[0].species.name
+        }
+      ])
 
       //   evolution.map(async (pokemonImg) => {
       //     const responseOne = await api.get(`/pokemon/${pokemonImg.nameOne}`)
@@ -60,16 +60,16 @@ const PokemonContainer = (): JSX.Element => {
       //         imageThree: responseThree.data.sprites.other['official-artwork'].front_default
       //       }
       //     ])
-      //   })
+      //   }
 
-      //   setPokeInfo([
-      //     {
-      //       id: response.data.id,
-      //       name: response.data.name,
-      //       img: response.data.sprites.other['official-artwork'].front_default,
-      //       types: response.data.types
-      //     }
-      //   ])
+      setPokeInfo([
+        {
+          id: response.data.id,
+          name: response.data.name,
+          img: response.data.sprites.other['official-artwork'].front_default,
+          types: response.data.types
+        }
+      ])
     }
     getPokemon()
   }, [])
@@ -81,14 +81,45 @@ const PokemonContainer = (): JSX.Element => {
           return (
             <>
               <PokeHeadContainer key={index}>
+                <Teste>
+                  <img src={pokemon.img} alt={pokemon.name} />
+                  <div>
+                    <span>#{pokemon.id} </span>
+                    <span>{pokemon.name}</span>
+                    {pokemon.types.map((natural, index) => {
+                      return <p key={index}>{natural.type.name}</p>
+                    })}
+                  </div>
+                </Teste>
+
                 <div>
-                  <span>#{pokemon.id} </span>
-                  <span>{pokemon.name}</span>
-                  {pokemon.types.map((natural, index) => {
-                    return <p key={index}>{natural.type.name}</p>
-                  })}
+                  <ul>
+                    <li>
+                      <strong>Species</strong>
+                      <span>1</span>
+                    </li>
+                    <li>
+                      <strong>Height</strong>
+                      <span>1</span>
+                    </li>
+                    <li>
+                      <strong>Weight</strong>
+                      <span>1</span>
+                    </li>
+                    <li>
+                      <strong>Weaknesses</strong>
+                      <span>1</span>
+                    </li>
+                    <li>
+                      <strong>Growth Rate</strong>
+                      <span>1</span>
+                    </li>
+                    <li>
+                      <strong>Base Friendship</strong>
+                      <span>1</span>
+                    </li>
+                  </ul>
                 </div>
-                <img src={pokemon.img} alt={pokemon.name} />
               </PokeHeadContainer>
               <EvolutionContainer>
                 <h1>Evolution</h1>

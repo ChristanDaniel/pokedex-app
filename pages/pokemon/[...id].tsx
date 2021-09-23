@@ -20,6 +20,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Pokedex | {router.query.id}</title>
       </Head>
+      <Header />
       <PokemonContainer />
     </>
   )
