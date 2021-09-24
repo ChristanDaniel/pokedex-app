@@ -18,10 +18,11 @@ type PokemonType = {
     url: typeof Image
   }
 }
+
 type PokeProps = {
-  id?: number
-  name?: string
-  img?: string
+  id: number
+  name: string
+  img: string
   types: PokemonType[]
 }
 
@@ -37,23 +38,36 @@ const PokemonContainer = (): JSX.Element => {
 
   const [pokeInfo, setPokeInfo] = useState<PokeProps[]>([])
   const [evolution, setEvolution] = useState([])
-  const [evolutionImg, setEvolutionImg] = useState([])
+  // const [evolutionImg, setEvolutionImg] = useState([])
   const [pokeStatus, setPokeStatus] = useState<PokeStatusProps[]>([])
 
   const getPokemonStatus = async () => {
     const response = await api.get(`/pokemon/${router.query.id}`)
+
     setPokeStatus(response.data.stats)
+
+    setPokeInfo([
+      {
+        id: response.data.id,
+        name: response.data.name,
+        img: response.data.sprites.other['official-artwork'].front_default,
+        types: response.data.types
+      }
+    ])
   }
 
   useEffect(() => {
     async function getPokemon() {
       await getPokemonStatus()
-      const response = await api.get(`/pokemon/${router.query.id}`)
+
+      // const response = await api.get(`/pokemon/${router.query.id}`)
+
+      // console.log('AEEEEEEE', response)
       // const responsePokemon = await api.get(
       //   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.data.sprites.other['official-artwork'].front_default}.png`
       // )
-      const responseSpecie = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${response.data.name}/`)
-      const responseEvolution = await axios.get(`${responseSpecie.data.evolution_chain.url}`)
+      // const responseSpecie = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${response.data.name}/`)
+      // const responseEvolution = await axios.get(`${responseSpecie.data.evolution_chain.url}`)
 
       // console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', responseSpecie)
 
@@ -66,38 +80,29 @@ const PokemonContainer = (): JSX.Element => {
       //   speed:
       // })
 
-      setEvolution([
-        {
-          img: response.data.sprites.other['official-artwork'].front_default,
-          nameOne: responseEvolution.data.chain.species.name,
-          nameTwo: responseEvolution.data.chain.evolves_to[0].species.name,
-          nameThree: responseEvolution.data.chain.evolves_to[0].evolves_to[0].species.name
-        }
-      ])
+      // setEvolution([
+      //   {
+      //     img: response.data.sprites.other['official-artwork'].front_default,
+      //     nameOne: responseEvolution.data.chain.species.name,
+      //     nameTwo: responseEvolution.data.chain.evolves_to[0].species.name,
+      //     nameThree: responseEvolution.data.chain.evolves_to[0].evolves_to[0].species.name
+      //   }
+      // ])
 
-      evolution.map(async (pokemonImg) => {
-        const responseOne = await api.get(`/pokemon/${pokemonImg.nameOne}`)
-        const responseTwo = await api.get(`/pokemon/${pokemonImg.nameTwo}`)
-        const responseThree = await api.get(`/pokemon/${pokemonImg.nameThree}`)
+      // evolution.map(async (pokemonImg) => {
+      //   const responseOne = await api.get(`/pokemon/${pokemonImg.nameOne}`)
+      //   const responseTwo = await api.get(`/pokemon/${pokemonImg.nameTwo}`)
+      //   const responseThree = await api.get(`/pokemon/${pokemonImg.nameThree}`)
 
-        return setEvolution([
-          ...evolution,
-          {
-            imageOne: responseOne.data.sprites.other['official-artwork'].front_default,
-            imageTwo: responseTwo.data.sprites.other['official-artwork'].front_default,
-            imageThree: responseThree.data.sprites.other['official-artwork'].front_default
-          }
-        ])
-      })
-
-      setPokeInfo([
-        {
-          id: response.data.id,
-          name: response.data.name,
-          img: response.data.sprites.other['official-artwork'].front_default,
-          types: response.data.types
-        }
-      ])
+      //   return setEvolution([
+      //     ...evolution,
+      //     {
+      //       imageOne: responseOne.data.sprites.other['official-artwork'].front_default,
+      //       imageTwo: responseTwo.data.sprites.other['official-artwork'].front_default,
+      //       imageThree: responseThree.data.sprites.other['official-artwork'].front_default
+      //     }
+      //   ])
+      // })
     }
     getPokemon()
   }, [])
@@ -151,36 +156,36 @@ const PokemonContainer = (): JSX.Element => {
                   </ul>
                 </UlContent>
               </PokeHeadContainer>
-              <PokeBodyContainer>
-                <EvolutionContainer>
-                  <h2>Evolution</h2>
-                  {evolution.map((pokemonEvolution, index) => {
-                    return (
-                      <>
-                        <EvolutionContent key={index}></EvolutionContent>
-                      </>
-                    )
-                  })}
-                </EvolutionContainer>
-                <StatusContainer>
-                  <h1>Status</h1>
-                  <ul>
-                    {pokeStatus.map((pokemonStatus) => {
-                      return (
-                        <>
-                          <li>
-                            <strong>{pokemonStatus.stat.name}:</strong>
-                            <span>{pokemonStatus.base_stat}</span>
-                          </li>
-                        </>
-                      )
-                    })}
-                  </ul>
-                </StatusContainer>
-              </PokeBodyContainer>
             </>
           )
         })}
+        <PokeBodyContainer>
+          <EvolutionContainer>
+            <h2>Evolution</h2>
+            {evolution.map((pokemonEvolution, index) => {
+              return (
+                <>
+                  <EvolutionContent key={index}></EvolutionContent>
+                </>
+              )
+            })}
+          </EvolutionContainer>
+          <StatusContainer>
+            <h1>Status</h1>
+            <ul>
+              {pokeStatus.map((pokemonStatus) => {
+                return (
+                  <>
+                    <li>
+                      <strong>{pokemonStatus.stat.name}:</strong>
+                      <span>{pokemonStatus.base_stat}</span>
+                    </li>
+                  </>
+                )
+              })}
+            </ul>
+          </StatusContainer>
+        </PokeBodyContainer>
       </PokeContainer>
     </>
   )
