@@ -26,6 +26,15 @@ type PokeProps = {
   types: PokemonType[]
 }
 
+type AboutPokeProps = {
+  Height?: number
+  weight?: string
+  Weaknesses?: string
+  Growth_Rate?: string
+  Base_Friendship?: string
+  Friendship?: string
+}
+
 type PokeStatusProps = {
   base_stat: string
   stat: {
@@ -40,11 +49,14 @@ const PokemonContainer = (): JSX.Element => {
   const [evolution, setEvolution] = useState([])
   // const [evolutionImg, setEvolutionImg] = useState([])
   const [pokeStatus, setPokeStatus] = useState<PokeStatusProps[]>([])
+  const [aboutPoke, setAboutPoke] = useState<AboutPokeProps[]>([])
 
   const getPokemonStatus = async () => {
     const response = await api.get(`/pokemon/${router.query.id}`)
 
     setPokeStatus(response.data.stats)
+
+    console.log('AQUIII', response)
 
     setPokeInfo([
       {
@@ -54,11 +66,48 @@ const PokemonContainer = (): JSX.Element => {
         types: response.data.types
       }
     ])
+
+    setAboutPoke([
+      {
+        Height: response.data.height
+      },
+      {
+        weight: response.data.weight
+      }
+    ])
+    console.log('AGORA AQUIII', aboutPoke)
   }
+
+  const getPokemonSpecie = async () => {
+    const responseSpecie = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${router.query.id}/`)
+
+    console.log(responseSpecie)
+
+    // setAboutPoke([(pokemon)
+    //   ...pokemon,
+    //   {
+    //     Base_Friendship: responseSpecie.data
+
+    //     // name: response.data.name,
+    //     // img: response.data.sprites.other['official-artwork'].front_default,
+    //     // types: response.data.types
+    //   }
+    // ])
+    // console.log(aboutPoke)
+    return setAboutPoke((pokemon) => [
+      ...pokemon,
+      {
+        Base_Friendship: responseSpecie.data.base_happiness
+      }
+    ])
+    // console.log(aboutPoke)
+  }
+  console.log('antes', aboutPoke)
 
   useEffect(() => {
     async function getPokemon() {
       await getPokemonStatus()
+      await getPokemonSpecie()
 
       // const response = await api.get(`/pokemon/${router.query.id}`)
 
@@ -129,11 +178,18 @@ const PokemonContainer = (): JSX.Element => {
                 <UlContent>
                   <h2>Sobre: </h2>
                   <ul>
-                    <li>
-                      <strong>Species: </strong>
-                      <span>1</span>
-                    </li>
-                    <li>
+                    {aboutPoke.map((teste) => {
+                      return (
+                        <>
+                          <li>
+                            <strong>{teste.Height}</strong>
+                            <span>1</span>
+                          </li>
+                        </>
+                      )
+                    })}
+                  </ul>
+                  {/* <li>
                       <strong>Height: </strong>
                       <span>1</span>
                     </li>
@@ -152,8 +208,7 @@ const PokemonContainer = (): JSX.Element => {
                     <li>
                       <strong>Base Friendship: </strong>
                       <span>1</span>
-                    </li>
-                  </ul>
+                    </li> */}
                 </UlContent>
               </PokeHeadContainer>
             </>
