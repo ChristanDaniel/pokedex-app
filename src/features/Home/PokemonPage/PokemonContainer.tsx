@@ -97,6 +97,14 @@ const PokemonContainer = (): JSX.Element => {
       {
         name: 'Base_Friendship',
         value: responseSpecie.data.base_happiness
+      },
+      {
+        name: 'Growth Rate',
+        value: responseSpecie.data.growth_rate.name
+      },
+      {
+        name: 'Generation',
+        value: responseSpecie.data.generation.name
       }
     ])
   }
@@ -170,7 +178,7 @@ const PokemonContainer = (): JSX.Element => {
                       return (
                         <>
                           <li key={index}>
-                            <strong>{teste.name}</strong>
+                            <strong>{teste.name}: </strong>
                             <span>{teste.value}</span>
                           </li>
                         </>
