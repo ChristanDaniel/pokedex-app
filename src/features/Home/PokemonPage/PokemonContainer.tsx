@@ -27,6 +27,11 @@ type PokeProps = {
 }
 
 type AboutPokeProps = {
+  name: string
+  value: string
+}
+
+type TESTE = {
   Height?: number
   weight?: string
   Weaknesses?: string
@@ -51,6 +56,8 @@ const PokemonContainer = (): JSX.Element => {
   const [pokeStatus, setPokeStatus] = useState<PokeStatusProps[]>([])
   const [aboutPoke, setAboutPoke] = useState<AboutPokeProps[]>([])
 
+  console.log('VAMOS VER', pokeStatus)
+
   const getPokemonStatus = async () => {
     const response = await api.get(`/pokemon/${router.query.id}`)
 
@@ -69,10 +76,12 @@ const PokemonContainer = (): JSX.Element => {
 
     setAboutPoke([
       {
-        Height: response.data.height
+        name: 'Height',
+        value: response.data.height
       },
       {
-        weight: response.data.weight
+        name: 'Weight',
+        value: response.data.weight
       }
     ])
     console.log('AGORA AQUIII', aboutPoke)
@@ -81,28 +90,17 @@ const PokemonContainer = (): JSX.Element => {
   const getPokemonSpecie = async () => {
     const responseSpecie = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${router.query.id}/`)
 
-    console.log(responseSpecie)
+    console.log('AEEEEEEEEEEE', responseSpecie)
 
-    // setAboutPoke([(pokemon)
-    //   ...pokemon,
-    //   {
-    //     Base_Friendship: responseSpecie.data
-
-    //     // name: response.data.name,
-    //     // img: response.data.sprites.other['official-artwork'].front_default,
-    //     // types: response.data.types
-    //   }
-    // ])
-    // console.log(aboutPoke)
     return setAboutPoke((pokemon) => [
       ...pokemon,
       {
-        Base_Friendship: responseSpecie.data.base_happiness
+        name: 'Base_Friendship',
+        value: responseSpecie.data.base_happiness
       }
     ])
-    // console.log(aboutPoke)
   }
-  console.log('antes', aboutPoke)
+  console.log(aboutPoke)
 
   useEffect(() => {
     async function getPokemon() {
@@ -117,17 +115,6 @@ const PokemonContainer = (): JSX.Element => {
       // )
       // const responseSpecie = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${response.data.name}/`)
       // const responseEvolution = await axios.get(`${responseSpecie.data.evolution_chain.url}`)
-
-      // console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', responseSpecie)
-
-      // setPokeStatus({
-      //   hp: response.data.stats[0].base_stat;
-      //   Attack:
-      //   Defense:
-      //   special_Attack:
-      //   special_Defense:
-      //   speed:
-      // })
 
       // setEvolution([
       //   {
@@ -156,6 +143,7 @@ const PokemonContainer = (): JSX.Element => {
     getPokemon()
   }, [])
 
+  console.log(typeof aboutPoke)
   return (
     <>
       <PokeContainer>
@@ -178,37 +166,17 @@ const PokemonContainer = (): JSX.Element => {
                 <UlContent>
                   <h2>Sobre: </h2>
                   <ul>
-                    {aboutPoke.map((teste) => {
+                    {aboutPoke.map((teste, index) => {
                       return (
                         <>
-                          <li>
-                            <strong>{teste.Height}</strong>
-                            <span>1</span>
+                          <li key={index}>
+                            <strong>{teste.name}</strong>
+                            <span>{teste.value}</span>
                           </li>
                         </>
                       )
                     })}
                   </ul>
-                  {/* <li>
-                      <strong>Height: </strong>
-                      <span>1</span>
-                    </li>
-                    <li>
-                      <strong>Weight: </strong>
-                      <span>1</span>
-                    </li>
-                    <li>
-                      <strong>Weaknesses: </strong>
-                      <span>1</span>
-                    </li>
-                    <li>
-                      <strong>Growth Rate: </strong>
-                      <span>1</span>
-                    </li>
-                    <li>
-                      <strong>Base Friendship: </strong>
-                      <span>1</span>
-                    </li> */}
                 </UlContent>
               </PokeHeadContainer>
             </>
