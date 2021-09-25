@@ -57,14 +57,10 @@ const PokemonContainer = (): JSX.Element => {
   const [pokeStatus, setPokeStatus] = useState<PokeStatusProps[]>([])
   const [aboutPoke, setAboutPoke] = useState<AboutPokeProps[]>([])
 
-  console.log('VAMOS VER', pokeStatus)
-
   const getPokemonStatus = async () => {
     const response = await api.get(`/pokemon/${router.query.id}`)
 
     setPokeStatus(response.data.stats)
-
-    console.log('AQUIII', response)
 
     setPokeInfo([
       {
@@ -86,13 +82,10 @@ const PokemonContainer = (): JSX.Element => {
         value: response.data.weight + ' KG'
       }
     ])
-    console.log('AGORA AQUIII', aboutPoke)
   }
 
   const getPokemonSpecie = async () => {
     const responseSpecie = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${router.query.id}/`)
-
-    console.log('AEEEEEEEEEEE', responseSpecie)
 
     return setAboutPoke((pokemon) => [
       ...pokemon,
@@ -113,10 +106,17 @@ const PokemonContainer = (): JSX.Element => {
   }
   console.log(aboutPoke)
 
+  const getEvolutionPokemon = async () => {
+    const response = await api.get(`https://pokeapi.co/api/v2/evolution-chain/${router.query.id}/`)
+
+    console.log(response.data)
+  }
+
   useEffect(() => {
     async function getPokemon() {
       await getPokemonStatus()
       await getPokemonSpecie()
+      await getEvolutionPokemon()
 
       // const response = await api.get(`/pokemon/${router.query.id}`)
 
@@ -174,8 +174,11 @@ const PokemonContainer = (): JSX.Element => {
                 </Teste>
 
                 <UlContent>
-                  <img src={pokemon.url} />
-                  <h2>Sobre: </h2>
+                  <div>
+                    <h4> Shiny {pokemon.name}</h4>
+                    <img src={pokemon.url} />
+                    <h2>Pokemon About: </h2>
+                  </div>
                   <ul>
                     {aboutPoke.map((teste, index) => {
                       return (

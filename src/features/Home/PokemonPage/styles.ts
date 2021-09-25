@@ -60,6 +60,7 @@ const UlContent = styled.div`
   border: 1px solid #ffff;
   border-radius: 12px;
   align-items: center;
+
   h2 {
     margin-bottom: 24px;
   }
@@ -74,9 +75,15 @@ const UlContent = styled.div`
     }
   }
 
-  > img {
-    height: 100px;
-    width: 100px;
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > img {
+      height: 90px;
+      width: 90px;
+    }
   }
 `
 
