@@ -5,7 +5,7 @@ import Image from 'next/image'
 // import SetaPokemon from '../../../../public/seta.png'
 
 import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste, UlContent, PokeBodyContainer, StatusContainer } from './styles'
-// import axios from 'axios'
+import axios from 'axios'
 import dynamic from 'next/dynamic'
 
 const Header = dynamic(() => import('../../../components/Header'), {
@@ -32,14 +32,10 @@ type AboutPokeProps = {
   value?: string
 }
 
-// type TESTE = {
-//   Height?: number
-//   weight?: string
-//   Weaknesses?: string
-//   Growth_Rate?: string
-//   Base_Friendship?: string
-//   Friendship?: string
-// }
+type EvolutionProps = {
+  name?: string
+  url?: string
+}
 
 type PokeStatusProps = {
   base_stat: string
@@ -52,7 +48,7 @@ const PokemonContainer = (): JSX.Element => {
   const router = useRouter()
 
   const [pokeInfo, setPokeInfo] = useState<PokeProps[]>([])
-  const [evolution, setEvolution] = useState([])
+  const [evolution, setEvolution] = useState<EvolutionProps[]>([])
   // const [evolutionImg, setEvolutionImg] = useState([])
   const [pokeStatus, setPokeStatus] = useState<PokeStatusProps[]>([])
   const [aboutPoke, setAboutPoke] = useState<AboutPokeProps[]>([])
@@ -85,38 +81,49 @@ const PokemonContainer = (): JSX.Element => {
   }
 
   const getPokemonSpecie = async () => {
-    const responseSpecie = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${router.query.id}/`)
+    const response = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${router.query.id}/`)
+
+    await getEvolutionPokemon(response.data.evolution_chain.url)
 
     return setAboutPoke((pokemon) => [
       ...pokemon,
       {
         name: 'Base_Friendship',
-        value: responseSpecie.data.base_happiness
+        value: response.data.base_happiness
       },
       {
         name: 'Growth Rate',
-        value: responseSpecie.data.growth_rate.name
+        value: response.data.growth_rate.name
       },
       {
         name: 'Generation',
-        value: responseSpecie.data.generation.name
+        value: response.data.generation.name
       }
     ])
-    setEvolution(responseSpecie.data)
   }
-  console.log(aboutPoke)
 
-  const getEvolutionPokemon = async () => {
-    const response = await api.get(`https://pokeapi.co/api/v2/evolution-chain/${router.query.id}/`)
+  const getEvolutionPokemon = async (url: string) => {
+    const response = await axios.get(`${url}`)
 
-    console.log(response.data)
+    setEvolution([
+      {
+        name: response.data.chain.species.name
+      },
+      {
+        name: response.data.chain.evolves_to[0].species.name
+      },
+      {
+        name: response.data.chain.evolves_to[0].evolves_to[0].species.name
+      }
+    ])
+
+    console.log(evolution)
   }
 
   useEffect(() => {
     async function getPokemon() {
       await getPokemonStatus()
       await getPokemonSpecie()
-      await getEvolutionPokemon()
 
       // const response = await api.get(`/pokemon/${router.query.id}`)
 
@@ -202,7 +209,9 @@ const PokemonContainer = (): JSX.Element => {
             {evolution.map((pokemonEvolution, index) => {
               return (
                 <>
-                  <EvolutionContent key={index}></EvolutionContent>
+                  <EvolutionContent key={index}>
+                    <p>{pokemonEvolution.name}</p>
+                  </EvolutionContent>
                 </>
               )
             })}

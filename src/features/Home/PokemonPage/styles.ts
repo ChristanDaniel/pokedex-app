@@ -115,7 +115,7 @@ const EvolutionContainer = styled.div`
     color: #4a90da;
   }
 `
-const EvolutionContent = styled.div`
+const EvolutionContent = styled.li`
   display: flex;
   justify-content: space-between;
   align-content: center;
