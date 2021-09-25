@@ -21,7 +21,7 @@ const PokeHeadContainer = styled.div`
   img {
     height: 180px;
     width: 180px;
-    margin: 50px;
+    /* margin: 50px; */
   }
 `
 const Teste = styled.div`
@@ -55,12 +55,11 @@ const Teste = styled.div`
 
 const UlContent = styled.div`
   background-color: #ffffff;
-
   margin-right: 150px;
   padding: 38px;
   border: 1px solid #ffff;
   border-radius: 12px;
-
+  align-items: center;
   h2 {
     margin-bottom: 24px;
   }
@@ -73,6 +72,11 @@ const UlContent = styled.div`
     strong {
       margin-right: 30px;
     }
+  }
+
+  > img {
+    height: 100px;
+    width: 100px;
   }
 `
 

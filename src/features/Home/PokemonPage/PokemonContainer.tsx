@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
 import { api } from '../../../services/api'
 import Image from 'next/image'
-import SetaPokemon from '../../../../public/seta.png'
+// import SetaPokemon from '../../../../public/seta.png'
 
 import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste, UlContent, PokeBodyContainer, StatusContainer } from './styles'
-import axios from 'axios'
+// import axios from 'axios'
 import dynamic from 'next/dynamic'
 
 const Header = dynamic(() => import('../../../components/Header'), {
@@ -23,22 +23,23 @@ type PokeProps = {
   id: number
   name: string
   img: string
+  url?: string
   types: PokemonType[]
 }
 
 type AboutPokeProps = {
-  name: string
-  value: string
+  name?: string
+  value?: string
 }
 
-type TESTE = {
-  Height?: number
-  weight?: string
-  Weaknesses?: string
-  Growth_Rate?: string
-  Base_Friendship?: string
-  Friendship?: string
-}
+// type TESTE = {
+//   Height?: number
+//   weight?: string
+//   Weaknesses?: string
+//   Growth_Rate?: string
+//   Base_Friendship?: string
+//   Friendship?: string
+// }
 
 type PokeStatusProps = {
   base_stat: string
@@ -70,6 +71,7 @@ const PokemonContainer = (): JSX.Element => {
         id: response.data.id,
         name: response.data.name,
         img: response.data.sprites.other['official-artwork'].front_default,
+        url: response.data.sprites.front_shiny,
         types: response.data.types
       }
     ])
@@ -77,11 +79,11 @@ const PokemonContainer = (): JSX.Element => {
     setAboutPoke([
       {
         name: 'Height',
-        value: response.data.height
+        value: response.data.height + ' M'
       },
       {
         name: 'Weight',
-        value: response.data.weight
+        value: response.data.weight + ' KG'
       }
     ])
     console.log('AGORA AQUIII', aboutPoke)
@@ -107,6 +109,7 @@ const PokemonContainer = (): JSX.Element => {
         value: responseSpecie.data.generation.name
       }
     ])
+    setEvolution(responseSpecie.data)
   }
   console.log(aboutPoke)
 
@@ -123,7 +126,6 @@ const PokemonContainer = (): JSX.Element => {
       // )
       // const responseSpecie = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${response.data.name}/`)
       // const responseEvolution = await axios.get(`${responseSpecie.data.evolution_chain.url}`)
-
       // setEvolution([
       //   {
       //     img: response.data.sprites.other['official-artwork'].front_default,
@@ -172,6 +174,7 @@ const PokemonContainer = (): JSX.Element => {
                 </Teste>
 
                 <UlContent>
+                  <img src={pokemon.url} />
                   <h2>Sobre: </h2>
                   <ul>
                     {aboutPoke.map((teste, index) => {
