@@ -49,6 +49,7 @@ const PokemonContainer = (): JSX.Element => {
 
   const [pokeInfo, setPokeInfo] = useState<PokeProps[]>([])
   const [evolution, setEvolution] = useState<EvolutionProps[]>([])
+  const [evolutionName, setEvolutionName] = useState<EvolutionProps[]>([])
   // const [evolutionImg, setEvolutionImg] = useState([])
   const [pokeStatus, setPokeStatus] = useState<PokeStatusProps[]>([])
   const [aboutPoke, setAboutPoke] = useState<AboutPokeProps[]>([])
@@ -105,7 +106,7 @@ const PokemonContainer = (): JSX.Element => {
   const getEvolutionPokemon = async (url: string) => {
     const response = await axios.get(`${url}`)
 
-    setEvolution([
+    setEvolutionName([
       {
         name: response.data.chain.species.name
       },
@@ -117,7 +118,17 @@ const PokemonContainer = (): JSX.Element => {
       }
     ])
 
-    console.log(evolution)
+    evolutionName.forEach(async (pokemon) => {
+      const responseImg = await api.get(`/pokemon/${pokemon.name}`)
+
+      return setEvolution((pokemon) => [
+        ...pokemon,
+        {
+          name: responseImg.data.name,
+          url: responseImg.data.sprites.other['official-artwork'].front_default
+        }
+      ])
+    })
   }
 
   useEffect(() => {
@@ -148,7 +159,7 @@ const PokemonContainer = (): JSX.Element => {
       //   const responseThree = await api.get(`/pokemon/${pokemonImg.nameThree}`)
 
       //   return setEvolution([
-      //     ...evolution,
+      //     ...evolution
       //     {
       //       imageOne: responseOne.data.sprites.other['official-artwork'].front_default,
       //       imageTwo: responseTwo.data.sprites.other['official-artwork'].front_default,
@@ -211,6 +222,7 @@ const PokemonContainer = (): JSX.Element => {
                 <>
                   <EvolutionContent key={index}>
                     <p>{pokemonEvolution.name}</p>
+                    <img src={pokemonEvolution.url} />
                   </EvolutionContent>
                 </>
               )
