@@ -8,9 +8,9 @@ import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent,
 import axios from 'axios'
 import dynamic from 'next/dynamic'
 
-const Header = dynamic(() => import('../../../components/Header'), {
-  ssr: false
-})
+// const Header = dynamic(() => import('../../../components/Header'), {
+//   ssr: false
+// })
 
 type PokemonType = {
   type: {
@@ -87,7 +87,6 @@ const PokemonContainer = (): JSX.Element => {
 
   const getPokemonSpecie = async () => {
     const response = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${router.query.id}/`)
-
     await getEvolutionPokemon(response.data.evolution_chain.url)
 
     return setAboutPoke((pokemon) => [
@@ -110,7 +109,9 @@ const PokemonContainer = (): JSX.Element => {
   const getEvolutionPokemon = async (url: string) => {
     const response = await axios.get(`${url}`)
 
-    return setEvolutionName([
+    console.log(response)
+
+    setEvolutionName([
       {
         name: response.data.chain.species.name
       },
@@ -121,9 +122,9 @@ const PokemonContainer = (): JSX.Element => {
         name: response.data.chain.evolves_to[0].evolves_to[0].species.name
       }
     ])
-    console.log('SERÁ', response)
   }
-  async function getImgPokemon() {
+
+  const getImgPokemon = async () => {
     evolutionName.forEach(async (pokemon) => {
       const responseImg = await api.get(`/pokemon/${pokemon.name}`)
 
@@ -136,6 +137,7 @@ const PokemonContainer = (): JSX.Element => {
       ])
     })
   }
+  // console.log('AOOW', evolutionName)
 
   useEffect(() => {
     async function getPokemon() {
