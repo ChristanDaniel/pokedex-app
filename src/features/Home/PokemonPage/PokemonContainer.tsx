@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste, UlContent, PokeBodyContainer, StatusContainer } from './styles'
 import axios from 'axios'
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 
 // const Header = dynamic(() => import('../../../components/Header'), {
 //   ssr: false
@@ -144,38 +144,6 @@ const PokemonContainer = (): JSX.Element => {
       await getPokemonStatus()
       await getPokemonSpecie()
       await getImgPokemon()
-
-      // const response = await api.get(`/pokemon/${router.query.id}`)
-
-      // console.log('AEEEEEEE', response)
-      // const responsePokemon = await api.get(
-      //   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.data.sprites.other['official-artwork'].front_default}.png`
-      // )
-      // const responseSpecie = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${response.data.name}/`)
-      // const responseEvolution = await axios.get(`${responseSpecie.data.evolution_chain.url}`)
-      // setEvolution([
-      //   {
-      //     img: response.data.sprites.other['official-artwork'].front_default,
-      //     nameOne: responseEvolution.data.chain.species.name,
-      //     nameTwo: responseEvolution.data.chain.evolves_to[0].species.name,
-      //     nameThree: responseEvolution.data.chain.evolves_to[0].evolves_to[0].species.name
-      //   }
-      // ])
-
-      // evolution.map(async (pokemonImg) => {
-      //   const responseOne = await api.get(`/pokemon/${pokemonImg.nameOne}`)
-      //   const responseTwo = await api.get(`/pokemon/${pokemonImg.nameTwo}`)
-      //   const responseThree = await api.get(`/pokemon/${pokemonImg.nameThree}`)
-
-      //   return setEvolution([
-      //     ...evolution
-      //     {
-      //       imageOne: responseOne.data.sprites.other['official-artwork'].front_default,
-      //       imageTwo: responseTwo.data.sprites.other['official-artwork'].front_default,
-      //       imageThree: responseThree.data.sprites.other['official-artwork'].front_default,
-      //     }
-      //   ])
-      // })
     }
     getPokemon()
   }, [])
