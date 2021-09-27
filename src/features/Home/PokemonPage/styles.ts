@@ -111,8 +111,12 @@ const EvolutionContainer = styled.div`
     font-weight: bold;
     font-size: 40px;
     line-height: 65px;
-    /* text-transform: capitalize; */
     color: #4a90da;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
   }
 `
 const EvolutionContent = styled.li`
@@ -129,13 +133,12 @@ const EvolutionContent = styled.li`
     text-transform: capitalize;
     line-height: 26px;
     font-weight: bold;
-    border-top: 1px solid #4a90da;
+  }
 
-    img {
-      height: 150px;
-      border-top: 1px solid #4a90da;
-      width: 150px;
-    }
+  > img {
+    height: 75px;
+    /* border-top: 1px solid #4a90da; */
+    width: 75px;
   }
 `
 

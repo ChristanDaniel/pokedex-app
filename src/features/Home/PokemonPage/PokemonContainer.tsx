@@ -37,6 +37,10 @@ type EvolutionProps = {
   url?: string
 }
 
+type EvolutionNameProps = {
+  name?: string
+}
+
 type PokeStatusProps = {
   base_stat: string
   stat: {
@@ -49,7 +53,7 @@ const PokemonContainer = (): JSX.Element => {
 
   const [pokeInfo, setPokeInfo] = useState<PokeProps[]>([])
   const [evolution, setEvolution] = useState<EvolutionProps[]>([])
-  const [evolutionName, setEvolutionName] = useState<EvolutionProps[]>([])
+  const [evolutionName, setEvolutionName] = useState<EvolutionNameProps[]>([])
   // const [evolutionImg, setEvolutionImg] = useState([])
   const [pokeStatus, setPokeStatus] = useState<PokeStatusProps[]>([])
   const [aboutPoke, setAboutPoke] = useState<AboutPokeProps[]>([])
@@ -163,7 +167,7 @@ const PokemonContainer = (): JSX.Element => {
       //     {
       //       imageOne: responseOne.data.sprites.other['official-artwork'].front_default,
       //       imageTwo: responseTwo.data.sprites.other['official-artwork'].front_default,
-      //       imageThree: responseThree.data.sprites.other['official-artwork'].front_default
+      //       imageThree: responseThree.data.sprites.other['official-artwork'].front_default,
       //     }
       //   ])
       // })
@@ -217,16 +221,18 @@ const PokemonContainer = (): JSX.Element => {
         <PokeBodyContainer>
           <EvolutionContainer>
             <h2>Evolution</h2>
-            {evolution.map((pokemonEvolution, index) => {
-              return (
-                <>
-                  <EvolutionContent key={index}>
-                    <p>{pokemonEvolution.name}</p>
-                    <img src={pokemonEvolution.url} />
-                  </EvolutionContent>
-                </>
-              )
-            })}
+            <div>
+              {evolution.map((pokemonEvolution, index) => {
+                return (
+                  <>
+                    <EvolutionContent key={index}>
+                      <p>{pokemonEvolution.name}</p>
+                      <img src={pokemonEvolution.url} />
+                    </EvolutionContent>
+                  </>
+                )
+              })}
+            </div>
           </EvolutionContainer>
           <StatusContainer>
             <h1>Status</h1>
