@@ -110,7 +110,7 @@ const PokemonContainer = (): JSX.Element => {
   const getEvolutionPokemon = async (url: string) => {
     const response = await axios.get(`${url}`)
 
-    setEvolutionName([
+    return setEvolutionName([
       {
         name: response.data.chain.species.name
       },
@@ -121,7 +121,9 @@ const PokemonContainer = (): JSX.Element => {
         name: response.data.chain.evolves_to[0].evolves_to[0].species.name
       }
     ])
-
+    console.log('SERÁ', response)
+  }
+  async function getImgPokemon() {
     evolutionName.forEach(async (pokemon) => {
       const responseImg = await api.get(`/pokemon/${pokemon.name}`)
 
@@ -139,6 +141,7 @@ const PokemonContainer = (): JSX.Element => {
     async function getPokemon() {
       await getPokemonStatus()
       await getPokemonSpecie()
+      await getImgPokemon()
 
       // const response = await api.get(`/pokemon/${router.query.id}`)
 
@@ -175,11 +178,10 @@ const PokemonContainer = (): JSX.Element => {
     getPokemon()
   }, [])
 
-  console.log(typeof aboutPoke)
   return (
     <>
       <PokeContainer>
-        <Header />
+        {/* <Header /> */}
         {pokeInfo.map((pokemon, index) => {
           return (
             <>
@@ -223,11 +225,12 @@ const PokemonContainer = (): JSX.Element => {
             <h2>Evolution</h2>
             <div>
               {evolution.map((pokemonEvolution, index) => {
+                console.log('AQUIII', pokemonEvolution)
                 return (
                   <>
                     <EvolutionContent key={index}>
                       <p>{pokemonEvolution.name}</p>
-                      <img src={pokemonEvolution.url} />
+                      <img src={pokemonEvolution.url} alt="evolução do pokemon" />
                     </EvolutionContent>
                   </>
                 )
