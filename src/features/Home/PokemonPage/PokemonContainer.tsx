@@ -126,6 +126,8 @@ const PokemonContainer = (): JSX.Element => {
   }
 
   const getImgPokemon = async () => {
+    setEvolution([])
+
     evolutionName.forEach(async (pokemon) => {
       const responseImg = await api.get(`/pokemon/${pokemon.name}`)
 
@@ -138,6 +140,10 @@ const PokemonContainer = (): JSX.Element => {
         }
       ])
     })
+  }
+
+  const listOrdenadaEvolution = (evolution: EvolutionProps[]) => {
+    return evolution.sort((a, b) => a.id - b.id)
   }
 
   useEffect(() => {
@@ -203,13 +209,14 @@ const PokemonContainer = (): JSX.Element => {
           <EvolutionContainer>
             <h2>Evolution</h2>
             <div>
-              {evolution.map((pokemonEvolution, index) => {
-                console.log('AQUIII', pokemonEvolution)
+              {listOrdenadaEvolution(evolution).map((pokemonEvolution, index) => {
                 return (
                   <>
                     <EvolutionContent key={index}>
-                      <p>{pokemonEvolution.name}</p>
-                      <img src={pokemonEvolution.url} alt="evolução do pokemon" />
+                      <a onClick={() => router.push(`/pokemon/${pokemonEvolution.name}`)}>
+                        <p>{pokemonEvolution.name}</p>
+                        <img src={pokemonEvolution.url} alt="evolução do pokemon" />
+                      </a>
                     </EvolutionContent>
                   </>
                 )

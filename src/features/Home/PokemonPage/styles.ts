@@ -124,18 +124,20 @@ const EvolutionContent = styled.li`
   flex-direction: column;
   margin: 16px 100px 10px;
 
-  p {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-transform: capitalize;
-    line-height: 26px;
-    font-weight: bold;
-  }
+  a {
+    p {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-transform: capitalize;
+      line-height: 26px;
+      font-weight: bold;
+    }
 
-  > img {
-    height: 75px;
-    width: 75px;
+    > img {
+      height: 75px;
+      width: 75px;
+    }
   }
 `
 
