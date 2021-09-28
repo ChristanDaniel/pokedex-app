@@ -33,6 +33,7 @@ type AboutPokeProps = {
 }
 
 type EvolutionProps = {
+  id: number
   name?: string
   url?: string
 }
@@ -92,7 +93,7 @@ const PokemonContainer = (): JSX.Element => {
     return setAboutPoke((pokemon) => [
       ...pokemon,
       {
-        name: 'Base_Friendship',
+        name: 'Base Friendship',
         value: response.data.base_happiness
       },
       {
@@ -131,22 +132,30 @@ const PokemonContainer = (): JSX.Element => {
       return setEvolution((pokemon) => [
         ...pokemon,
         {
+          id: responseImg.data.id,
           name: responseImg.data.name,
           url: responseImg.data.sprites.other['official-artwork'].front_default
         }
       ])
     })
   }
-  // console.log('AOOW', evolutionName)
+
+  useEffect(() => {
+    async function getInfoPokemon() {
+      await getPokemonStatus()
+      await getPokemonSpecie()
+    }
+
+    getInfoPokemon()
+  }, [router])
 
   useEffect(() => {
     async function getPokemon() {
-      await getPokemonStatus()
-      await getPokemonSpecie()
       await getImgPokemon()
     }
+
     getPokemon()
-  }, [])
+  }, [evolutionName])
 
   return (
     <>
