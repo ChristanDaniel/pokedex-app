@@ -167,19 +167,40 @@ const PokemonContainer = (): JSX.Element => {
     <>
       <PokeContainer>
         {/* <Header /> */}
+        <h3>Explorar mais Pokémon</h3>
         {pokeInfo.map((pokemon, index) => {
           return (
             <>
               <PokeHeadContainer key={index}>
                 <Teste>
-                  <img src={pokemon.img} alt={pokemon.name} />
                   <div>
-                    <p>#{pokemon.id} </p>
-                    <p>{pokemon.name}</p>
-                    {pokemon.types.map((natural, index) => {
-                      return <span key={index}>{natural.type.name}</span>
-                    })}
+                    <img src={pokemon.img} alt={pokemon.name} />
+                    <div>
+                      <p>#{pokemon.id} </p>
+                      <p>{pokemon.name}</p>
+                      {pokemon.types.map((natural, index) => {
+                        return <span key={index}>{natural.type.name}</span>
+                      })}
+                    </div>
                   </div>
+
+                  <EvolutionContainer>
+                    <h2>Evolution</h2>
+                    <div>
+                      {listOrdenadaEvolution(evolution).map((pokemonEvolution, index) => {
+                        return (
+                          <>
+                            <EvolutionContent key={index}>
+                              <a onClick={() => router.push(`/pokemon/${pokemonEvolution.name}`)}>
+                                <p>{pokemonEvolution.name}</p>
+                                <img src={pokemonEvolution.url} alt="evolução do pokemon" />
+                              </a>
+                            </EvolutionContent>
+                          </>
+                        )
+                      })}
+                    </div>
+                  </EvolutionContainer>
                 </Teste>
 
                 <UlContent>
@@ -200,45 +221,27 @@ const PokemonContainer = (): JSX.Element => {
                       )
                     })}
                   </ul>
+                  <StatusContainer>
+                    <h1>Status</h1>
+                    <ul>
+                      {pokeStatus.map((pokemonStatus) => {
+                        return (
+                          <>
+                            <li>
+                              <strong>{pokemonStatus.stat.name}:</strong>
+                              <span>{pokemonStatus.base_stat}</span>
+                            </li>
+                          </>
+                        )
+                      })}
+                    </ul>
+                  </StatusContainer>
                 </UlContent>
               </PokeHeadContainer>
             </>
           )
         })}
-        <PokeBodyContainer>
-          <EvolutionContainer>
-            <h2>Evolution</h2>
-            <div>
-              {listOrdenadaEvolution(evolution).map((pokemonEvolution, index) => {
-                return (
-                  <>
-                    <EvolutionContent key={index}>
-                      <a onClick={() => router.push(`/pokemon/${pokemonEvolution.name}`)}>
-                        <p>{pokemonEvolution.name}</p>
-                        <img src={pokemonEvolution.url} alt="evolução do pokemon" />
-                      </a>
-                    </EvolutionContent>
-                  </>
-                )
-              })}
-            </div>
-          </EvolutionContainer>
-          <StatusContainer>
-            <h1>Status</h1>
-            <ul>
-              {pokeStatus.map((pokemonStatus) => {
-                return (
-                  <>
-                    <li>
-                      <strong>{pokemonStatus.stat.name}:</strong>
-                      <span>{pokemonStatus.base_stat}</span>
-                    </li>
-                  </>
-                )
-              })}
-            </ul>
-          </StatusContainer>
-        </PokeBodyContainer>
+        <PokeBodyContainer></PokeBodyContainer>
       </PokeContainer>
     </>
   )

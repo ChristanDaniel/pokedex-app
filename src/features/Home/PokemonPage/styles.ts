@@ -6,6 +6,8 @@ const PokeContainer = styled.main`
   /* background-color: #e2e2e2; */
   background-color: rgb(88, 171, 246);
   /* color: rgb(139, 190, 138); */
+  display: flex;
+  justify-content: space-between;
 `
 
 const PokeHeadContainer = styled.div`
@@ -27,8 +29,9 @@ const PokeHeadContainer = styled.div`
 const Teste = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
 
-  > div {
+  div {
     display: flex;
     flex-direction: column;
     /* justify-content: space-around; */
@@ -125,6 +128,7 @@ const EvolutionContent = styled.li`
   margin: 16px 100px 10px;
 
   a {
+    cursor: pointer;
     p {
       display: flex;
       flex-direction: column;
