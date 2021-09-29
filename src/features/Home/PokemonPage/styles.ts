@@ -11,19 +11,17 @@ const PokeContainer = styled.main`
 `
 
 const PokeHeadContainer = styled.div`
-  margin: 20px;
+  /* margin: 20px; */
   display: flex;
-  justify-content: space-around;
-  /* align-content: center; */
+  /* justify-content: space-around; */
   align-items: center;
-  /* margin-bottom: 50px; */
-  border-bottom: 1px solid #ffffff;
-  justify-content: space-between;
+  /* border-bottom: 1px solid #ffffff; */
+  /* justify-content: space-between; */
 
   img {
     height: 180px;
     width: 180px;
-    /* margin: 50px; */
+    /* margin-left: 50px; */
   }
 `
 const Teste = styled.div`
@@ -32,9 +30,18 @@ const Teste = styled.div`
   flex-direction: column;
 
   div {
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
+    /* justify-content: center; */
+
+    > img {
+      height: 180px;
+      width: 180px;
+      display: flex;
+      margin-left: 50px;
+      margin-top: 18px;
+    }
 
     span {
       display: flex;
@@ -59,8 +66,8 @@ const Teste = styled.div`
 const UlContent = styled.div`
   background-color: #ffffff;
   margin-right: 150px;
-  padding: 38px;
-  border: 1px solid #ffff;
+  padding: 16px;
+  /* border: 1px solid #ffff; */
   border-radius: 12px;
   align-items: center;
 
@@ -139,8 +146,8 @@ const EvolutionContent = styled.li`
     }
 
     > img {
-      height: 75px;
-      width: 75px;
+      height: 100px;
+      width: 100px;
     }
   }
 `

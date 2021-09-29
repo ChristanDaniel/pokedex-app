@@ -174,10 +174,12 @@ const PokemonContainer = (): JSX.Element => {
               <PokeHeadContainer key={index}>
                 <Teste>
                   <div>
-                    <img src={pokemon.img} alt={pokemon.name} />
                     <div>
-                      <p>#{pokemon.id} </p>
-                      <p>{pokemon.name}</p>
+                      <p></p>
+                      <p>
+                        #{pokemon.id} {pokemon.name}
+                      </p>
+                      <img src={pokemon.img} alt={pokemon.name} />
                       {pokemon.types.map((natural, index) => {
                         return <span key={index}>{natural.type.name}</span>
                       })}
@@ -241,7 +243,7 @@ const PokemonContainer = (): JSX.Element => {
             </>
           )
         })}
-        <PokeBodyContainer></PokeBodyContainer>
+        {/* <PokeBodyContainer></PokeBodyContainer> */}
       </PokeContainer>
     </>
   )
