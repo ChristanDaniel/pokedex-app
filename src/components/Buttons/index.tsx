@@ -15,7 +15,7 @@ type ListPokeTypeProps = {
 }
 
 const ButtonType = (): JSX.Element => {
-  const { setPokeList, getAllPokemon } = useContext(PokemonContainerContext)
+  const { setPokeList, getAllPokemon, setIsLoading } = useContext(PokemonContainerContext)
 
   const [listPokeType, setListPokeType] = useState<PokeTypeProps[]>([])
 
@@ -27,6 +27,7 @@ const ButtonType = (): JSX.Element => {
   }
 
   const handleClickPokeType = async (url: string) => {
+    setIsLoading(true)
     const response = await axios.get(`${url}`)
     const data = response.data.pokemon
 
@@ -46,8 +47,9 @@ const ButtonType = (): JSX.Element => {
         ])
       })
     }
-
     getListPokemon(data)
+
+    setIsLoading(false)
   }
 
   useEffect(() => {

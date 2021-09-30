@@ -31,7 +31,7 @@ type PokeProps = {
 // }
 
 const HomeContainer = (): JSX.Element => {
-  const { pokeList, getListPokemon } = useContext(PokemonContainerContext)
+  const { pokeList, getListPokemon, isLoading, setIsLoading } = useContext(PokemonContainerContext)
   const [loadMore, setLoadMore] = useState('/pokemon?limit=9')
   const router = useRouter()
 
@@ -40,6 +40,8 @@ const HomeContainer = (): JSX.Element => {
     setLoadMore(response.data.next)
 
     getListPokemon(response.data.results)
+
+    setIsLoading(false)
   }
 
   const listOrdenada = (pokeList: PokeProps[]) => {
@@ -52,28 +54,34 @@ const HomeContainer = (): JSX.Element => {
 
   return (
     <MainContainer>
-      <Content>
-        {listOrdenada(pokeList).map((pokemon, index) => {
-          return (
-            <>
-              <LiContent key={index}>
-                <a onClick={() => router.push(`/pokemon/${pokemon.name}`)}>
-                  <img src={pokemon.img} />
-                  <DivContent>
-                    <span>#{pokemon.id} </span>
-                    <h2>{pokemon.name}</h2>
-                    <div>
-                      {pokemon.types.map((natural, index) => {
-                        return <p key={index}>{natural.type.name}</p>
-                      })}
-                    </div>
-                  </DivContent>
-                </a>
-              </LiContent>
-            </>
-          )
-        })}
-      </Content>
+      {isLoading ? (
+        <div>
+          <span>Carregando...</span>
+        </div>
+      ) : (
+        <Content>
+          {listOrdenada(pokeList).map((pokemon, index) => {
+            return (
+              <>
+                <LiContent key={index}>
+                  <a onClick={() => router.push(`/pokemon/${pokemon.name}`)}>
+                    <img src={pokemon.img} />
+                    <DivContent>
+                      <span>#{pokemon.id} </span>
+                      <h2>{pokemon.name}</h2>
+                      <div>
+                        {pokemon.types.map((natural, index) => {
+                          return <p key={index}>{natural.type.name}</p>
+                        })}
+                      </div>
+                    </DivContent>
+                  </a>
+                </LiContent>
+              </>
+            )
+          })}
+        </Content>
+      )}
       <div>
         <button onClick={() => getAllPokemon()}>Carregar mais</button>
       </div>

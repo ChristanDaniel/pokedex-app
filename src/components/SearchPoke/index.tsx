@@ -28,7 +28,7 @@ type PokeProps = {
 const SeachPoke = (): JSX.Element => {
   const [inputSearch, setInputSearch] = useState('')
   const [allPokemonList, setAllPokemonList] = useState([])
-  const { pokeList, setPokeList, getAllPokemon } = useContext(PokemonContainerContext)
+  const { pokeList, setPokeList, getAllPokemon, setIsLoading } = useContext(PokemonContainerContext)
 
   // const [listPokeType, setListPokeType] = useState<ListPokeTypeProps[]>([])
 
@@ -41,6 +41,7 @@ const SeachPoke = (): JSX.Element => {
   }
 
   const handleFiltredList = async (value: string) => {
+    setIsLoading(true)
     if (value.length > 2) {
       const filtredList = allPokemonList.filter((pokemon: PokeProps) => pokemon.name.includes(value))
       setPokeList([])
@@ -60,12 +61,17 @@ const SeachPoke = (): JSX.Element => {
         ])
       })
     }
+    setIsLoading(false)
   }
 
   const handleChangeSearchPokemon = async (value: string) => {
+    setIsLoading(true)
+
     inputSearch.length == 1 && getAllPokemon()
     inputSearch.length >= 2 && (await handleFiltredList(value))
     setInputSearch(value)
+
+    setIsLoading(false)
   }
 
   useEffect(() => {

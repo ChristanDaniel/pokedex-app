@@ -4,7 +4,7 @@ import { api } from '../../../services/api'
 import Image from 'next/image'
 // import SetaPokemon from '../../../../public/seta.png'
 
-import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste, UlContent, PokeBodyContainer, StatusContainer } from './styles'
+import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste, UlContent, StatusContainer } from './styles'
 import axios from 'axios'
 // import dynamic from 'next/dynamic'
 
@@ -167,7 +167,7 @@ const PokemonContainer = (): JSX.Element => {
     <>
       <PokeContainer>
         {/* <Header /> */}
-        <h3>Explorar mais Pokémon</h3>
+        <button>Explorar mais Pokémon</button>
         {pokeInfo.map((pokemon, index) => {
           return (
             <>

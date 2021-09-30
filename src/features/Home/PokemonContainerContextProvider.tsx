@@ -19,13 +19,15 @@ interface IPokemonContainerProps {
   getListPokemon: (credentials: PokeProps[]) => Promise<void>
   pokeList: PokeProps[]
   setPokeList: React.Dispatch<React.SetStateAction<PokeProps[]>>
+  isLoading: boolean
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const PokemonContainerContext = createContext({} as IPokemonContainerProps)
 
 const PokemonContainerProvider: React.FC = ({ children }) => {
   const [pokeList, setPokeList] = useState<PokeProps[]>([])
-  // const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
   async function getListPokemon(results: PokeProps[]) {
     results.forEach(async (pokemon) => {
@@ -51,7 +53,11 @@ const PokemonContainerProvider: React.FC = ({ children }) => {
     getListPokemon(response.data.results)
   }
 
-  return <PokemonContainerContext.Provider value={{ pokeList, setPokeList, getAllPokemon, getListPokemon }}>{children}</PokemonContainerContext.Provider>
+  return (
+    <PokemonContainerContext.Provider value={{ pokeList, setPokeList, getAllPokemon, getListPokemon, isLoading, setIsLoading }}>
+      {children}
+    </PokemonContainerContext.Provider>
+  )
 }
 
 export { PokemonContainerProvider, PokemonContainerContext }

@@ -6,8 +6,13 @@ const PokeContainer = styled.main`
   /* background-color: #e2e2e2; */
   background-color: rgb(88, 171, 246);
   /* color: rgb(139, 190, 138); */
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  padding: 40px;
+  /* justify-content: space-between; */
+
+  h3 {
+    width: 100%;
+  }
 `
 
 const PokeHeadContainer = styled.div`
@@ -30,7 +35,7 @@ const Teste = styled.div`
   flex-direction: column;
 
   div {
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
