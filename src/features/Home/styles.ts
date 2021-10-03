@@ -60,9 +60,9 @@ const LiContent = styled.li<LiContentProps>`
       case 'fairy':
         return '#EBA8C3'
       case 'fighting':
-        return '#83A2E3'
-      case 'flying':
         return '#EB4971'
+      case 'flying':
+        return '#83A2E3'
       case 'ghost':
         return '#8571BE'
       case 'grass':
@@ -134,17 +134,73 @@ const DivContent = styled.div`
       padding-right: 15px;
     }
   }
+`
+interface PokemonTypesProps {
+  PokemonType: string
+}
 
+const PokemonTypes = styled.div<PokemonTypesProps>`
+  margin-bottom: 8px;
   div {
-    background: #ffffff;
-    > img {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 8px;
+    margin-left: 5px;
+    background: ${(props) => {
+      switch (props.PokemonType) {
+        case 'fire':
+          return '#FD7D24'
+        case 'water':
+          return '#4A90DA'
+        case 'bug':
+          return '#8CB230'
+        case 'dark':
+          return '#58575F'
+        case 'dragon':
+          return '#0F6AC0'
+        case 'electric':
+          return '#EED535'
+        case 'fairy':
+          return '#ED6EC7'
+        case 'fighting':
+          return '#D04164'
+        case 'flying':
+          return '#748FC9'
+        case 'ghost':
+          return '#556AAE'
+        case 'grass':
+          return '#62B957'
+        case 'ground':
+          return '#DD7748'
+        case 'ice':
+          return '#61CEC0'
+        case 'normal':
+          return '#9DA0AA'
+        case 'poison':
+          return '#A552CC'
+        case 'psychic':
+          return '#EA5D60'
+        case 'rock':
+          return '#BAAB82'
+        case 'steel':
+          return '#417D9A'
+        default:
+          return 'white'
+      }
+    }};
+
+    img {
       /* height: 60px; */
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
     }
-  }
-  p {
+
+    p {
+      color: #ffffff;
+      font-size: 18px;
+    }
   }
 `
 
-export { MainContainer, LiContent, DivContent, Content }
+export { MainContainer, LiContent, DivContent, Content, PokemonTypes }

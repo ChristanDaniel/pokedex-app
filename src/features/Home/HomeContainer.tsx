@@ -1,20 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
-// import axios from 'axios'
 import { useRouter } from 'next/dist/client/router'
 
-// import Image from 'next/image'
-// import pokedex from '../../../public/pokedex.png'
-
-import { MainContainer, LiContent, DivContent, Content } from './styles'
+// import axios from 'axios'
 import { api } from '../../services/api'
+
+import { MainContainer, LiContent, DivContent, Content, PokemonTypes } from './styles'
+
 import { PokemonContainerContext } from './PokemonContainerContextProvider'
-// import { useTheme } from 'styled-components'
-// import defaultTheme from '../../../styles/theme'
 
 type PokemonType = {
   type: {
     name: string
-    // color?: string
   }
 }
 
@@ -23,12 +19,7 @@ type PokeProps = {
   name: string
   img: string
   types: PokemonType[]
-  // backgroundColor?: string
 }
-
-// interface HomeContainerProps {
-//   results: PokeProps[]
-// }
 
 const HomeContainer = (): JSX.Element => {
   const { pokeList, getListPokemon, isLoading, setIsLoading } = useContext(PokemonContainerContext)
@@ -71,7 +62,7 @@ const HomeContainer = (): JSX.Element => {
                       <span>#{pokemon.id} </span>
 
                       <h2>{pokemon.name}</h2>
-                      <div>
+                      <PokemonTypes PokemonType={pokemon.types[0].type.name}>
                         {pokemon.types.map((natural, index) => {
                           return (
                             <div key={index.toString() + natural}>
@@ -80,7 +71,7 @@ const HomeContainer = (): JSX.Element => {
                             </div>
                           )
                         })}
-                      </div>
+                      </PokemonTypes>
                     </DivContent>
                   </a>
                 </LiContent>
