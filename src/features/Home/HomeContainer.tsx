@@ -61,17 +61,24 @@ const HomeContainer = (): JSX.Element => {
       ) : (
         <Content>
           {listOrdenada(pokeList).map((pokemon, index) => {
+            console.log('AQUII', pokemon)
             return (
               <>
-                <LiContent key={index}>
+                <LiContent key={index} pokeType={pokemon.types[0].type.name}>
                   <a onClick={() => router.push(`/pokemon/${pokemon.name}`)}>
                     <img src={pokemon.img} />
                     <DivContent>
                       <span>#{pokemon.id} </span>
+
                       <h2>{pokemon.name}</h2>
                       <div>
                         {pokemon.types.map((natural, index) => {
-                          return <p key={index}>{natural.type.name}</p>
+                          return (
+                            <div key={index.toString() + natural}>
+                              <img className="Svg" src={`./types/${natural.type.name}.svg`} />
+                              <p>{natural.type.name}</p>
+                            </div>
+                          )
                         })}
                       </div>
                     </DivContent>

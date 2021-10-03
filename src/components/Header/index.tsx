@@ -1,19 +1,15 @@
 import React from 'react'
 
-import Image from 'next/image'
-import LogoHeader from '../../../public/PokedexLogo.png'
-import LogoHeader1 from '../../../public/Logodex.png'
-
 import { Headers } from './styles'
 
 const Header = (): JSX.Element => {
   return (
     <>
       <Headers>
-        <Image src={LogoHeader} alt="logo" />
+        <img src="/PokedexLogo.png" alt="logo" />
 
         <div>
-          <Image src={LogoHeader1} alt="logo" />
+          <img src="/Logodex.png" alt="logo" />
 
           <h3>
             Bem-vindo ao Pokédex-App <br /> aqui você pode conhecer mais sobre seu pokemon favorito.

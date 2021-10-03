@@ -88,6 +88,7 @@ const PokemonContainer = (): JSX.Element => {
 
   const getPokemonSpecie = async () => {
     const response = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${router.query.id}/`)
+    console.log(response)
     await getEvolutionPokemon(response.data.evolution_chain.url)
 
     return setAboutPoke((pokemon) => [
@@ -120,7 +121,7 @@ const PokemonContainer = (): JSX.Element => {
         name: response.data.chain.evolves_to[0].species.name
       },
       {
-        name: response.data.chain.evolves_to[0].evolves_to[0].species.name
+        name: response.data.chain.evolves_to[0].evolves_to[0]?.species.name
       }
     ])
   }
@@ -129,16 +130,18 @@ const PokemonContainer = (): JSX.Element => {
     setEvolution([])
 
     evolutionName.forEach(async (pokemon) => {
-      const responseImg = await api.get(`/pokemon/${pokemon.name}`)
+      if (pokemon.name) {
+        const responseImg = await api.get(`/pokemon/${pokemon.name}`)
 
-      return setEvolution((pokemon) => [
-        ...pokemon,
-        {
-          id: responseImg.data.id,
-          name: responseImg.data.name,
-          url: responseImg.data.sprites.other['official-artwork'].front_default
-        }
-      ])
+        return setEvolution((pokemon) => [
+          ...pokemon,
+          {
+            id: responseImg.data.id,
+            name: responseImg.data.name,
+            url: responseImg.data.sprites.other['official-artwork'].front_default
+          }
+        ])
+      }
     })
   }
 
@@ -165,12 +168,11 @@ const PokemonContainer = (): JSX.Element => {
 
   return (
     <>
-      <PokeContainer>
-        {/* <Header /> */}
-        <button>Explorar mais Pokémon</button>
-        {pokeInfo.map((pokemon, index) => {
-          return (
-            <>
+      {/* <Header /> */}
+      {pokeInfo.map((pokemon, index) => {
+        return (
+          <>
+            <PokeContainer pokeType={pokemon.types[0].type.name}>
               <PokeHeadContainer key={index}>
                 <Teste>
                   <div>
@@ -240,11 +242,11 @@ const PokemonContainer = (): JSX.Element => {
                   </StatusContainer>
                 </UlContent>
               </PokeHeadContainer>
-            </>
-          )
-        })}
-        {/* <PokeBodyContainer></PokeBodyContainer> */}
-      </PokeContainer>
+            </PokeContainer>
+          </>
+        )
+      })}
+      {/* <PokeBodyContainer></PokeBodyContainer> */}
     </>
   )
 }

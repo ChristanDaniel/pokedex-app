@@ -36,11 +36,13 @@ const Content = styled.main`
   margin: 45px;
   gap: 30px;
 `
+interface LiContentProps {
+  pokeType: string
+}
 
-const LiContent = styled.li`
+const LiContent = styled.li<LiContentProps>`
   border-radius: 10px;
-  background: #61cec0;
-  /* background: ${(props) => props.color}; */
+  /* /* background:  */
   /* box-shadow: rgb(0 0 0 / 30%); */
   box-shadow: rgb(0 0 0 / 30%) 1px 3px 12px 0px;
   max-height: 180px;
@@ -89,6 +91,17 @@ const DivContent = styled.div`
       margin-top: 8px;
       padding-right: 15px;
     }
+  }
+
+  div {
+    background: #ffffff;
+    > img {
+      /* height: 60px; */
+      width: 50px;
+      height: 50px;
+    }
+  }
+  p {
   }
 `
 

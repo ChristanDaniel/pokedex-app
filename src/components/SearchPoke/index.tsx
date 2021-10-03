@@ -37,6 +37,8 @@ const SeachPoke = (): JSX.Element => {
       const response = await api.get(`/pokemon?limit=750`)
       const AllPokemons = response.data.results
       setAllPokemonList(AllPokemons)
+
+      console.log('asa', AllPokemons)
     }
   }
 
@@ -44,7 +46,9 @@ const SeachPoke = (): JSX.Element => {
     setIsLoading(true)
     if (value.length > 2) {
       const filtredList = allPokemonList.filter((pokemon: PokeProps) => pokemon.name.includes(value))
+
       setPokeList([])
+
       filtredList.forEach(async (pokemon: PokeProps) => {
         const response = await api.get(`/pokemon/${pokemon.name}`)
         if (pokeList.length > 9) {

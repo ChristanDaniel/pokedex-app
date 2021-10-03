@@ -17,8 +17,10 @@ type PokeProps = {
 interface IPokemonContainerProps {
   getAllPokemon: (credentials?: PokeProps[]) => Promise<void>
   getListPokemon: (credentials: PokeProps[]) => Promise<void>
+
   pokeList: PokeProps[]
   setPokeList: React.Dispatch<React.SetStateAction<PokeProps[]>>
+
   isLoading: boolean
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 }

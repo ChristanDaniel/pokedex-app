@@ -23,6 +23,7 @@ const ButtonType = (): JSX.Element => {
     const ResponseType = await api.get(`/type`)
     const data = ResponseType.data.results
 
+    console.log(ResponseType)
     setListPokeType(data.slice(0, 18))
   }
 
