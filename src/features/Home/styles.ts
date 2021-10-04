@@ -42,7 +42,6 @@ interface LiContentProps {
 
 const LiContent = styled.li<LiContentProps>`
   border-radius: 10px;
-  /* /* background:  */
   background: ${(props) => {
     switch (props.pokeType) {
       case 'fire':
@@ -87,7 +86,7 @@ const LiContent = styled.li<LiContentProps>`
   }};
   /* box-shadow: rgb(0 0 0 / 30%); */
   box-shadow: rgb(0 0 0 / 30%) 1px 3px 12px 0px;
-  max-height: 180px;
+  max-height: 240px;
   max-width: 400px;
   justify-content: center;
 
@@ -98,16 +97,17 @@ const LiContent = styled.li<LiContentProps>`
 
   a {
     display: flex;
+    align-items: center;
 
     img {
       padding-left: 20px;
-      height: 105px;
+      height: 170px;
     }
   }
 `
 
 const DivContent = styled.div`
-  margin-top: 25px;
+  margin-top: 5px;
   margin-left: 26px;
 
   span {
@@ -141,6 +141,7 @@ interface PokemonTypesProps {
 
 const PokemonTypes = styled.div<PokemonTypesProps>`
   margin-bottom: 8px;
+  display: flex;
   div {
     display: flex;
     align-items: center;

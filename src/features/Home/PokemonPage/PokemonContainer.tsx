@@ -115,10 +115,10 @@ const PokemonContainer = (): JSX.Element => {
 
     setEvolutionName([
       {
-        name: response.data.chain.species.name
+        name: response.data.chain.species?.name
       },
       {
-        name: response.data.chain.evolves_to[0].species.name
+        name: response.data.chain.evolves_to[0]?.species.name
       },
       {
         name: response.data.chain.evolves_to[0].evolves_to[0]?.species.name

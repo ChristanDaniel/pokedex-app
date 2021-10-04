@@ -7,6 +7,7 @@ import { api } from '../../services/api'
 import { MainContainer, LiContent, DivContent, Content, PokemonTypes } from './styles'
 
 import { PokemonContainerContext } from './PokemonContainerContextProvider'
+// import { Pokeball } from '../../../public/types'
 
 type PokemonType = {
   type: {
@@ -56,22 +57,25 @@ const HomeContainer = (): JSX.Element => {
             return (
               <>
                 <LiContent key={index} pokeType={pokemon.types[0].type.name}>
+                  {/* <Pokeball /> */}
                   <a onClick={() => router.push(`/pokemon/${pokemon.name}`)}>
                     <img src={pokemon.img} />
+                    {/* <img src="./types/pokeball.svg" /> */}
                     <DivContent>
                       <span>#{pokemon.id} </span>
 
                       <h2>{pokemon.name}</h2>
-                      <PokemonTypes PokemonType={pokemon.types[0].type.name}>
-                        {pokemon.types.map((natural, index) => {
-                          return (
-                            <div key={index.toString() + natural}>
+                      {pokemon.types.map((natural, index) => {
+                        console.log('OLA', natural)
+                        return (
+                          <PokemonTypes PokemonType={natural.type.name} key={index.toString() + natural}>
+                            <div>
                               <img className="Svg" src={`./types/${natural.type.name}.svg`} />
                               <p>{natural.type.name}</p>
                             </div>
-                          )
-                        })}
-                      </PokemonTypes>
+                          </PokemonTypes>
+                        )
+                      })}
                     </DivContent>
                   </a>
                 </LiContent>
