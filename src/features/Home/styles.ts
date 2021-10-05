@@ -93,7 +93,7 @@ const LiContent = styled.li<LiContentProps>`
   :hover {
     filter: brightness(0.9);
   }
-  transition: 0.2s;
+  transition: 0.3s;
 
   a {
     display: flex;
@@ -204,4 +204,11 @@ const PokemonTypes = styled.div<PokemonTypesProps>`
   }
 `
 
-export { MainContainer, LiContent, DivContent, Content, PokemonTypes }
+const Testee = styled.img`
+  position: absolute;
+`
+const TESTAR = styled.img`
+  opacity: 0.3;
+`
+
+export { MainContainer, LiContent, DivContent, Content, PokemonTypes, Testee, TESTAR }

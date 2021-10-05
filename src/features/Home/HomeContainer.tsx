@@ -4,10 +4,9 @@ import { useRouter } from 'next/dist/client/router'
 // import axios from 'axios'
 import { api } from '../../services/api'
 
-import { MainContainer, LiContent, DivContent, Content, PokemonTypes } from './styles'
+import { MainContainer, LiContent, DivContent, Content, PokemonTypes, Testee, TESTAR } from './styles'
 
 import { PokemonContainerContext } from './PokemonContainerContextProvider'
-// import { Pokeball } from '../../../public/types'
 
 type PokemonType = {
   type: {
@@ -57,16 +56,17 @@ const HomeContainer = (): JSX.Element => {
             return (
               <>
                 <LiContent key={index} pokeType={pokemon.types[0].type.name}>
-                  {/* <Pokeball /> */}
                   <a onClick={() => router.push(`/pokemon/${pokemon.name}`)}>
-                    <img src={pokemon.img} />
-                    {/* <img src="./types/pokeball.svg" /> */}
+                    <TESTAR src="./types/pokeball.svg" />
+                    <Testee src={pokemon.img} />
                     <DivContent>
-                      <span>#{pokemon.id} </span>
-
+                      <span>
+                        #{'000'.substr(pokemon.id.toString().length)}
+                        {pokemon.id}
+                      </span>
                       <h2>{pokemon.name}</h2>
+
                       {pokemon.types.map((natural, index) => {
-                        console.log('OLA', natural)
                         return (
                           <PokemonTypes PokemonType={natural.type.name} key={index.toString() + natural}>
                             <div>

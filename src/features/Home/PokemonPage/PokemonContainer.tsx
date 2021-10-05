@@ -77,11 +77,11 @@ const PokemonContainer = (): JSX.Element => {
     setAboutPoke([
       {
         name: 'Height',
-        value: response.data.height + ' M'
+        value: response.data.height / 10 + ' M'
       },
       {
         name: 'Weight',
-        value: response.data.weight + ' KG'
+        value: response.data.weight / 10 + ' KG'
       }
     ])
   }
