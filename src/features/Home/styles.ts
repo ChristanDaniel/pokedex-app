@@ -205,5 +205,11 @@ const PokemonTypes = styled.div<PokemonTypesProps>`
   }
 `
 
-// aqui
+const ImgFromPokemon = styled.img`
+  position: absolute;
+`
+const PokebolaBackground = styled.img`
+  opacity: 0.3;
+`
+
 export { MainContainer, LiContent, DivContent, Content, PokemonTypes, ImgFromPokemon, PokebolaBackground }
