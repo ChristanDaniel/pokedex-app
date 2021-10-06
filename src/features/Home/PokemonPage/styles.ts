@@ -206,7 +206,90 @@ const EvolutionContent = styled.li`
   }
 `
 
-//AQUI
+const PokebolaBackground = styled.img`
+  position: absolute;
+  opacity: 0.3;
+`
+const ImgFromPokemon = styled.img`
+  position: relative;
+
+  &:hover {
+    transform: scale(1.15);
+  }
+  transition: 0.4s;
+`
+interface PokemonTypesProps {
+  PokemonType: string
+}
+
+const PokemonTypes = styled.div<PokemonTypesProps>`
+  /* margin-bottom: 8px; */
+  display: flex;
+  div {
+    display: flex;
+
+    /* align-items: center; */
+    /* gap: 6px; */
+    border-radius: 8px;
+    /* margin-left: 5px; */
+
+    background: ${(props) => {
+      switch (props.PokemonType) {
+        case 'fire':
+          return '#FD7D24'
+        case 'water':
+          return '#4A90DA'
+        case 'bug':
+          return '#8CB230'
+        case 'dark':
+          return '#58575F'
+        case 'dragon':
+          return '#0F6AC0'
+        case 'electric':
+          return '#EED535'
+        case 'fairy':
+          return '#ED6EC7'
+        case 'fighting':
+          return '#D04164'
+        case 'flying':
+          return '#748FC9'
+        case 'ghost':
+          return '#556AAE'
+        case 'grass':
+          return '#62B957'
+        case 'ground':
+          return '#DD7748'
+        case 'ice':
+          return '#61CEC0'
+        case 'normal':
+          return '#9DA0AA'
+        case 'poison':
+          return '#A552CC'
+        case 'psychic':
+          return '#EA5D60'
+        case 'rock':
+          return '#BAAB82'
+        case 'steel':
+          return '#417D9A'
+        default:
+          return 'white'
+      }
+    }};
+
+    > img {
+      /* height: 60px; */
+      width: 20px;
+      height: 20px;
+      margin-left: 0;
+      margin-top: 0;
+    }
+
+    > p {
+      color: #ffffff;
+      font-size: 18px;
+    }
+  }
+`
 
 const StatusContainer = styled.div`
   li {
