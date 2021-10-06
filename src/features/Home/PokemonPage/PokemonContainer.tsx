@@ -4,7 +4,18 @@ import { api } from '../../../services/api'
 import Image from 'next/image'
 // import SetaPokemon from '../../../../public/seta.png'
 
-import { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste, UlContent, StatusContainer } from './styles'
+import {
+  PokeContainer,
+  PokeHeadContainer,
+  EvolutionContainer,
+  EvolutionContent,
+  Teste,
+  UlContent,
+  StatusContainer,
+  PokebolaBackground,
+  ImgFromPokemon,
+  PokemonTypes
+} from './styles'
 import axios from 'axios'
 // import dynamic from 'next/dynamic'
 
@@ -36,6 +47,7 @@ type EvolutionProps = {
   id: number
   name?: string
   url?: string
+  types: PokemonType[]
 }
 
 type EvolutionNameProps = {
@@ -138,7 +150,8 @@ const PokemonContainer = (): JSX.Element => {
           {
             id: responseImg.data.id,
             name: responseImg.data.name,
-            url: responseImg.data.sprites.other['official-artwork'].front_default
+            url: responseImg.data.sprites.other['official-artwork'].front_default,
+            types: responseImg.data.types
           }
         ])
       }
@@ -181,7 +194,8 @@ const PokemonContainer = (): JSX.Element => {
                       <p>
                         #{pokemon.id} {pokemon.name}
                       </p>
-                      <img src={pokemon.img} alt={pokemon.name} />
+                      {/* <PokebolaBackground src="/types/pokeball.svg" /> */}
+                      <ImgFromPokemon src={pokemon.img} alt={pokemon.name} />
                       {pokemon.types.map((natural, index) => {
                         return <span key={index}>{natural.type.name}</span>
                       })}
@@ -189,16 +203,35 @@ const PokemonContainer = (): JSX.Element => {
                   </div>
 
                   <EvolutionContainer>
-                    <h2>Evolution</h2>
+                    <h3>Evolution</h3>
                     <div>
-                      {listOrdenadaEvolution(evolution).map((pokemonEvolution, index) => {
+                      {listOrdenadaEvolution(evolution).map((pokemonEvolution) => {
                         return (
                           <>
-                            <EvolutionContent key={index}>
+                            <EvolutionContent key={pokemonEvolution.id}>
                               <a onClick={() => router.push(`/pokemon/${pokemonEvolution.name}`)}>
+                                <span>
+                                  #{'000'.substr(pokemonEvolution.id.toString().length)}
+                                  {pokemonEvolution.id}
+                                </span>
                                 <p>{pokemonEvolution.name}</p>
-                                <img src={pokemonEvolution.url} alt="evolução do pokemon" />
+                                <PokebolaBackground src="/types/pokeballBlack.svg" />
+                                <ImgFromPokemon src={pokemonEvolution.url} alt="evolução do pokemon" />
                               </a>
+                              {pokemonEvolution.types.map((pokeTypes) => {
+                                return (
+                                  <>
+                                    <div>
+                                      <PokemonTypes PokemonType={pokeTypes.type.name} key={index.toString() + pokeTypes}>
+                                        <div>
+                                          <img src={`/types/${pokeTypes.type.name}.svg`} />
+                                          <p>{pokeTypes.type.name}</p>
+                                        </div>
+                                      </PokemonTypes>
+                                    </div>
+                                  </>
+                                )
+                              })}
                             </EvolutionContent>
                           </>
                         )
@@ -210,8 +243,10 @@ const PokemonContainer = (): JSX.Element => {
                 <UlContent>
                   <div>
                     <h4> Shiny {pokemon.name}</h4>
-                    <img src={pokemon.url} />
-                    <h2>Pokemon About: </h2>
+                    {/* <PokebolaBackground src="/types/pokeballBlack.svg" /> */}
+
+                    <ImgFromPokemon src={pokemon.url} />
+                    <h4>Pokemon About: </h4>
                   </div>
                   <ul>
                     {aboutPoke.map((teste, index) => {

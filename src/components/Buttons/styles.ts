@@ -14,7 +14,7 @@ const ButtonsTypes = styled.nav`
     justify-content: center;
     align-items: center;
     padding: 0 5px;
-    border-radius: 100px;
+    border-radius: 10px;
 
     margin-left: 5px;
 

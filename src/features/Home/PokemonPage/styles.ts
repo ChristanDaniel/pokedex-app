@@ -70,9 +70,11 @@ const PokeHeadContainer = styled.div`
   /* border-bottom: 1px solid #ffffff; */
   /* justify-content: space-between; */
 
-  img {
+  > img {
     height: 180px;
     width: 180px;
+    position: relative;
+
     /* margin-left: 50px; */
   }
 `
@@ -163,14 +165,14 @@ const EvolutionContainer = styled.div`
   flex-direction: column;
 
   h2 {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-content: center;
+    align-content: center; */
+    margin-left: 60px;
 
     font-weight: bold;
     font-size: 40px;
     line-height: 65px;
-    color: #4a90da;
   }
 
   div {
@@ -198,11 +200,13 @@ const EvolutionContent = styled.li`
     }
 
     > img {
-      height: 100px;
-      width: 100px;
+      height: 120px;
+      width: 120px;
     }
   }
 `
+
+//AQUI
 
 const StatusContainer = styled.div`
   li {
@@ -217,4 +221,16 @@ const StatusContainer = styled.div`
   }
 `
 
-export { PokeContainer, PokeHeadContainer, EvolutionContainer, EvolutionContent, Teste, UlContent, PokeBodyContainer, StatusContainer }
+export {
+  PokeContainer,
+  PokeHeadContainer,
+  EvolutionContainer,
+  EvolutionContent,
+  Teste,
+  UlContent,
+  PokeBodyContainer,
+  StatusContainer,
+  PokebolaBackground,
+  ImgFromPokemon,
+  PokemonTypes
+}

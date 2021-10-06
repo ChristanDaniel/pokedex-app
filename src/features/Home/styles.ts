@@ -22,10 +22,10 @@ const MainContainer = styled.main`
     cursor: pointer;
     border: 0;
 
-    transition: 0.2s;
+    transition: 0.3s;
 
     :hover {
-      filter: brightness(0.9);
+      filter: brightness(0.7);
     }
   }
 `
@@ -92,6 +92,7 @@ const LiContent = styled.li<LiContentProps>`
 
   :hover {
     filter: brightness(0.9);
+    border-radius: 15px;
   }
   transition: 0.3s;
 
@@ -204,11 +205,5 @@ const PokemonTypes = styled.div<PokemonTypesProps>`
   }
 `
 
-const Testee = styled.img`
-  position: absolute;
-`
-const TESTAR = styled.img`
-  opacity: 0.3;
-`
-
-export { MainContainer, LiContent, DivContent, Content, PokemonTypes, Testee, TESTAR }
+// aqui
+export { MainContainer, LiContent, DivContent, Content, PokemonTypes, ImgFromPokemon, PokebolaBackground }

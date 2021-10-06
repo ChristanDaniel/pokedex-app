@@ -17,5 +17,27 @@ import Rock from './rock.svg'
 import Steel from './steel.svg'
 import Water from './water.svg'
 import Pokeball from './pokeball.svg'
+import PokeballBlack from './pokeballBlack.svg'
 
-export { Bug, Dark, Dragon, Electric, Fairy, Fighting, Fire, Flying, Ghost, Grass, Ground, Ice, Normal, Poison, Psychic, Rock, Steel, Water, Pokeball }
+export {
+  Bug,
+  Dark,
+  Dragon,
+  Electric,
+  Fairy,
+  Fighting,
+  Fire,
+  Flying,
+  Ghost,
+  Grass,
+  Ground,
+  Ice,
+  Normal,
+  Poison,
+  Psychic,
+  Rock,
+  Steel,
+  Water,
+  Pokeball,
+  PokeballBlack
+}
