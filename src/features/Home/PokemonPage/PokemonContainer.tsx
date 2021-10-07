@@ -5,11 +5,13 @@ import Image from 'next/image'
 // import SetaPokemon from '../../../../public/seta.png'
 
 import {
-  PokeContainer,
-  PokeHeadContainer,
+  PokemonPageContainer,
+  PokemonBodyContent,
+  PokemonDescription,
+  PokemonTypeSvg,
+  PokemonDescriptionsType,
   EvolutionContainer,
   EvolutionContent,
-  Teste,
   UlContent,
   StatusContainer,
   PokebolaBackground,
@@ -18,7 +20,7 @@ import {
 } from './styles'
 import axios from 'axios'
 import { PokeballBlack } from '../../../../public/types'
-import { CustomSVG } from '../../../components/CustomSVG'
+// import { CustomSVG } from '../../../components/CustomSVG'
 // import dynamic from 'next/dynamic'
 
 // const Header = dynamic(() => import('../../../components/Header'), {
@@ -187,106 +189,112 @@ const PokemonContainer = (): JSX.Element => {
       {pokeInfo.map((pokemon, index) => {
         return (
           <>
-            <PokeContainer pokeType={pokemon.types[0].type.name}>
-              <PokeHeadContainer key={index}>
-                <Teste>
+            <PokemonPageContainer key={pokemon.id} pokeType={pokemon.types[0].type.name}>
+              <PokemonBodyContent>
+                <div>
+                  {/* <PokeballBlack /> */}
+                  <ImgFromPokemon src={pokemon.img} alt={pokemon.name} />
+                  <PokemonDescription>
+                    <span>
+                      #{'000'.substr(pokemon.id.toString().length)}
+                      {pokemon.id}
+                    </span>
+                    {pokemon.name}
+                  </PokemonDescription>
+                  <PokemonDescriptionsType>
+                    {pokemon.types.map((natural, index) => {
+                      return (
+                        <PokemonTypes PokemonType={natural.type.name} key={index.toString() + natural}>
+                          <div>
+                            <PokemonTypeSvg src={`/types/${natural.type.name}.svg`} />
+                            <p>{natural.type.name}</p>
+                          </div>
+                        </PokemonTypes>
+                      )
+                    })}
+                  </PokemonDescriptionsType>
+
+                  {/* <PokebolaBackground src="/types/pokeball.svg" /> */}
+                </div>
+
+                <EvolutionContainer>
+                  <h3>Evolution</h3>
                   <div>
-                    <div>
-                      <p></p>
-                      <p>
-                        #{pokemon.id} {pokemon.name}
-                      </p>
-                      {/* <PokebolaBackground src="/types/pokeball.svg" /> */}
-                      <CustomSVG>
-                        <PokeballBlack />
-                      </CustomSVG>
-                      <ImgFromPokemon src={pokemon.img} alt={pokemon.name} />
-                      {pokemon.types.map((natural, index) => {
-                        return <span key={index}>{natural.type.name}</span>
-                      })}
-                    </div>
-                  </div>
-
-                  <EvolutionContainer>
-                    <h3>Evolution</h3>
-                    <div>
-                      {listOrdenadaEvolution(evolution).map((pokemonEvolution) => {
-                        return (
-                          <>
-                            <EvolutionContent key={pokemonEvolution.id}>
-                              <a onClick={() => router.push(`/pokemon/${pokemonEvolution.name}`)}>
-                                <span>
-                                  #{'000'.substr(pokemonEvolution.id.toString().length)}
-                                  {pokemonEvolution.id}
-                                </span>
-                                <p>{pokemonEvolution.name}</p>
-                                <PokebolaBackground src="/types/pokeballBlack.svg" />
-                                <ImgFromPokemon src={pokemonEvolution.url} alt="evolução do pokemon" />
-                              </a>
-                              {pokemonEvolution.types.map((pokeTypes) => {
-                                return (
-                                  <>
-                                    <div>
-                                      <PokemonTypes PokemonType={pokeTypes.type.name} key={index.toString() + pokeTypes}>
-                                        <div>
-                                          <img src={`/types/${pokeTypes.type.name}.svg`} />
-                                          <p>{pokeTypes.type.name}</p>
-                                        </div>
-                                      </PokemonTypes>
-                                    </div>
-                                  </>
-                                )
-                              })}
-                            </EvolutionContent>
-                          </>
-                        )
-                      })}
-                    </div>
-                  </EvolutionContainer>
-                </Teste>
-
-                <UlContent>
-                  <div>
-                    <h4> Shiny {pokemon.name}</h4>
-                    {/* <PokebolaBackground src="/types/pokeballBlack.svg" /> */}
-
-                    <ImgFromPokemon src={pokemon.url} />
-                    <h4>Pokemon About: </h4>
-                  </div>
-                  <ul>
-                    {aboutPoke.map((teste, index) => {
+                    {listOrdenadaEvolution(evolution).map((pokemonEvolution) => {
                       return (
                         <>
-                          <li key={index}>
-                            <strong>{teste.name}: </strong>
-                            <span>{teste.value}</span>
+                          <EvolutionContent key={pokemonEvolution.id}>
+                            <a onClick={() => router.push(`/pokemon/${pokemonEvolution.name}`)}>
+                              <span>
+                                #{'000'.substr(pokemonEvolution.id.toString().length)}
+                                {pokemonEvolution.id}
+                              </span>
+                              <p>{pokemonEvolution.name}</p>
+                              <PokebolaBackground src="/types/pokeballBlack.svg" />
+                              <ImgFromPokemon src={pokemonEvolution.url} alt="evolução do pokemon" />
+                            </a>
+                            {pokemonEvolution.types.map((pokeTypes) => {
+                              return (
+                                <>
+                                  <div>
+                                    <PokemonTypes PokemonType={pokeTypes.type.name} key={index.toString() + pokeTypes}>
+                                      <div>
+                                        <img src={`/types/${pokeTypes.type.name}.svg`} />
+                                        <p>{pokeTypes.type.name}</p>
+                                      </div>
+                                    </PokemonTypes>
+                                  </div>
+                                </>
+                              )
+                            })}
+                          </EvolutionContent>
+                        </>
+                      )
+                    })}
+                  </div>
+                </EvolutionContainer>
+              </PokemonBodyContent>
+
+              <UlContent>
+                <div>
+                  <h4> Shiny {pokemon.name}</h4>
+                  {/* <PokebolaBackground src="/types/pokeballBlack.svg" /> */}
+
+                  <ImgFromPokemon src={pokemon.url} />
+                  <h4>Pokemon About: </h4>
+                </div>
+                <ul>
+                  {aboutPoke.map((teste, index) => {
+                    return (
+                      <>
+                        <li key={index}>
+                          <strong>{teste.name}: </strong>
+                          <span>{teste.value}</span>
+                        </li>
+                      </>
+                    )
+                  })}
+                </ul>
+                <StatusContainer>
+                  <h1>Status</h1>
+                  <ul>
+                    {pokeStatus.map((pokemonStatus) => {
+                      return (
+                        <>
+                          <li>
+                            <strong>{pokemonStatus.stat.name}:</strong>
+                            <span>{pokemonStatus.base_stat}</span>
                           </li>
                         </>
                       )
                     })}
                   </ul>
-                  <StatusContainer>
-                    <h1>Status</h1>
-                    <ul>
-                      {pokeStatus.map((pokemonStatus) => {
-                        return (
-                          <>
-                            <li>
-                              <strong>{pokemonStatus.stat.name}:</strong>
-                              <span>{pokemonStatus.base_stat}</span>
-                            </li>
-                          </>
-                        )
-                      })}
-                    </ul>
-                  </StatusContainer>
-                </UlContent>
-              </PokeHeadContainer>
-            </PokeContainer>
+                </StatusContainer>
+              </UlContent>
+            </PokemonPageContainer>
           </>
         )
       })}
-      {/* <PokeBodyContainer></PokeBodyContainer> */}
     </>
   )
 }

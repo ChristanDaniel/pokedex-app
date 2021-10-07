@@ -4,15 +4,21 @@ interface PokeContainerProps {
   pokeType: string
 }
 
-const PokeContainer = styled.main<PokeContainerProps>`
+const PokemonPageContainer = styled.main<PokeContainerProps>`
   width: 100%;
   height: 100vh;
-  /* background-color: #e2e2e2; */
-  background-color: rgb(88, 171, 246);
-  /* color: rgb(139, 190, 138); */
-  /* display: flex; */
   padding: 40px;
-  /* justify-content: space-between; */
+
+  display: flex;
+  align-items: center;
+
+  > img {
+    height: 180px;
+    width: 180px;
+    position: relative;
+
+    /* margin-left: 50px; */
+  }
 
   h3 {
     width: 100%;
@@ -62,63 +68,49 @@ const PokeContainer = styled.main<PokeContainerProps>`
   }};
 `
 
-const PokeHeadContainer = styled.div`
-  /* margin: 20px; */
-  display: flex;
-  /* justify-content: space-around; */
-  align-items: center;
-  /* border-bottom: 1px solid #ffffff; */
-  /* justify-content: space-between; */
-
-  > img {
-    height: 180px;
-    width: 180px;
-    position: relative;
-
-    /* margin-left: 50px; */
-  }
-`
-const Teste = styled.div`
+const PokemonBodyContent = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
 
   div {
-    /* padding-bottom: 20px; */
     display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
+    gap: 30px;
 
     svg {
       opacity: 0.3;
-      position: absolute;
     }
+
     > img {
       height: 180px;
       width: 180px;
-      display: flex;
-      margin-left: 50px;
-      margin-top: 18px;
-    }
-
-    span {
-      display: flex;
-      justify-content: space-around;
-      text-transform: capitalize;
-    }
-
-    > p {
-      display: flex;
-      justify-content: center;
-      padding-right: 30px;
-      font-weight: bold;
-      font-size: 48px;
-      line-height: 65px;
-      text-transform: capitalize;
-      color: #ffffff;
-      border-bottom: 1px solid #ffffff;
     }
   }
+`
+
+const PokemonDescription = styled.p`
+  display: flex;
+  flex-direction: column;
+
+  font-weight: bold;
+  font-size: 38px;
+  /* line-height: 65px; */
+  text-transform: capitalize;
+  color: #ffffff;
+  /* border-bottom: 1px solid #ffffff; */
+
+  span {
+    display: flex;
+    text-transform: capitalize;
+  }
+`
+
+const PokemonDescriptionsType = styled.div``
+
+const PokemonTypeSvg = styled.img`
+  width: 20px;
+  height: 20px;
 `
 
 const UlContent = styled.div`
@@ -280,19 +272,18 @@ const PokemonTypes = styled.div<PokemonTypesProps>`
       }
     }};
 
-    > img {
-      /* height: 60px; */
+    /* > img {
+      height: 60px;
       width: 20px;
       height: 20px;
       margin-left: 0;
       margin-top: 0;
-      background-image: image('./types/pokeballBlack.svg');
-    }
+    } */
 
-    > p {
+    /* > p {
       color: #ffffff;
       font-size: 18px;
-    }
+    } */
   }
 `
 
@@ -310,11 +301,13 @@ const StatusContainer = styled.div`
 `
 
 export {
-  PokeContainer,
-  PokeHeadContainer,
+  PokemonPageContainer,
+  PokemonBodyContent,
+  PokemonDescription,
+  PokemonDescriptionsType,
+  PokemonTypeSvg,
   EvolutionContainer,
   EvolutionContent,
-  Teste,
   UlContent,
   PokeBodyContainer,
   StatusContainer,
