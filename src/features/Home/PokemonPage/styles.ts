@@ -12,14 +12,6 @@ const PokemonPageContainer = styled.main<PokeContainerProps>`
   display: flex;
   align-items: center;
 
-  > img {
-    height: 180px;
-    width: 180px;
-    position: relative;
-
-    /* margin-left: 50px; */
-  }
-
   h3 {
     width: 100%;
   }
@@ -73,45 +65,128 @@ const PokemonBodyContent = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  gap: 40px;
 
-  div {
+  > div {
     display: flex;
-    gap: 30px;
-
-    svg {
-      opacity: 0.3;
-    }
-
-    > img {
-      height: 180px;
-      width: 180px;
-    }
   }
 `
+const PokebolaBackground = styled.img`
+  opacity: 0.3;
+  height: 200px;
+  width: 200px;
+`
 
-const PokemonDescription = styled.p`
+const ImgFromPokemon = styled.img`
+  height: 180px;
+  width: 180px;
+  position: absolute;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+  transition: 0.4s;
+`
+
+const PokemonDescription = styled.div`
   display: flex;
   flex-direction: column;
-
-  font-weight: bold;
-  font-size: 38px;
-  /* line-height: 65px; */
-  text-transform: capitalize;
-  color: #ffffff;
-  /* border-bottom: 1px solid #ffffff; */
-
-  span {
-    display: flex;
-    text-transform: capitalize;
-  }
+  padding-left: 40px;
 `
 
-const PokemonDescriptionsType = styled.div``
+const PokemonId = styled.p`
+  font-weight: bold;
+  font-size: 38px;
+  color: #ffffff;
+`
+
+const PokemonName = styled.p`
+  font-weight: bold;
+  font-size: 38px;
+  text-transform: capitalize;
+  color: #ffffff;
+  margin-bottom: 20px;
+`
+
+const PokemonDescriptionsType = styled.div`
+  display: flex;
+  gap: 16px;
+`
+
+interface PokemonTypesProps {
+  PokemonType: string
+}
+
+const PokemonTypes = styled.div<PokemonTypesProps>`
+  margin-bottom: 8px;
+  height: 40px;
+
+  div {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+    border-radius: 8px;
+
+    background: ${(props) => {
+      switch (props.PokemonType) {
+        case 'fire':
+          return '#FD7D24'
+        case 'water':
+          return '#4A90DA'
+        case 'bug':
+          return '#8CB230'
+        case 'dark':
+          return '#58575F'
+        case 'dragon':
+          return '#0F6AC0'
+        case 'electric':
+          return '#EED535'
+        case 'fairy':
+          return '#ED6EC7'
+        case 'fighting':
+          return '#D04164'
+        case 'flying':
+          return '#748FC9'
+        case 'ghost':
+          return '#556AAE'
+        case 'grass':
+          return '#62B957'
+        case 'ground':
+          return '#DD7748'
+        case 'ice':
+          return '#61CEC0'
+        case 'normal':
+          return '#9DA0AA'
+        case 'poison':
+          return '#A552CC'
+        case 'psychic':
+          return '#EA5D60'
+        case 'rock':
+          return '#BAAB82'
+        case 'steel':
+          return '#417D9A'
+        default:
+          return 'white'
+      }
+    }};
+  }
+`
 
 const PokemonTypeSvg = styled.img`
   width: 20px;
   height: 20px;
 `
+
+const PokemonTypeName = styled.p`
+  font-size: 20px;
+  color: #ffffff;
+  text-transform: capitalize;
+`
+
+/////////////////////////////////////////////
 
 const UlContent = styled.div`
   background-color: #ffffff;
@@ -198,92 +273,8 @@ const EvolutionContent = styled.li`
     > img {
       height: 120px;
       width: 120px;
+      position: absolute;
     }
-  }
-`
-
-const PokebolaBackground = styled.img`
-  position: absolute;
-  opacity: 0.3;
-`
-const ImgFromPokemon = styled.img`
-  position: relative;
-
-  &:hover {
-    transform: scale(1.15);
-  }
-  transition: 0.4s;
-`
-interface PokemonTypesProps {
-  PokemonType: string
-}
-
-const PokemonTypes = styled.div<PokemonTypesProps>`
-  /* margin-bottom: 8px; */
-  display: flex;
-  div {
-    display: flex;
-
-    /* align-items: center; */
-    /* gap: 6px; */
-    border-radius: 8px;
-    /* margin-left: 5px; */
-
-    background: ${(props) => {
-      switch (props.PokemonType) {
-        case 'fire':
-          return '#FD7D24'
-        case 'water':
-          return '#4A90DA'
-        case 'bug':
-          return '#8CB230'
-        case 'dark':
-          return '#58575F'
-        case 'dragon':
-          return '#0F6AC0'
-        case 'electric':
-          return '#EED535'
-        case 'fairy':
-          return '#ED6EC7'
-        case 'fighting':
-          return '#D04164'
-        case 'flying':
-          return '#748FC9'
-        case 'ghost':
-          return '#556AAE'
-        case 'grass':
-          return '#62B957'
-        case 'ground':
-          return '#DD7748'
-        case 'ice':
-          return '#61CEC0'
-        case 'normal':
-          return '#9DA0AA'
-        case 'poison':
-          return '#A552CC'
-        case 'psychic':
-          return '#EA5D60'
-        case 'rock':
-          return '#BAAB82'
-        case 'steel':
-          return '#417D9A'
-        default:
-          return 'white'
-      }
-    }};
-
-    /* > img {
-      height: 60px;
-      width: 20px;
-      height: 20px;
-      margin-left: 0;
-      margin-top: 0;
-    } */
-
-    /* > p {
-      color: #ffffff;
-      font-size: 18px;
-    } */
   }
 `
 
@@ -304,8 +295,11 @@ export {
   PokemonPageContainer,
   PokemonBodyContent,
   PokemonDescription,
+  PokemonId,
+  PokemonName,
   PokemonDescriptionsType,
   PokemonTypeSvg,
+  PokemonTypeName,
   EvolutionContainer,
   EvolutionContent,
   UlContent,

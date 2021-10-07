@@ -8,8 +8,11 @@ import {
   PokemonPageContainer,
   PokemonBodyContent,
   PokemonDescription,
-  PokemonTypeSvg,
+  PokemonId,
+  PokemonName,
   PokemonDescriptionsType,
+  PokemonTypeSvg,
+  PokemonTypeName,
   EvolutionContainer,
   EvolutionContent,
   UlContent,
@@ -19,7 +22,7 @@ import {
   PokemonTypes
 } from './styles'
 import axios from 'axios'
-import { PokeballBlack } from '../../../../public/types'
+// import { PokeballBlack } from '../../../../public/types'
 // import { CustomSVG } from '../../../components/CustomSVG'
 // import dynamic from 'next/dynamic'
 
@@ -186,35 +189,33 @@ const PokemonContainer = (): JSX.Element => {
   return (
     <>
       {/* <Header /> */}
-      {pokeInfo.map((pokemon, index) => {
+      {pokeInfo.map((pokemon) => {
         return (
           <>
             <PokemonPageContainer key={pokemon.id} pokeType={pokemon.types[0].type.name}>
               <PokemonBodyContent>
                 <div>
-                  {/* <PokeballBlack /> */}
+                  <PokebolaBackground src="/types/pokeball.svg" />
                   <ImgFromPokemon src={pokemon.img} alt={pokemon.name} />
                   <PokemonDescription>
-                    <span>
+                    <PokemonId>
                       #{'000'.substr(pokemon.id.toString().length)}
                       {pokemon.id}
-                    </span>
-                    {pokemon.name}
+                    </PokemonId>
+                    <PokemonName>{pokemon.name}</PokemonName>
+                    <PokemonDescriptionsType>
+                      {pokemon.types.map((natural, index) => {
+                        return (
+                          <PokemonTypes PokemonType={natural.type.name} key={index.toString() + natural}>
+                            <div>
+                              <PokemonTypeSvg src={`/types/${natural.type.name}.svg`} />
+                              <PokemonTypeName>{natural.type.name}</PokemonTypeName>
+                            </div>
+                          </PokemonTypes>
+                        )
+                      })}
+                    </PokemonDescriptionsType>
                   </PokemonDescription>
-                  <PokemonDescriptionsType>
-                    {pokemon.types.map((natural, index) => {
-                      return (
-                        <PokemonTypes PokemonType={natural.type.name} key={index.toString() + natural}>
-                          <div>
-                            <PokemonTypeSvg src={`/types/${natural.type.name}.svg`} />
-                            <p>{natural.type.name}</p>
-                          </div>
-                        </PokemonTypes>
-                      )
-                    })}
-                  </PokemonDescriptionsType>
-
-                  {/* <PokebolaBackground src="/types/pokeball.svg" /> */}
                 </div>
 
                 <EvolutionContainer>
@@ -225,15 +226,15 @@ const PokemonContainer = (): JSX.Element => {
                         <>
                           <EvolutionContent key={pokemonEvolution.id}>
                             <a onClick={() => router.push(`/pokemon/${pokemonEvolution.name}`)}>
+                              <PokebolaBackground src="/types/pokeballBlack.svg" />
+                              <ImgFromPokemon src={pokemonEvolution.url} alt="evolução do pokemon" />
                               <span>
                                 #{'000'.substr(pokemonEvolution.id.toString().length)}
                                 {pokemonEvolution.id}
                               </span>
                               <p>{pokemonEvolution.name}</p>
-                              <PokebolaBackground src="/types/pokeballBlack.svg" />
-                              <ImgFromPokemon src={pokemonEvolution.url} alt="evolução do pokemon" />
                             </a>
-                            {pokemonEvolution.types.map((pokeTypes) => {
+                            {/* {pokemonEvolution.types.map((pokeTypes) => {
                               return (
                                 <>
                                   <div>
@@ -246,7 +247,7 @@ const PokemonContainer = (): JSX.Element => {
                                   </div>
                                 </>
                               )
-                            })}
+                            })} */}
                           </EvolutionContent>
                         </>
                       )
