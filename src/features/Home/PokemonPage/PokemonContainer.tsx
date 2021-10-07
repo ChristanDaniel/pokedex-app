@@ -17,6 +17,8 @@ import {
   PokemonTypes
 } from './styles'
 import axios from 'axios'
+import { PokeballBlack } from '../../../../public/types'
+import { CustomSVG } from '../../../components/CustomSVG'
 // import dynamic from 'next/dynamic'
 
 // const Header = dynamic(() => import('../../../components/Header'), {
@@ -195,6 +197,9 @@ const PokemonContainer = (): JSX.Element => {
                         #{pokemon.id} {pokemon.name}
                       </p>
                       {/* <PokebolaBackground src="/types/pokeball.svg" /> */}
+                      <CustomSVG>
+                        <PokeballBlack />
+                      </CustomSVG>
                       <ImgFromPokemon src={pokemon.img} alt={pokemon.name} />
                       {pokemon.types.map((natural, index) => {
                         return <span key={index}>{natural.type.name}</span>

@@ -89,6 +89,10 @@ const Teste = styled.div`
     flex-direction: column;
     /* justify-content: center; */
 
+    svg {
+      opacity: 0.3;
+      position: absolute;
+    }
     > img {
       height: 180px;
       width: 180px;
@@ -282,6 +286,7 @@ const PokemonTypes = styled.div<PokemonTypesProps>`
       height: 20px;
       margin-left: 0;
       margin-top: 0;
+      background-image: image('./types/pokeballBlack.svg');
     }
 
     > p {

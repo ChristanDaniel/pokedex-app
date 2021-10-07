@@ -207,6 +207,10 @@ const PokemonTypes = styled.div<PokemonTypesProps>`
 
 const ImgFromPokemon = styled.img`
   position: absolute;
+  transition: 0.4s;
+  &:hover {
+    transform: scale(1.12);
+  }
 `
 const PokebolaBackground = styled.img`
   opacity: 0.3;
