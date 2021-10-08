@@ -14,7 +14,7 @@ import {
   PokemonTypeSvg,
   PokemonTypeName,
   EvolutionContainer,
-  EvolutionContent,
+  PokemonEvolutionContent,
   UlContent,
   StatusContainer,
   PokebolaBackground,
@@ -224,15 +224,17 @@ const PokemonContainer = (): JSX.Element => {
                     {listOrdenadaEvolution(evolution).map((pokemonEvolution) => {
                       return (
                         <>
-                          <EvolutionContent key={pokemonEvolution.id}>
+                          <PokemonEvolutionContent key={pokemonEvolution.id}>
                             <a onClick={() => router.push(`/pokemon/${pokemonEvolution.name}`)}>
-                              <PokebolaBackground src="/types/pokeballBlack.svg" />
-                              <ImgFromPokemon src={pokemonEvolution.url} alt="evolução do pokemon" />
                               <span>
                                 #{'000'.substr(pokemonEvolution.id.toString().length)}
                                 {pokemonEvolution.id}
                               </span>
                               <p>{pokemonEvolution.name}</p>
+                              <div>
+                                <PokebolaBackground src="/types/pokeballBlack.svg" />
+                                <ImgFromPokemon src={pokemonEvolution.url} alt="evolução do pokemon" />
+                              </div>
                             </a>
                             {/* {pokemonEvolution.types.map((pokeTypes) => {
                               return (
@@ -248,7 +250,7 @@ const PokemonContainer = (): JSX.Element => {
                                 </>
                               )
                             })} */}
-                          </EvolutionContent>
+                          </PokemonEvolutionContent>
                         </>
                       )
                     })}

@@ -188,6 +188,56 @@ const PokemonTypeName = styled.p`
 
 /////////////////////////////////////////////
 
+const PokeBodyContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+`
+
+const EvolutionContainer = styled.div`
+  display: flex;
+  /* padding-top: 20px; */
+  background-color: #ffffff;
+  border-radius: 30px;
+  flex-direction: column;
+
+  h2 {
+    /* display: flex;
+    justify-content: center;
+    align-content: center; */
+    margin-left: 60px;
+
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 65px;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
+    /* gap: 100px; */
+  }
+`
+const PokemonEvolutionContent = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  flex-direction: column;
+  margin: 16px 100px 10px;
+
+  a {
+    cursor: pointer;
+    p {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-transform: capitalize;
+      line-height: 26px;
+      font-weight: bold;
+    }
+  }
+`
+
 const UlContent = styled.div`
   background-color: #ffffff;
   margin-right: 150px;
@@ -222,62 +272,6 @@ const UlContent = styled.div`
   }
 `
 
-const PokeBodyContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin: 20px;
-`
-
-const EvolutionContainer = styled.div`
-  display: flex;
-  /* padding-top: 20px; */
-  background-color: #ffffff;
-  border-radius: 30px;
-  flex-direction: column;
-
-  h2 {
-    /* display: flex;
-    justify-content: center;
-    align-content: center; */
-    margin-left: 60px;
-
-    font-weight: bold;
-    font-size: 40px;
-    line-height: 65px;
-  }
-
-  div {
-    display: flex;
-    flex-direction: row;
-    /* gap: 100px; */
-  }
-`
-const EvolutionContent = styled.li`
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  flex-direction: column;
-  margin: 16px 100px 10px;
-
-  a {
-    cursor: pointer;
-    p {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-transform: capitalize;
-      line-height: 26px;
-      font-weight: bold;
-    }
-
-    > img {
-      height: 120px;
-      width: 120px;
-      position: absolute;
-    }
-  }
-`
-
 const StatusContainer = styled.div`
   li {
     gap: 50px;
@@ -301,7 +295,7 @@ export {
   PokemonTypeSvg,
   PokemonTypeName,
   EvolutionContainer,
-  EvolutionContent,
+  PokemonEvolutionContent,
   UlContent,
   PokeBodyContainer,
   StatusContainer,
