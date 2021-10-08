@@ -196,46 +196,63 @@ const PokeBodyContainer = styled.div`
 
 const EvolutionContainer = styled.div`
   display: flex;
-  /* padding-top: 20px; */
   background-color: #ffffff;
   border-radius: 30px;
   flex-direction: column;
 
-  h2 {
-    /* display: flex;
-    justify-content: center;
-    align-content: center; */
+  h3 {
+    display: flex;
+    justify-content: flex-start;
     margin-left: 60px;
 
     font-weight: bold;
-    font-size: 40px;
+    font-size: 30px;
     line-height: 65px;
   }
 
   div {
     display: flex;
     flex-direction: row;
-    /* gap: 100px; */
   }
 `
 const PokemonEvolutionContent = styled.li`
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  flex-direction: column;
   margin: 16px 100px 10px;
 
   a {
+    display: flex;
     cursor: pointer;
+    align-items: center;
+    flex-direction: column;
+
     p {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       text-transform: capitalize;
       line-height: 26px;
       font-weight: bold;
     }
   }
+`
+
+const PokemonEvolutionId = styled.span`
+  font-size: 20px;
+  color: #616480;
+  text-transform: capitalize;
+`
+
+const PokebolaBackgroundEvolution = styled.img`
+  opacity: 0.3;
+  height: 120px;
+  width: 120px;
+`
+
+const ImgFromPokemonEvolution = styled.img`
+  height: 110px;
+  width: 110px;
+  position: absolute;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+  transition: 0.4s;
 `
 
 const UlContent = styled.div`
@@ -296,6 +313,9 @@ export {
   PokemonTypeName,
   EvolutionContainer,
   PokemonEvolutionContent,
+  PokemonEvolutionId,
+  ImgFromPokemonEvolution,
+  PokebolaBackgroundEvolution,
   UlContent,
   PokeBodyContainer,
   StatusContainer,

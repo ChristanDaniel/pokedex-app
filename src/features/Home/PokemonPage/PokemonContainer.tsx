@@ -15,6 +15,9 @@ import {
   PokemonTypeName,
   EvolutionContainer,
   PokemonEvolutionContent,
+  PokemonEvolutionId,
+  PokebolaBackgroundEvolution,
+  ImgFromPokemonEvolution,
   UlContent,
   StatusContainer,
   PokebolaBackground,
@@ -199,7 +202,7 @@ const PokemonContainer = (): JSX.Element => {
                   <ImgFromPokemon src={pokemon.img} alt={pokemon.name} />
                   <PokemonDescription>
                     <PokemonId>
-                      #{'000'.substr(pokemon.id.toString().length)}
+                      # {'000'.substr(pokemon.id.toString().length)}
                       {pokemon.id}
                     </PokemonId>
                     <PokemonName>{pokemon.name}</PokemonName>
@@ -226,30 +229,30 @@ const PokemonContainer = (): JSX.Element => {
                         <>
                           <PokemonEvolutionContent key={pokemonEvolution.id}>
                             <a onClick={() => router.push(`/pokemon/${pokemonEvolution.name}`)}>
-                              <span>
-                                #{'000'.substr(pokemonEvolution.id.toString().length)}
+                              <PokemonEvolutionId>
+                                # {'000'.substr(pokemonEvolution.id.toString().length)}
                                 {pokemonEvolution.id}
-                              </span>
+                              </PokemonEvolutionId>
                               <p>{pokemonEvolution.name}</p>
                               <div>
-                                <PokebolaBackground src="/types/pokeballBlack.svg" />
-                                <ImgFromPokemon src={pokemonEvolution.url} alt="evolução do pokemon" />
+                                <PokebolaBackgroundEvolution src="/types/pokeballBlack.svg" />
+                                <ImgFromPokemonEvolution src={pokemonEvolution.url} alt="evolução do pokemon" />
                               </div>
                             </a>
-                            {/* {pokemonEvolution.types.map((pokeTypes) => {
-                              return (
-                                <>
-                                  <div>
-                                    <PokemonTypes PokemonType={pokeTypes.type.name} key={index.toString() + pokeTypes}>
+                            <div>
+                              {pokemonEvolution.types.map((pokeTypes) => {
+                                return (
+                                  <>
+                                    <PokemonTypes PokemonType={pokeTypes.type.name} key={pokemon.id}>
                                       <div>
                                         <img src={`/types/${pokeTypes.type.name}.svg`} />
                                         <p>{pokeTypes.type.name}</p>
                                       </div>
                                     </PokemonTypes>
-                                  </div>
-                                </>
-                              )
-                            })} */}
+                                  </>
+                                )
+                              })}
+                            </div>
                           </PokemonEvolutionContent>
                         </>
                       )
@@ -261,7 +264,7 @@ const PokemonContainer = (): JSX.Element => {
               <UlContent>
                 <div>
                   <h4> Shiny {pokemon.name}</h4>
-                  {/* <PokebolaBackground src="/types/pokeballBlack.svg" /> */}
+                  <PokebolaBackground src="/types/pokeballBlack.svg" />
 
                   <ImgFromPokemon src={pokemon.url} />
                   <h4>Pokemon About: </h4>

@@ -7,8 +7,8 @@ import { api } from '../../services/api'
 import { MainContainer, LiContent, DivContent, Content, PokemonTypes, ImgFromPokemon, PokebolaBackground } from './styles'
 
 import { PokemonContainerContext } from './PokemonContainerContextProvider'
-import { Fire, Ice } from '../../../public/types'
-import { CustomSVG } from '../../components/CustomSVG'
+// import { Fire, Ice } from '../../../public/types'
+// import { CustomSVG } from '../../components/CustomSVG'
 
 type PokemonType = {
   type: {
@@ -63,7 +63,7 @@ const HomeContainer = (): JSX.Element => {
                     <ImgFromPokemon src={pokemon.img} />
                     <DivContent>
                       <span>
-                        #{'000'.substr(pokemon.id.toString().length)}
+                        # {'000'.substr(pokemon.id.toString().length)}
                         {pokemon.id}
                       </span>
                       <h2>{pokemon.name}</h2>
