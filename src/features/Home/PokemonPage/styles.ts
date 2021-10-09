@@ -117,7 +117,7 @@ interface PokemonTypesProps {
   PokemonType: string
 }
 
-const PokemonTypes = styled.div<PokemonTypesProps>`
+const PokemonTypes = styled.li<PokemonTypesProps>`
   margin-bottom: 8px;
   border-radius: 8px;
   margin: 2px;
@@ -196,6 +196,8 @@ const PokeBodyContainer = styled.div`
 `
 
 const EvolutionContainer = styled.div`
+  width: 860px;
+  margin-right: 40px;
   display: flex;
   background-color: #ffffff;
   border-radius: 30px;
@@ -217,7 +219,7 @@ const EvolutionContainer = styled.div`
   }
 `
 const PokemonEvolutionContent = styled.li`
-  margin: 16px 100px 10px;
+  margin: 16px 80px 10px;
 
   a {
     display: flex;
@@ -256,7 +258,7 @@ const ImgFromPokemonEvolution = styled.img`
   transition: 0.4s;
 `
 
-const Teste = styled.div`
+const PokemonTypesEvolution = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -274,16 +276,29 @@ const Teste = styled.div`
   }
 `
 
-const UlContent = styled.div`
+/////////////////////////////////////////////////////////
+
+const PokemonAboutContainer = styled.div`
   background-color: #ffffff;
-  margin-right: 150px;
-  padding: 16px;
-  /* border: 1px solid #ffff; */
+  padding: 30px;
   border-radius: 12px;
   align-items: center;
 
-  h2 {
-    margin-bottom: 24px;
+  h4 {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+
+    span {
+      margin-left: 2.5px;
+      text-transform: capitalize;
+    }
+  }
+
+  h3 {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
   }
 
   li {
@@ -300,11 +315,42 @@ const UlContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+`
+const Teste123 = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    > img {
-      height: 90px;
-      width: 90px;
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > ul {
+      display: flex;
+      flex-direction: row;
     }
+  }
+
+  > ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+`
+const PokemonTypesWeaknesses = styled.div`
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+  /* flex-direction: row; */
+  margin: auto;
+
+  > img {
+    margin: 2px;
+    width: 12px;
+    height: 12px;
+    /* margin-right: 2px; */
   }
 `
 
@@ -335,8 +381,10 @@ export {
   PokemonEvolutionId,
   ImgFromPokemonEvolution,
   PokebolaBackgroundEvolution,
-  Teste,
-  UlContent,
+  PokemonTypesEvolution,
+  PokemonAboutContainer,
+  PokemonTypesWeaknesses,
+  Teste123,
   PokeBodyContainer,
   StatusContainer,
   PokebolaBackground,

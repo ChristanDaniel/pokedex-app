@@ -18,8 +18,10 @@ import {
   PokemonEvolutionId,
   PokebolaBackgroundEvolution,
   ImgFromPokemonEvolution,
-  Teste,
-  UlContent,
+  PokemonTypesEvolution,
+  PokemonAboutContainer,
+  PokemonTypesWeaknesses,
+  Teste123,
   StatusContainer,
   PokebolaBackground,
   ImgFromPokemon,
@@ -81,11 +83,16 @@ const PokemonContainer = (): JSX.Element => {
   // const [evolutionImg, setEvolutionImg] = useState([])
   const [pokeStatus, setPokeStatus] = useState<PokeStatusProps[]>([])
   const [aboutPoke, setAboutPoke] = useState<AboutPokeProps[]>([])
+  const [pokemonDamageType, setPokemonDamageType] = useState([])
+  const [pokemonDamageToType, setPokemonDamageToType] = useState([])
 
   const getPokemonStatus = async () => {
     const response = await api.get(`/pokemon/${router.query.id}`)
+    console.log('aquiiiiiiii', response)
 
     setPokeStatus(response.data.stats)
+
+    getWeaknessesTypes(response.data.types[0].type.url)
 
     setPokeInfo([
       {
@@ -104,14 +111,13 @@ const PokemonContainer = (): JSX.Element => {
       },
       {
         name: 'Weight',
-        value: response.data.weight / 10 + ' KG'
+        value: response.data.weight / 100 + ' KG'
       }
     ])
   }
 
   const getPokemonSpecie = async () => {
     const response = await api.get(`https://pokeapi.co/api/v2/pokemon-species/${router.query.id}/`)
-    console.log(response)
     await getEvolutionPokemon(response.data.evolution_chain.url)
 
     return setAboutPoke((pokemon) => [
@@ -134,7 +140,7 @@ const PokemonContainer = (): JSX.Element => {
   const getEvolutionPokemon = async (url: string) => {
     const response = await axios.get(`${url}`)
 
-    console.log(response)
+    console.log('BORAAAAAAAAAAAA AQUY', response)
 
     setEvolutionName([
       {
@@ -167,6 +173,15 @@ const PokemonContainer = (): JSX.Element => {
         ])
       }
     })
+  }
+
+  const getWeaknessesTypes = async (url: string) => {
+    const response = await axios.get(`${url}`)
+
+    console.log(response)
+
+    setPokemonDamageType(response.data.damage_relations.double_damage_from)
+    setPokemonDamageToType(response.data.damage_relations.double_damage_to)
   }
 
   const listOrdenadaEvolution = (evolution: EvolutionProps[]) => {
@@ -244,10 +259,10 @@ const PokemonContainer = (): JSX.Element => {
                                   return (
                                     <>
                                       <PokemonTypes PokemonType={pokeTypes.type.name} key={pokemon.id}>
-                                        <Teste>
+                                        <PokemonTypesEvolution>
                                           <img src={`/types/${pokeTypes.type.name}.svg`} />
                                           <p>{pokeTypes.type.name}</p>
-                                        </Teste>
+                                        </PokemonTypesEvolution>
                                       </PokemonTypes>
                                     </>
                                   )
@@ -262,14 +277,15 @@ const PokemonContainer = (): JSX.Element => {
                 </EvolutionContainer>
               </PokemonBodyContent>
 
-              <UlContent>
+              <PokemonAboutContainer>
+                <h4>
+                  Shiny<span>{pokemon.name}</span>
+                </h4>
                 <div>
-                  <h4> Shiny {pokemon.name}</h4>
-                  <PokebolaBackground src="/types/pokeballBlack.svg" />
-
-                  <ImgFromPokemon src={pokemon.url} />
-                  <h4>Pokemon About: </h4>
+                  <PokebolaBackgroundEvolution src="/types/pokeballBlack.svg" />
+                  <ImgFromPokemonEvolution src={pokemon.url} />
                 </div>
+                <h3>Pokemon About: </h3>
                 <ul>
                   {aboutPoke.map((teste, index) => {
                     return (
@@ -282,6 +298,7 @@ const PokemonContainer = (): JSX.Element => {
                     )
                   })}
                 </ul>
+                
                 <StatusContainer>
                   <h1>Status</h1>
                   <ul>
@@ -297,7 +314,7 @@ const PokemonContainer = (): JSX.Element => {
                     })}
                   </ul>
                 </StatusContainer>
-              </UlContent>
+              </PokemonAboutContainer>
             </PokemonPageContainer>
           </>
         )
