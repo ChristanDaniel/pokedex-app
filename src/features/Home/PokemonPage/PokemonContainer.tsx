@@ -298,7 +298,41 @@ const PokemonContainer = (): JSX.Element => {
                     )
                   })}
                 </ul>
-                
+                <Teste123>
+                  <div>
+                    <div>
+                      <p>Weaknesses: </p>
+                      {pokemonDamageType.map((teste, index) => {
+                        return (
+                          <>
+                            <PokemonTypes PokemonType={teste.name} key={pokemon.id + index}>
+                              <PokemonTypesWeaknesses>
+                                <img src={`/types/${teste.name}.svg`} />
+                                {/* <p>{pokeTypes.type.name}</p> */}
+                              </PokemonTypesWeaknesses>
+                            </PokemonTypes>
+                          </>
+                        )
+                      })}
+                    </div>
+                  </div>
+
+                  <div>
+                    <p>Forte contra: </p>
+                    {pokemonDamageToType.map((teste, index) => {
+                      return (
+                        <>
+                          <PokemonTypes PokemonType={teste.name} key={pokemon.id + index}>
+                            <PokemonTypesWeaknesses>
+                              <img src={`/types/${teste.name}.svg`} />
+                              {/* <p>{pokeTypes.type.name}</p> */}
+                            </PokemonTypesWeaknesses>
+                          </PokemonTypes>
+                        </>
+                      )
+                    })}
+                  </div>
+                </Teste123>
                 <StatusContainer>
                   <h1>Status</h1>
                   <ul>

@@ -320,15 +320,16 @@ const PokemonAboutContainer = styled.div`
 const Teste123 = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 
   > div {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    > ul {
+    /* justify-content: space-between; */
+
+    div {
       display: flex;
-      flex-direction: row;
+      align-items: center;
+      /* flex-direction: row; */
     }
   }
 
