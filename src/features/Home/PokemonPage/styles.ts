@@ -119,74 +119,75 @@ interface PokemonTypesProps {
 
 const PokemonTypes = styled.div<PokemonTypesProps>`
   margin-bottom: 8px;
-  height: 40px;
+  border-radius: 8px;
+  margin: 2px;
+  margin-top: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  background: ${(props) => {
+    switch (props.PokemonType) {
+      case 'fire':
+        return '#FD7D24'
+      case 'water':
+        return '#4A90DA'
+      case 'bug':
+        return '#8CB230'
+      case 'dark':
+        return '#58575F'
+      case 'dragon':
+        return '#0F6AC0'
+      case 'electric':
+        return '#EED535'
+      case 'fairy':
+        return '#ED6EC7'
+      case 'fighting':
+        return '#D04164'
+      case 'flying':
+        return '#748FC9'
+      case 'ghost':
+        return '#556AAE'
+      case 'grass':
+        return '#62B957'
+      case 'ground':
+        return '#DD7748'
+      case 'ice':
+        return '#61CEC0'
+      case 'normal':
+        return '#9DA0AA'
+      case 'poison':
+        return '#A552CC'
+      case 'psychic':
+        return '#EA5D60'
+      case 'rock':
+        return '#BAAB82'
+      case 'steel':
+        return '#417D9A'
+      default:
+        return 'white'
+    }
+  }};
 
   div {
-    padding: 10px 20px;
+    padding: 2px 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    gap: 4px;
-    border-radius: 8px;
-
-    background: ${(props) => {
-      switch (props.PokemonType) {
-        case 'fire':
-          return '#FD7D24'
-        case 'water':
-          return '#4A90DA'
-        case 'bug':
-          return '#8CB230'
-        case 'dark':
-          return '#58575F'
-        case 'dragon':
-          return '#0F6AC0'
-        case 'electric':
-          return '#EED535'
-        case 'fairy':
-          return '#ED6EC7'
-        case 'fighting':
-          return '#D04164'
-        case 'flying':
-          return '#748FC9'
-        case 'ghost':
-          return '#556AAE'
-        case 'grass':
-          return '#62B957'
-        case 'ground':
-          return '#DD7748'
-        case 'ice':
-          return '#61CEC0'
-        case 'normal':
-          return '#9DA0AA'
-        case 'poison':
-          return '#A552CC'
-        case 'psychic':
-          return '#EA5D60'
-        case 'rock':
-          return '#BAAB82'
-        case 'steel':
-          return '#417D9A'
-        default:
-          return 'white'
-      }
-    }};
   }
 `
 
 const PokemonTypeSvg = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 `
 
 const PokemonTypeName = styled.p`
-  font-size: 20px;
+  font-size: 24px;
   color: #ffffff;
   text-transform: capitalize;
 `
-
-/////////////////////////////////////////////
 
 const PokeBodyContainer = styled.div`
   display: flex;
@@ -255,6 +256,24 @@ const ImgFromPokemonEvolution = styled.img`
   transition: 0.4s;
 `
 
+const Teste = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 12px;
+    height: 12px;
+    margin-right: 2px;
+  }
+
+  p {
+    color: #ffffff;
+    font-size: 12px;
+    text-transform: capitalize;
+  }
+`
+
 const UlContent = styled.div`
   background-color: #ffffff;
   margin-right: 150px;
@@ -316,6 +335,7 @@ export {
   PokemonEvolutionId,
   ImgFromPokemonEvolution,
   PokebolaBackgroundEvolution,
+  Teste,
   UlContent,
   PokeBodyContainer,
   StatusContainer,

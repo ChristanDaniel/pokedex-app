@@ -18,6 +18,7 @@ import {
   PokemonEvolutionId,
   PokebolaBackgroundEvolution,
   ImgFromPokemonEvolution,
+  Teste,
   UlContent,
   StatusContainer,
   PokebolaBackground,
@@ -238,21 +239,21 @@ const PokemonContainer = (): JSX.Element => {
                                 <PokebolaBackgroundEvolution src="/types/pokeballBlack.svg" />
                                 <ImgFromPokemonEvolution src={pokemonEvolution.url} alt="evolução do pokemon" />
                               </div>
+                              <div>
+                                {pokemonEvolution.types.map((pokeTypes) => {
+                                  return (
+                                    <>
+                                      <PokemonTypes PokemonType={pokeTypes.type.name} key={pokemon.id}>
+                                        <Teste>
+                                          <img src={`/types/${pokeTypes.type.name}.svg`} />
+                                          <p>{pokeTypes.type.name}</p>
+                                        </Teste>
+                                      </PokemonTypes>
+                                    </>
+                                  )
+                                })}
+                              </div>
                             </a>
-                            <div>
-                              {pokemonEvolution.types.map((pokeTypes) => {
-                                return (
-                                  <>
-                                    <PokemonTypes PokemonType={pokeTypes.type.name} key={pokemon.id}>
-                                      <div>
-                                        <img src={`/types/${pokeTypes.type.name}.svg`} />
-                                        <p>{pokeTypes.type.name}</p>
-                                      </div>
-                                    </PokemonTypes>
-                                  </>
-                                )
-                              })}
-                            </div>
                           </PokemonEvolutionContent>
                         </>
                       )
