@@ -196,7 +196,27 @@ const PokeBodyContainer = styled.div`
 `
 
 const EvolutionContainer = styled.div`
+  margin-right: 40px;
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 30px;
+  margin-bottom: 4px;
+  padding: 12px;
 
+  > ul {
+    width: 860px;
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+    position: relative;
+
+    h3 {
+      position: absolute;
+      font-weight: bold;
+      font-size: 26px;
+      margin-left: 10px;
+    }
+  }
 
   div {
     display: flex;
@@ -205,7 +225,7 @@ const EvolutionContainer = styled.div`
 const PokemonEvolutionContent = styled.li`
   /* margin: 16px 80px 10px; */
   display: flex;
-  margin-top: 30px;
+  margin-top: 40px;
 
   a {
     display: flex;
