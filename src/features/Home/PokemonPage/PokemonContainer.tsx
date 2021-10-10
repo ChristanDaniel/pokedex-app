@@ -21,7 +21,7 @@ import {
   PokemonTypesEvolution,
   PokemonAboutContainer,
   PokemonTypesWeaknesses,
-  Teste123,
+  TesteDenovo,
   StatusContainer,
   PokebolaBackground,
   ImgFromPokemon,
@@ -297,12 +297,27 @@ const PokemonContainer = (): JSX.Element => {
                       </>
                     )
                   })}
-                </ul>
-                <Teste123>
-                  <div>
+                  <TesteDenovo>
+                    <strong>Weaknesses: </strong>
                     <div>
-                      <p>Weaknesses: </p>
                       {pokemonDamageType.map((teste, index) => {
+                        return (
+                          <>
+                            <PokemonTypes PokemonType={teste.name} key={teste.name + index}>
+                              <PokemonTypesWeaknesses>
+                                <img src={`/types/${teste.name}.svg`} />
+                                {/* <p>{pokeTypes.type.name}</p> */}
+                              </PokemonTypesWeaknesses>
+                            </PokemonTypes>
+                          </>
+                        )
+                      })}
+                    </div>
+                  </TesteDenovo>
+                  <TesteDenovo>
+                    <strong>Forte contra: </strong>
+                    <div>
+                      {pokemonDamageToType.map((teste, index) => {
                         return (
                           <>
                             <PokemonTypes PokemonType={teste.name} key={pokemon.id + index}>
@@ -315,24 +330,8 @@ const PokemonContainer = (): JSX.Element => {
                         )
                       })}
                     </div>
-                  </div>
-
-                  <div>
-                    <p>Forte contra: </p>
-                    {pokemonDamageToType.map((teste, index) => {
-                      return (
-                        <>
-                          <PokemonTypes PokemonType={teste.name} key={pokemon.id + index}>
-                            <PokemonTypesWeaknesses>
-                              <img src={`/types/${teste.name}.svg`} />
-                              {/* <p>{pokeTypes.type.name}</p> */}
-                            </PokemonTypesWeaknesses>
-                          </PokemonTypes>
-                        </>
-                      )
-                    })}
-                  </div>
-                </Teste123>
+                  </TesteDenovo>
+                </ul>
                 <StatusContainer>
                   <h1>Status</h1>
                   <ul>

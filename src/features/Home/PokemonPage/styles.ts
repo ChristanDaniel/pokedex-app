@@ -117,8 +117,8 @@ interface PokemonTypesProps {
   PokemonType: string
 }
 
-const PokemonTypes = styled.li<PokemonTypesProps>`
-  margin-bottom: 8px;
+const PokemonTypes = styled.div<PokemonTypesProps>`
+  /* margin-bottom: 8px; */
   border-radius: 8px;
   margin: 2px;
   margin-top: 6px;
@@ -202,6 +202,7 @@ const EvolutionContainer = styled.div`
   background-color: #ffffff;
   border-radius: 30px;
   flex-direction: column;
+  margin-bottom: 4px;
 
   h3 {
     display: flex;
@@ -283,9 +284,10 @@ const PokemonAboutContainer = styled.div`
   padding: 30px;
   border-radius: 12px;
   align-items: center;
+  height: 540px;
 
   h4 {
-    margin-bottom: 10px;
+    margin-bottom: 4px;
     display: flex;
     justify-content: center;
 
@@ -296,7 +298,7 @@ const PokemonAboutContainer = styled.div`
   }
 
   h3 {
-    margin-top: 16px;
+    margin-top: 12px;
     display: flex;
     justify-content: center;
   }
@@ -317,47 +319,30 @@ const PokemonAboutContainer = styled.div`
     align-items: center;
   }
 `
-const Teste123 = styled.div`
+const TesteDenovo = styled.li`
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
 
   > div {
     display: flex;
-    /* justify-content: space-between; */
-
-    div {
-      display: flex;
-      align-items: center;
-      /* flex-direction: row; */
-    }
-  }
-
-  > ul {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
   }
 `
+
 const PokemonTypesWeaknesses = styled.div`
   display: flex;
-  /* align-items: center; */
-  justify-content: space-between;
-  /* flex-direction: row; */
-  margin: auto;
 
   > img {
     margin: 2px;
     width: 12px;
     height: 12px;
-    /* margin-right: 2px; */
   }
 `
 
 const StatusContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
   li {
-    gap: 50px;
+    /* gap: 50px; */
     display: flex;
     justify-content: space-between;
 
@@ -385,7 +370,7 @@ export {
   PokemonTypesEvolution,
   PokemonAboutContainer,
   PokemonTypesWeaknesses,
-  Teste123,
+  TesteDenovo,
   PokeBodyContainer,
   StatusContainer,
   PokebolaBackground,
