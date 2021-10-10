@@ -238,8 +238,8 @@ const PokemonContainer = (): JSX.Element => {
                 </div>
 
                 <EvolutionContainer>
-                  <h3>Evolution</h3>
-                  <div>
+                  <ul>
+                    <h3>Evolution</h3>
                     {listOrdenadaEvolution(evolution).map((pokemonEvolution) => {
                       return (
                         <>
@@ -273,7 +273,7 @@ const PokemonContainer = (): JSX.Element => {
                         </>
                       )
                     })}
-                  </div>
+                  </ul>
                 </EvolutionContainer>
               </PokemonBodyContent>
 

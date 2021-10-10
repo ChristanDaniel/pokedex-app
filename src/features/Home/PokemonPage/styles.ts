@@ -196,31 +196,16 @@ const PokeBodyContainer = styled.div`
 `
 
 const EvolutionContainer = styled.div`
-  width: 860px;
-  margin-right: 40px;
-  display: flex;
-  background-color: #ffffff;
-  border-radius: 30px;
-  flex-direction: column;
-  margin-bottom: 4px;
 
-  h3 {
-    display: flex;
-    justify-content: flex-start;
-    margin-left: 60px;
-
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 65px;
-  }
 
   div {
     display: flex;
-    flex-direction: row;
   }
 `
 const PokemonEvolutionContent = styled.li`
-  margin: 16px 80px 10px;
+  /* margin: 16px 80px 10px; */
+  display: flex;
+  margin-top: 30px;
 
   a {
     display: flex;
@@ -277,8 +262,6 @@ const PokemonTypesEvolution = styled.div`
   }
 `
 
-/////////////////////////////////////////////////////////
-
 const PokemonAboutContainer = styled.div`
   background-color: #ffffff;
   padding: 30px;
@@ -291,7 +274,7 @@ const PokemonAboutContainer = styled.div`
     display: flex;
     justify-content: center;
 
-    span {
+    > span {
       margin-left: 2.5px;
       text-transform: capitalize;
     }
@@ -338,17 +321,25 @@ const PokemonTypesWeaknesses = styled.div`
   }
 `
 
-const StatusContainer = styled.div`
+const StatusContainer = styled.ul`
   display: flex;
-  justify-content: space-between;
-  li {
-    /* gap: 50px; */
+  flex-direction: column;
+
+  h1 {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+  }
+
+  li {
+    display: flex;
 
     strong {
       margin-right: 30px;
       text-transform: capitalize;
+    }
+
+    > span {
+      color: #616480;
     }
   }
 `
