@@ -69,9 +69,23 @@ const ButtonTeste = styled.div`
     position: absolute;
     font-size: 15px;
     align-items: center;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #737380;
+    padding: 6px 8px;
+
+    cursor: pointer;
+    border: 0;
+
+    transition: 0.4s;
+
+    :hover {
+      filter: brightness(0.9);
+    }
 
     svg {
       font-size: 22px;
+      color: #737380;
     }
   }
 `

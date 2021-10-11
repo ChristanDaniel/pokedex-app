@@ -7,7 +7,7 @@ import { NavSection } from './styles'
 import { PokemonContainerContext } from '../../features/Home/PokemonContainerContextProvider'
 import ButtonType from '../Buttons'
 
-import { RiSearchLine, RiDeleteBin7Fill } from 'react-icons/ri'
+import { RiSearchLine, RiArrowLeftSLine } from 'react-icons/ri'
 
 type PokemonType = {
   type: {
@@ -93,10 +93,7 @@ const SeachPoke = (): JSX.Element => {
     <>
       <NavSection>
         <ButtonType />
-        <input placeholder="Search Pokemon" onChange={(event) => handleChangeSearchPokemon(event.target.value)} value={inputSearch}>
-          Excluir
-          <RiDeleteBin7Fill />
-        </input>
+        <input placeholder="Search Pokemon" onChange={(event) => handleChangeSearchPokemon(event.target.value)} value={inputSearch} />
       </NavSection>
     </>
   )
