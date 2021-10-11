@@ -10,7 +10,11 @@ const PokemonPageContainer = styled.main<PokeContainerProps>`
   padding: 40px;
 
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+
+  button {
+    display: flex;
+  }
 
   h3 {
     width: 100%;
@@ -58,6 +62,18 @@ const PokemonPageContainer = styled.main<PokeContainerProps>`
         return 'white'
     }
   }};
+`
+
+const ButtonTeste = styled.div`
+  button {
+    position: absolute;
+    font-size: 15px;
+    align-items: center;
+
+    svg {
+      font-size: 22px;
+    }
+  }
 `
 
 const PokemonBodyContent = styled.div`
@@ -367,6 +383,7 @@ const StatusContainer = styled.ul`
 
 export {
   PokemonPageContainer,
+  ButtonTeste,
   PokemonBodyContent,
   PokemonDescription,
   PokemonId,

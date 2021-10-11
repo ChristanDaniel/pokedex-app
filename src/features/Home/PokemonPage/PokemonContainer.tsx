@@ -4,8 +4,11 @@ import { api } from '../../../services/api'
 import Image from 'next/image'
 // import SetaPokemon from '../../../../public/seta.png'
 
+import { RiArrowLeftSLine } from 'react-icons/ri'
+
 import {
   PokemonPageContainer,
+  ButtonTeste,
   PokemonBodyContent,
   PokemonDescription,
   PokemonId,
@@ -218,6 +221,11 @@ const PokemonContainer = (): JSX.Element => {
         return (
           <>
             <PokemonPageContainer key={pokemon.id} pokeType={pokemon.types[0].type.name}>
+              <ButtonTeste>
+                <button onClick={() => router.push(`/`)}>
+                  <RiArrowLeftSLine /> Explorar mais pokemons
+                </button>
+              </ButtonTeste>
               <PokemonBodyContent>
                 <div>
                   <PokebolaBackground src="/types/pokeball.svg" />
