@@ -196,6 +196,7 @@ const PokeBodyContainer = styled.div`
 `
 
 const EvolutionContainer = styled.div`
+  min-height: 50px;
   margin-right: 40px;
   display: flex;
   background-color: #ffffff;
@@ -322,7 +323,7 @@ const PokemonAboutContainer = styled.div`
     align-items: center;
   }
 `
-const TesteDenovo = styled.li`
+const DamageFromTypeContent = styled.li`
   display: flex;
   align-items: center;
 
@@ -381,7 +382,7 @@ export {
   PokemonTypesEvolution,
   PokemonAboutContainer,
   PokemonTypesWeaknesses,
-  TesteDenovo,
+  DamageFromTypeContent,
   PokeBodyContainer,
   StatusContainer,
   PokebolaBackground,

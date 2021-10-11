@@ -21,7 +21,7 @@ import {
   PokemonTypesEvolution,
   PokemonAboutContainer,
   PokemonTypesWeaknesses,
-  TesteDenovo,
+  DamageFromTypeContent,
   StatusContainer,
   PokebolaBackground,
   ImgFromPokemon,
@@ -56,6 +56,10 @@ type AboutPokeProps = {
   value?: string
 }
 
+type DamageTypeProps = {
+  name: string
+}
+
 type EvolutionProps = {
   id: number
   name?: string
@@ -83,8 +87,8 @@ const PokemonContainer = (): JSX.Element => {
   // const [evolutionImg, setEvolutionImg] = useState([])
   const [pokeStatus, setPokeStatus] = useState<PokeStatusProps[]>([])
   const [aboutPoke, setAboutPoke] = useState<AboutPokeProps[]>([])
-  const [pokemonDamageType, setPokemonDamageType] = useState([])
-  const [pokemonDamageToType, setPokemonDamageToType] = useState([])
+  const [pokemonDamageFromType, setPokemonDamageFromType] = useState<DamageTypeProps[]>([])
+  const [pokemonDamageToType, setPokemonDamageToType] = useState<DamageTypeProps[]>([])
 
   const getPokemonStatus = async () => {
     const response = await api.get(`/pokemon/${router.query.id}`)
@@ -150,7 +154,7 @@ const PokemonContainer = (): JSX.Element => {
         name: response.data.chain.evolves_to[0]?.species.name
       },
       {
-        name: response.data.chain.evolves_to[0].evolves_to[0]?.species.name
+        name: response.data.chain.evolves_to[0]?.evolves_to[0]?.species.name
       }
     ])
   }
@@ -171,6 +175,8 @@ const PokemonContainer = (): JSX.Element => {
             types: responseImg.data.types
           }
         ])
+      } else {
+        return
       }
     })
   }
@@ -180,7 +186,7 @@ const PokemonContainer = (): JSX.Element => {
 
     console.log(response)
 
-    setPokemonDamageType(response.data.damage_relations.double_damage_from)
+    setPokemonDamageFromType(response.data.damage_relations.double_damage_from)
     setPokemonDamageToType(response.data.damage_relations.double_damage_to)
   }
 
@@ -287,50 +293,48 @@ const PokemonContainer = (): JSX.Element => {
                 </div>
                 <h3>Pokemon About: </h3>
                 <ul>
-                  {aboutPoke.map((teste, index) => {
+                  {aboutPoke.map((aboutPokemon) => {
                     return (
                       <>
-                        <li key={index}>
-                          <strong>{teste.name}: </strong>
-                          <span>{teste.value}</span>
+                        <li key={aboutPokemon.value}>
+                          <strong>{aboutPokemon.name}: </strong>
+                          <span>{aboutPokemon.value}</span>
                         </li>
                       </>
                     )
                   })}
-                  <TesteDenovo>
+                  <DamageFromTypeContent>
                     <strong>Weaknesses: </strong>
                     <div>
-                      {pokemonDamageType.map((teste, index) => {
+                      {pokemonDamageFromType.map((DamageFromType, index) => {
                         return (
                           <>
-                            <PokemonTypes PokemonType={teste.name} key={teste.name + index}>
+                            <PokemonTypes PokemonType={DamageFromType.name} key={DamageFromType.name + index}>
                               <PokemonTypesWeaknesses>
-                                <img src={`/types/${teste.name}.svg`} />
-                                {/* <p>{pokeTypes.type.name}</p> */}
+                                <img src={`/types/${DamageFromType.name}.svg`} />
                               </PokemonTypesWeaknesses>
                             </PokemonTypes>
                           </>
                         )
                       })}
                     </div>
-                  </TesteDenovo>
-                  <TesteDenovo>
+                  </DamageFromTypeContent>
+                  <DamageFromTypeContent>
                     <strong>Forte contra: </strong>
                     <div>
-                      {pokemonDamageToType.map((teste, index) => {
+                      {pokemonDamageToType.map((DamageFromType, index) => {
                         return (
                           <>
-                            <PokemonTypes PokemonType={teste.name} key={pokemon.id + index}>
+                            <PokemonTypes PokemonType={DamageFromType.name} key={pokemon.id + index}>
                               <PokemonTypesWeaknesses>
-                                <img src={`/types/${teste.name}.svg`} />
-                                {/* <p>{pokeTypes.type.name}</p> */}
+                                <img src={`/types/${DamageFromType.name}.svg`} />
                               </PokemonTypesWeaknesses>
                             </PokemonTypes>
                           </>
                         )
                       })}
                     </div>
-                  </TesteDenovo>
+                  </DamageFromTypeContent>
                 </ul>
                 <StatusContainer>
                   <h1>Status</h1>
