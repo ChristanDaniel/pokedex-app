@@ -18,6 +18,7 @@ import Steel from './steel.svg'
 import Water from './water.svg'
 import Pokeball from './pokeball.svg'
 import PokeballBlack from './pokeballBlack.svg'
+import Teste from './teste.svg'
 
 export {
   Bug,
@@ -39,5 +40,6 @@ export {
   Steel,
   Water,
   Pokeball,
-  PokeballBlack
+  PokeballBlack,
+  Teste
 }

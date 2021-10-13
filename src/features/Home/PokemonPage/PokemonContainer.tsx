@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
 import { api } from '../../../services/api'
-import Image from 'next/image'
-// import SetaPokemon from '../../../../public/seta.png'
+
+import axios from 'axios'
 
 import { RiArrowLeftSLine } from 'react-icons/ri'
 
@@ -30,19 +30,11 @@ import {
   ImgFromPokemon,
   PokemonTypes
 } from './styles'
-import axios from 'axios'
-// import { PokeballBlack } from '../../../../public/types'
-// import { CustomSVG } from '../../../components/CustomSVG'
-// import dynamic from 'next/dynamic'
-
-// const Header = dynamic(() => import('../../../components/Header'), {
-//   ssr: false
-// })
 
 type PokemonType = {
   type: {
     name: string
-    url: typeof Image
+    url: string
   }
 }
 
@@ -87,7 +79,6 @@ const PokemonContainer = (): JSX.Element => {
   const [pokeInfo, setPokeInfo] = useState<PokeProps[]>([])
   const [evolution, setEvolution] = useState<EvolutionProps[]>([])
   const [evolutionName, setEvolutionName] = useState<EvolutionNameProps[]>([])
-  // const [evolutionImg, setEvolutionImg] = useState([])
   const [pokeStatus, setPokeStatus] = useState<PokeStatusProps[]>([])
   const [aboutPoke, setAboutPoke] = useState<AboutPokeProps[]>([])
   const [pokemonDamageFromType, setPokemonDamageFromType] = useState<DamageTypeProps[]>([])
@@ -95,7 +86,6 @@ const PokemonContainer = (): JSX.Element => {
 
   const getPokemonStatus = async () => {
     const response = await api.get(`/pokemon/${router.query.id}`)
-    console.log('aquiiiiiiii', response)
 
     setPokeStatus(response.data.stats)
 
@@ -147,8 +137,6 @@ const PokemonContainer = (): JSX.Element => {
   const getEvolutionPokemon = async (url: string) => {
     const response = await axios.get(`${url}`)
 
-    console.log('BORAAAAAAAAAAAA AQUY', response)
-
     setEvolutionName([
       {
         name: response.data.chain.species?.name
@@ -187,8 +175,6 @@ const PokemonContainer = (): JSX.Element => {
   const getWeaknessesTypes = async (url: string) => {
     const response = await axios.get(`${url}`)
 
-    console.log(response)
-
     setPokemonDamageFromType(response.data.damage_relations.double_damage_from)
     setPokemonDamageToType(response.data.damage_relations.double_damage_to)
   }
@@ -216,7 +202,6 @@ const PokemonContainer = (): JSX.Element => {
 
   return (
     <>
-      {/* <Header /> */}
       {pokeInfo.map((pokemon) => {
         return (
           <>
@@ -254,10 +239,10 @@ const PokemonContainer = (): JSX.Element => {
                 <EvolutionContainer>
                   <ul>
                     <h3>Evolution</h3>
-                    {listOrdenadaEvolution(evolution).map((pokemonEvolution) => {
+                    {listOrdenadaEvolution(evolution).map((pokemonEvolution, index) => {
                       return (
                         <>
-                          <PokemonEvolutionContent key={pokemonEvolution.id}>
+                          <PokemonEvolutionContent key={pokemonEvolution.id + index.toString()}>
                             <a onClick={() => router.push(`/pokemon/${pokemonEvolution.name}`)}>
                               <PokemonEvolutionId>
                                 # {'000'.substr(pokemonEvolution.id.toString().length)}
@@ -268,11 +253,12 @@ const PokemonContainer = (): JSX.Element => {
                                 <PokebolaBackgroundEvolution src="/types/pokeballBlack.svg" />
                                 <ImgFromPokemonEvolution src={pokemonEvolution.url} alt="evolução do pokemon" />
                               </div>
+
                               <div>
-                                {pokemonEvolution.types.map((pokeTypes) => {
+                                {pokemonEvolution.types.map((pokeTypes, index) => {
                                   return (
                                     <>
-                                      <PokemonTypes PokemonType={pokeTypes.type.name} key={pokemon.id}>
+                                      <PokemonTypes PokemonType={pokeTypes.type.name} key={pokemon.id + index.toString()}>
                                         <PokemonTypesEvolution>
                                           <img src={`/types/${pokeTypes.type.name}.svg`} />
                                           <p>{pokeTypes.type.name}</p>
@@ -301,10 +287,10 @@ const PokemonContainer = (): JSX.Element => {
                 </div>
                 <h3>Pokemon About: </h3>
                 <ul>
-                  {aboutPoke.map((aboutPokemon) => {
+                  {aboutPoke.map((aboutPokemon, index) => {
                     return (
                       <>
-                        <li key={aboutPokemon.value}>
+                        <li key={aboutPokemon.value + index.toString()}>
                           <strong>{aboutPokemon.name}: </strong>
                           <span>{aboutPokemon.value}</span>
                         </li>
@@ -317,7 +303,7 @@ const PokemonContainer = (): JSX.Element => {
                       {pokemonDamageFromType.map((DamageFromType, index) => {
                         return (
                           <>
-                            <PokemonTypes PokemonType={DamageFromType.name} key={DamageFromType.name + index}>
+                            <PokemonTypes PokemonType={DamageFromType.name} key={DamageFromType.name + index.toString()}>
                               <PokemonTypesWeaknesses>
                                 <img src={`/types/${DamageFromType.name}.svg`} />
                               </PokemonTypesWeaknesses>
@@ -328,12 +314,12 @@ const PokemonContainer = (): JSX.Element => {
                     </div>
                   </DamageFromTypeContent>
                   <DamageFromTypeContent>
-                    <strong>Forte contra: </strong>
+                    <strong>Strong: </strong>
                     <div>
                       {pokemonDamageToType.map((DamageFromType, index) => {
                         return (
                           <>
-                            <PokemonTypes PokemonType={DamageFromType.name} key={pokemon.id + index}>
+                            <PokemonTypes PokemonType={DamageFromType.name} key={DamageFromType.name + index.toString()}>
                               <PokemonTypesWeaknesses>
                                 <img src={`/types/${DamageFromType.name}.svg`} />
                               </PokemonTypesWeaknesses>
@@ -347,10 +333,10 @@ const PokemonContainer = (): JSX.Element => {
                 <StatusContainer>
                   <h1>Status</h1>
                   <ul>
-                    {pokeStatus.map((pokemonStatus) => {
+                    {pokeStatus.map((pokemonStatus, index) => {
                       return (
                         <>
-                          <li>
+                          <li key={index.toString() + pokemonStatus.base_stat}>
                             <strong>{pokemonStatus.stat.name}:</strong>
                             <span>{pokemonStatus.base_stat}</span>
                           </li>

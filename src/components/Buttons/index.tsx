@@ -23,7 +23,6 @@ const ButtonType = (): JSX.Element => {
     const ResponseType = await api.get(`/type`)
     const data = ResponseType.data.results
 
-    console.log(ResponseType)
     setListPokeType(data.slice(0, 18))
   }
 
@@ -65,9 +64,8 @@ const ButtonType = (): JSX.Element => {
       <ButtonsTypes>
         <button onClick={() => getAllPokemon()}>All</button>
         {listPokeType?.map((types, index) => {
-          // console.log(types.url)
           return (
-            <div key={index}>
+            <div key={index.toString() + types.name}>
               <button onClick={() => handleClickPokeType(types.url)}>{types.name}</button>
             </div>
           )

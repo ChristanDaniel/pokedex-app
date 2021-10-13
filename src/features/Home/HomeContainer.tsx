@@ -1,14 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
 
-// import axios from 'axios'
 import { api } from '../../services/api'
 
 import { MainContainer, LiContent, DivContent, Content, PokemonTypes, ImgFromPokemon, PokebolaBackground } from './styles'
 
 import { PokemonContainerContext } from './PokemonContainerContextProvider'
-// import { Fire, Ice } from '../../../public/types'
-// import { CustomSVG } from '../../components/CustomSVG'
 
 type PokemonType = {
   type: {
@@ -54,10 +51,9 @@ const HomeContainer = (): JSX.Element => {
       ) : (
         <Content>
           {listOrdenada(pokeList).map((pokemon, index) => {
-            console.log('AQUII', pokemon)
             return (
               <>
-                <LiContent key={index} pokeType={pokemon.types[0].type.name}>
+                <LiContent key={index.toString() + pokemon.id} pokeType={pokemon.types[0].type.name}>
                   <a onClick={() => router.push(`/pokemon/${pokemon.name}`)}>
                     <PokebolaBackground src="./types/pokeball.svg" />
                     <ImgFromPokemon src={pokemon.img} />
@@ -69,7 +65,7 @@ const HomeContainer = (): JSX.Element => {
                       <h2>{pokemon.name}</h2>
                       {pokemon.types.map((natural, index) => {
                         return (
-                          <PokemonTypes PokemonType={natural.type.name} key={index.toString() + natural}>
+                          <PokemonTypes key={index.toString() + natural} PokemonType={natural.type.name}>
                             <div>
                               <img src={`./types/${natural.type.name}.svg`} />
                               <p>{natural.type.name}</p>

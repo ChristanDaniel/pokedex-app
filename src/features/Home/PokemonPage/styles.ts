@@ -201,7 +201,7 @@ const PokemonTypes = styled.div<PokemonTypesProps>`
   }};
 
   div {
-    padding: 2px 4px;
+    padding: 1px 3px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -318,7 +318,7 @@ const PokemonAboutContainer = styled.div`
   padding: 30px;
   border-radius: 12px;
   align-items: center;
-  height: 540px;
+  height: 528px;
 
   h4 {
     margin-bottom: 4px;

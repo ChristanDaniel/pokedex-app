@@ -7,8 +7,6 @@ import { NavSection } from './styles'
 import { PokemonContainerContext } from '../../features/Home/PokemonContainerContextProvider'
 import ButtonType from '../Buttons'
 
-import { RiSearchLine, RiArrowLeftSLine } from 'react-icons/ri'
-
 type PokemonType = {
   type: {
     name: string
@@ -39,8 +37,6 @@ const SeachPoke = (): JSX.Element => {
       const response = await api.get(`/pokemon?limit=750`)
       const AllPokemons = response.data.results
       setAllPokemonList(AllPokemons)
-
-      console.log('asa', AllPokemons)
     }
   }
 
