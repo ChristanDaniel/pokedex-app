@@ -84,7 +84,7 @@ const LiContent = styled.li<LiContentProps>`
         return 'white'
     }
   }};
-  /* box-shadow: rgb(0 0 0 / 30%); */
+
   box-shadow: rgb(0 0 0 / 30%) 1px 3px 12px 0px;
   max-height: 240px;
   max-width: 400px;
@@ -119,7 +119,6 @@ const DivContent = styled.div`
   h2 {
     font-weight: bold;
     font-size: 30px;
-    /* line-height: 65px; */
     text-transform: capitalize;
     color: #ffffff;
   }
@@ -129,7 +128,6 @@ const DivContent = styled.div`
 
     p {
       font-size: 15px;
-      /* line-height: 65px; */
       text-transform: capitalize;
       margin-top: 8px;
       padding-right: 15px;
