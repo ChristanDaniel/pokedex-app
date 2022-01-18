@@ -3,7 +3,7 @@
 </h1>
 
 ## 💻 Projeto
-Pokedex-app é uma aplicação web para listagem de pokemons, todos os dados sobre os pokémons como nome, número, tipo, imagem e entre outras coisas, foram possíveis com o uso da API [PokéApi](https://pokeapi.co/).
+Pokedex-app é uma aplicação web para listagem de pokémons, todos os dados sobre os pokémons como nome, número, tipo, imagem e entre outras coisas, foram possíveis com o uso da API [PokéApi](https://pokeapi.co/).
 
 ## 🚀 Tecnologias
 
@@ -16,7 +16,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - [Styled-Components](https://styled-components.com/) <img align='left' alt="styled-components" width='35px' src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png" />
 
-## Estrutura
+## 📂 Estrutura
 
 - `pages/` -> Pasta de rotas do app.
 - `public/` -> Pasta de Imagens.
@@ -34,11 +34,11 @@ https://user-images.githubusercontent.com/80167149/149855465-90eef69a-82e0-4f36-
 
 ### 🔗 Funcionalidades
 
-- [x] **Listagem dos pokemons**: Mostrar pokemons em tela limitando a quantidade que será mostrado.
-- [x] **Botão de ampliar a listagem dos pokemons**: Amplia a listagem de pokemons mostrada em tela.
-- [x] **Pesquisar pokemon pelo nome**: Funcionalidade criada para filtrar os pokémons a partir do seu nome.
-- [x] **Menu de pesquisa da natureza dos pokemons**: Funcionalidade criada para filtrar os pokémons a partir da sua Natureza.
-- [x] **Criar página do pokemon selecionado**: Mostrar informações do pokémon ex: natureza, Estatísticas, Evoluções...
+- [x] **Listagem dos pokémons**: Mostrar pokémons em tela limitando a quantidade que será mostrado.
+- [x] **botão "Mostrar mais"**: Amplia a listagem de pokémons mostrada em tela.
+- [x] **Pesquisar pokémon pelo nome**: Funcionalidade criada para filtrar os pokémons a partir do seu nome.
+- [x] **Menu de pesquisa da natureza dos pokémons**: Funcionalidade criada para filtrar os pokémons a partir da sua Natureza.
+- [x] **Criar página do pokémon selecionado**: Mostrar informações do pokémon ex: natureza, Estatísticas, Evoluções...
 
 ## 📥 Instalação e execução
 
