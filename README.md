@@ -2,6 +2,9 @@
   <img src="https://user-images.githubusercontent.com/80167149/132560979-fded8847-3b29-462e-a376-dc6d0df4d739.png" />
 </h1>
 
+## 💻 Projeto
+Pokedex-app é uma aplicação web para listagem de pokemons, todos os dados sobre os pokémons como nome, número, tipo, imagem e entre outras coisas, foram possíveis com o uso da API [PokéApi](https://pokeapi.co/).
+
 ## 🚀 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
