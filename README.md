@@ -23,6 +23,12 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - `src/features/Home/PokemonContainerContextProvider.tsx` -> arquivo que compartilha dados entre todos os componentes/features do app, utilizando hook useContext do react.
 
 
+https://user-images.githubusercontent.com/80167149/149855465-90eef69a-82e0-4f36-92f0-abbf6b1b8788.mp4
+
+
+![chrome_1JvMl2UYe8](https://user-images.githubusercontent.com/80167149/149855376-33ed0e98-c245-48af-beb0-82ad7ad2c8d8.png)
+
+
 ## 📥 Instalação e execução
 
 Faça um clone desse repositório e acesse o diretório.
