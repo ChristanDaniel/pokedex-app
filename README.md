@@ -29,6 +29,14 @@ https://user-images.githubusercontent.com/80167149/149855465-90eef69a-82e0-4f36-
 ![chrome_1JvMl2UYe8](https://user-images.githubusercontent.com/80167149/149855376-33ed0e98-c245-48af-beb0-82ad7ad2c8d8.png)
 
 
+### 🔗 Funcionalidades
+
+- [x] **Listagem dos pokemons**: Mostrar pokemons em tela limitando a quantidade que será mostrado.
+- [x] **Botão de ampliar a listagem dos pokemons**: Amplia a listagem de pokemons mostrada em tela.
+- [x] **Pesquisar pokemon pelo nome**: Funcionalidade criada para filtrar os pokémons a partir do seu nome.
+- [x] **Menu de pesquisa da natureza dos pokemons**: Funcionalidade criada para filtrar os pokémons a partir da sua Natureza.
+- [x] **Criar página do pokemon selecionado**: Mostrar informações do pokémon ex: natureza, Estatísticas, Evoluções...
+
 ## 📥 Instalação e execução
 
 Faça um clone desse repositório e acesse o diretório.
