@@ -13,6 +13,7 @@ import {
   PokemonDescription,
   PokemonId,
   PokemonName,
+  IsloadContent,
   PokemonDescriptionsType,
   PokemonTypeSvg,
   PokemonTypeName,
@@ -75,6 +76,8 @@ type PokeStatusProps = {
 
 const PokemonContainer = (): JSX.Element => {
   const router = useRouter()
+
+  const [isloadPokemon, setIsloadPokemon] = useState(true)
 
   const [pokeInfo, setPokeInfo] = useState<PokeProps[]>([])
   const [evolution, setEvolution] = useState<EvolutionProps[]>([])
@@ -148,6 +151,7 @@ const PokemonContainer = (): JSX.Element => {
         name: response.data.chain.evolves_to[0]?.evolves_to[0]?.species.name
       }
     ])
+    setIsloadPokemon(false)
   }
 
   const getImgPokemon = async () => {
@@ -235,45 +239,52 @@ const PokemonContainer = (): JSX.Element => {
                     </PokemonDescriptionsType>
                   </PokemonDescription>
                 </div>
+                {/*  */}
 
                 <EvolutionContainer>
-                  <ul>
-                    <h3>Evolution</h3>
-                    {listOrdenadaEvolution(evolution).map((pokemonEvolution, index) => {
-                      return (
-                        <>
-                          <PokemonEvolutionContent key={pokemonEvolution.id + index.toString()}>
-                            <a onClick={() => router.push(`/pokemon/${pokemonEvolution.name}`)}>
-                              <PokemonEvolutionId>
-                                # {'000'.substr(pokemonEvolution.id.toString().length)}
-                                {pokemonEvolution.id}
-                              </PokemonEvolutionId>
-                              <p>{pokemonEvolution.name}</p>
-                              <div>
-                                <PokebolaBackgroundEvolution src="/types/pokeballBlack.svg" />
-                                <ImgFromPokemonEvolution src={pokemonEvolution.url} alt="evolução do pokemon" />
-                              </div>
+                  {isloadPokemon ? (
+                    <IsloadContent>
+                      <div />
+                    </IsloadContent>
+                  ) : (
+                    <ul>
+                      <h3>Evolution</h3>
+                      {listOrdenadaEvolution(evolution).map((pokemonEvolution, index) => {
+                        return (
+                          <>
+                            <PokemonEvolutionContent key={pokemonEvolution.id + index.toString()}>
+                              <a onClick={() => router.push(`/pokemon/${pokemonEvolution.name}`)}>
+                                <PokemonEvolutionId>
+                                  # {'000'.substr(pokemonEvolution.id.toString().length)}
+                                  {pokemonEvolution.id}
+                                </PokemonEvolutionId>
+                                <p>{pokemonEvolution.name}</p>
+                                <div>
+                                  <PokebolaBackgroundEvolution src="/types/pokeballBlack.svg" />
+                                  <ImgFromPokemonEvolution src={pokemonEvolution.url} alt="evolução do pokemon" />
+                                </div>
 
-                              <div>
-                                {pokemonEvolution.types.map((pokeTypes, index) => {
-                                  return (
-                                    <>
-                                      <PokemonTypes PokemonType={pokeTypes.type.name} key={pokemon.id + index.toString()}>
-                                        <PokemonTypesEvolution>
-                                          <img src={`/types/${pokeTypes.type.name}.svg`} />
-                                          <p>{pokeTypes.type.name}</p>
-                                        </PokemonTypesEvolution>
-                                      </PokemonTypes>
-                                    </>
-                                  )
-                                })}
-                              </div>
-                            </a>
-                          </PokemonEvolutionContent>
-                        </>
-                      )
-                    })}
-                  </ul>
+                                <div>
+                                  {pokemonEvolution.types.map((pokeTypes, index) => {
+                                    return (
+                                      <>
+                                        <PokemonTypes PokemonType={pokeTypes.type.name} key={pokemon.id + index.toString()}>
+                                          <PokemonTypesEvolution>
+                                            <img src={`/types/${pokeTypes.type.name}.svg`} />
+                                            <p>{pokeTypes.type.name}</p>
+                                          </PokemonTypesEvolution>
+                                        </PokemonTypes>
+                                      </>
+                                    )
+                                  })}
+                                </div>
+                              </a>
+                            </PokemonEvolutionContent>
+                          </>
+                        )
+                      })}
+                    </ul>
+                  )}
                 </EvolutionContainer>
               </PokemonBodyContent>
 

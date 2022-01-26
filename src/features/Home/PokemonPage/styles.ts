@@ -225,8 +225,12 @@ const PokeBodyContainer = styled.div`
   margin: 20px;
 `
 
+const IsloadContent = styled.div`
+
+`
+
 const EvolutionContainer = styled.div`
-  min-height: 50px;
+  min-height: 270px;
   margin-right: 40px;
   display: flex;
   background-color: #ffffff;
@@ -254,7 +258,6 @@ const EvolutionContainer = styled.div`
   }
 `
 const PokemonEvolutionContent = styled.li`
-  /* margin: 16px 80px 10px; */
   display: flex;
   margin-top: 40px;
 
@@ -406,6 +409,7 @@ export {
   PokemonTypeSvg,
   PokemonTypeName,
   EvolutionContainer,
+  IsloadContent,
   PokemonEvolutionContent,
   PokemonEvolutionId,
   ImgFromPokemonEvolution,
