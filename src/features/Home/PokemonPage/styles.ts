@@ -226,7 +226,26 @@ const PokeBodyContainer = styled.div`
 `
 
 const IsloadContent = styled.div`
+  min-height: 270px;
+  min-width: 860px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  div {
+    animation: 'is-rotating' 1s infinite;
+    border: 6px solid #e5e5e5;
+    border-radius: 50%;
+    border-top-color: #51d4db;
+    height: 50px;
+    width: 50px;
+
+    @keyframes is-rotating {
+      to {
+        transform: rotate(1turn);
+      }
+    }
+  }
 `
 
 const EvolutionContainer = styled.div`
