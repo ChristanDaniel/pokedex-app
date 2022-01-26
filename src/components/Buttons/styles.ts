@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 const ButtonsTypes = styled.nav`
   display: flex;
+
   button {
     text-transform: capitalize;
     /* text-decoration: none; */

@@ -79,7 +79,6 @@ const SeachPoke = (): JSX.Element => {
   useEffect(() => {
     const foo = async () => {
       await handleListAllPokemon()
-      // await handleListPokeType()
     }
 
     foo()
