@@ -52,8 +52,8 @@ const HomeContainer = (): JSX.Element => {
         <Content>
           {listOrdenada(pokeList).map((pokemon, index) => {
             return (
-              <>
-                <LiContent key={index.toString() + pokemon.id} pokeType={pokemon.types[0].type.name}>
+              <div key={index.toString() + pokemon.id}>
+                <LiContent pokeType={pokemon.types[0].type.name}>
                   <a onClick={() => router.push(`/pokemon/${pokemon.name}`)}>
                     <PokebolaBackground src="./types/pokeball.svg" />
                     <ImgFromPokemon src={pokemon.img} />
@@ -76,7 +76,7 @@ const HomeContainer = (): JSX.Element => {
                     </DivContent>
                   </a>
                 </LiContent>
-              </>
+              </div>
             )
           })}
         </Content>

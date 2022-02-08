@@ -208,8 +208,8 @@ const PokemonContainer = (): JSX.Element => {
     <>
       {pokeInfo.map((pokemon) => {
         return (
-          <>
-            <PokemonPageContainer key={pokemon.id} pokeType={pokemon.types[0].type.name}>
+          <div key={pokemon.id}>
+            <PokemonPageContainer pokeType={pokemon.types[0].type.name}>
               <ButtonTeste>
                 <button onClick={() => router.push(`/`)}>
                   <RiArrowLeftSLine /> Explorar mais pokemons
@@ -251,8 +251,8 @@ const PokemonContainer = (): JSX.Element => {
                       <h3>Evolution</h3>
                       {listOrdenadaEvolution(evolution).map((pokemonEvolution, index) => {
                         return (
-                          <>
-                            <PokemonEvolutionContent key={pokemonEvolution.id + index.toString()}>
+                          <div key={pokemonEvolution.id + index.toString()}>
+                            <PokemonEvolutionContent>
                               <a onClick={() => router.push(`/pokemon/${pokemonEvolution.name}`)}>
                                 <PokemonEvolutionId>
                                   # {'000'.substr(pokemonEvolution.id.toString().length)}
@@ -280,7 +280,7 @@ const PokemonContainer = (): JSX.Element => {
                                 </div>
                               </a>
                             </PokemonEvolutionContent>
-                          </>
+                          </div>
                         )
                       })}
                     </ul>
@@ -358,7 +358,7 @@ const PokemonContainer = (): JSX.Element => {
                 </StatusContainer>
               </PokemonAboutContainer>
             </PokemonPageContainer>
-          </>
+          </div>
         )
       })}
     </>
