@@ -300,12 +300,12 @@ const PokemonContainer = (): JSX.Element => {
                 <ul>
                   {aboutPoke.map((aboutPokemon, index) => {
                     return (
-                      <>
-                        <li key={aboutPokemon.value + index.toString()}>
+                      <div key={aboutPokemon.value + index.toString()}>
+                        <li>
                           <strong>{aboutPokemon.name}: </strong>
                           <span>{aboutPokemon.value}</span>
                         </li>
-                      </>
+                      </div>
                     )
                   })}
                   <DamageFromTypeContent>
@@ -313,13 +313,13 @@ const PokemonContainer = (): JSX.Element => {
                     <div>
                       {pokemonDamageFromType.map((DamageFromType, index) => {
                         return (
-                          <>
-                            <PokemonTypes PokemonType={DamageFromType.name} key={DamageFromType.name + index.toString()}>
+                          <div key={DamageFromType.name + index.toString()}>
+                            <PokemonTypes PokemonType={DamageFromType.name}>
                               <PokemonTypesWeaknesses>
                                 <img src={`/types/${DamageFromType.name}.svg`} />
                               </PokemonTypesWeaknesses>
                             </PokemonTypes>
-                          </>
+                          </div>
                         )
                       })}
                     </div>
@@ -329,13 +329,13 @@ const PokemonContainer = (): JSX.Element => {
                     <div>
                       {pokemonDamageToType.map((DamageFromType, index) => {
                         return (
-                          <>
-                            <PokemonTypes PokemonType={DamageFromType.name} key={DamageFromType.name + index.toString()}>
+                          <div key={DamageFromType.name + index.toString()}>
+                            <PokemonTypes PokemonType={DamageFromType.name}>
                               <PokemonTypesWeaknesses>
                                 <img src={`/types/${DamageFromType.name}.svg`} />
                               </PokemonTypesWeaknesses>
                             </PokemonTypes>
-                          </>
+                          </div>
                         )
                       })}
                     </div>
@@ -346,12 +346,12 @@ const PokemonContainer = (): JSX.Element => {
                   <ul>
                     {pokeStatus.map((pokemonStatus, index) => {
                       return (
-                        <>
-                          <li key={index.toString() + pokemonStatus.base_stat}>
+                        <div key={index.toString() + pokemonStatus.base_stat}>
+                          <li>
                             <strong>{pokemonStatus.stat.name}:</strong>
                             <span>{pokemonStatus.base_stat}</span>
                           </li>
-                        </>
+                        </div>
                       )
                     })}
                   </ul>
