@@ -7,6 +7,10 @@ const Headers = styled.header`
   justify-content: space-around;
   width: auto;
 
+  @media screen and (max-width: 880px) {
+    display: block;
+  }
+
   div {
     display: flex;
   }

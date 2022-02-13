@@ -33,6 +33,14 @@ const Content = styled.main`
   width: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 700px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
   margin: 45px;
   gap: 30px;
 `
