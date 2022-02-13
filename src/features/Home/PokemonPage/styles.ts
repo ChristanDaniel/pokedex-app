@@ -10,6 +10,9 @@ const PokemonPageContainer = styled.main<PokeContainerProps>`
   padding: 40px;
 
   display: flex;
+  @media screen and (max-width: 1200px) {
+    display: block;
+  }
   /* align-items: center; */
 
   button {
@@ -341,6 +344,10 @@ const PokemonAboutContainer = styled.div`
   border-radius: 12px;
   align-items: center;
   height: 528px;
+
+  @media screen and (max-width: 1200px) {
+    max-width: 370px;
+  }
 
   h4 {
     margin-bottom: 4px;
