@@ -1,10 +1,12 @@
 import React from 'react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 
+import { FooterContainer } from './styles'
+
 export function Footer(): JSX.Element {
   return (
     <>
-      <footer>
+      <FooterContainer>
         <div>
           <div id="divContent">
             <a href="https://github.com/ChristanDaniel" target="_blank" rel="noreferrer noopener">
@@ -21,7 +23,7 @@ export function Footer(): JSX.Element {
             <span>Construido por Christian Daniel .</span>
           </p>
         </div>
-      </footer>
+      </FooterContainer>
     </>
   )
 }

@@ -8,6 +8,9 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  a {
+    all: unset
+  }
 
   li {
     list-style: none;
