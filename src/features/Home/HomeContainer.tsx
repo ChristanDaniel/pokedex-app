@@ -6,6 +6,7 @@ import { api } from '../../services/api'
 import { MainContainer, LiContent, DivContent, Content, PokemonTypes, ImgFromPokemon, PokebolaBackground } from './styles'
 
 import { PokemonContainerContext } from './PokemonContainerContextProvider'
+import { Footer } from '../../components/Footer'
 
 type PokemonType = {
   type: {
@@ -84,6 +85,7 @@ const HomeContainer = (): JSX.Element => {
       <div>
         <button onClick={() => getAllPokemon()}>Carregar mais</button>
       </div>
+      <Footer />
     </MainContainer>
   )
 }
