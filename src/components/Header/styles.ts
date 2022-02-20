@@ -22,6 +22,10 @@ const Headers = styled.header`
     border-left: 1px solid #616480;
     padding-left: 20px;
     color: #616480;
+
+    @media screen and (max-width: 810px) {
+      font-size: 16px;
+    }
   }
 `
 

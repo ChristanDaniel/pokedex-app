@@ -37,7 +37,7 @@ const Content = styled.main`
   @media screen and (max-width: 1000px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 810px) {
     grid-template-columns: repeat(1, 1fr);
   }
 
