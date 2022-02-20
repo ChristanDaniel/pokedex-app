@@ -3,9 +3,13 @@ import styled from 'styled-components'
 const ButtonsTypes = styled.nav`
   display: flex;
 
+  @media screen and (max-width: 810px) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   button {
     text-transform: capitalize;
-    /* text-decoration: none; */
     align-self: center;
     font-size: 14px;
     height: 30px;
