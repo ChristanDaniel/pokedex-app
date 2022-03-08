@@ -5,6 +5,8 @@
 ## 💻 Projeto
 Pokedex-app é uma aplicação web para listagem de pokémons, todos os dados sobre os pokémons como nome, número, tipo, imagem e entre outras coisas, foram possíveis com o uso da API [PokéApi](https://pokeapi.co/).
 
+---
+
 ## 🚀 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
@@ -15,6 +17,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [TypeScript](https://www.typescriptlang.org/) <img align='left' alt='TypeScript' width='35px' src="https://img.icons8.com/color/48/000000/typescript.png"/>
 
 - [Styled-Components](https://styled-components.com/) <img align='left' alt="styled-components" width='35px' src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png" />
+
+---
 
 ## 📂 Estrutura
 
@@ -31,6 +35,7 @@ https://user-images.githubusercontent.com/80167149/149855465-90eef69a-82e0-4f36-
 
 ![chrome_1JvMl2UYe8](https://user-images.githubusercontent.com/80167149/149855376-33ed0e98-c245-48af-beb0-82ad7ad2c8d8.png)
 
+---
 
 ### 🔗 Funcionalidades
 
@@ -39,6 +44,8 @@ https://user-images.githubusercontent.com/80167149/149855465-90eef69a-82e0-4f36-
 - [x] **Pesquisar pokémon pelo nome**: Funcionalidade criada para filtrar os pokémons a partir do seu nome.
 - [x] **Menu de pesquisa da natureza dos pokémons**: Funcionalidade criada para filtrar os pokémons a partir da sua Natureza.
 - [x] **Criar página do pokémon selecionado**: Mostrar informações do pokémon ex: natureza, Estatísticas, Evoluções...
+
+---
 
 ## 📥 Instalação e execução
 
